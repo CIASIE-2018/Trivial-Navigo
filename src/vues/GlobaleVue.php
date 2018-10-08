@@ -5,7 +5,7 @@ namespace trivial\vues;
 class GlobaleVue {
 
 	public static function header() {
-		/*$app = \Slim\App::getInstance();
+		/*$app = \Slim\App\Config::getInstance();
 		$ac = $app->urlFor('Accueil');
 		$rootUI = $app->request->getRootUri();
 		$rootUI = str_replace('index.php','',$rootUI);*/
@@ -14,6 +14,7 @@ class GlobaleVue {
 <html>
 <head>
 		<title>Trivial Navigo</title>
+		
         <meta charset="UTF-8">
 END;
 		$html = $html.<<<END
@@ -32,18 +33,17 @@ END;
 	public static function footer() {
 		$html=<<<END
 		</div>
-<footer>
- 	<ul id="auteur">
-				<li>Maeva BUTAYE</li><!--
-				--><li>Camille SCHWARZ</li><!--
-				--><li>Léo GALASSI</li><!--
-				--><li>Quentin RIMET</li>
-	</ul>
-</footer>
+
+	
+
 </body>
 </html>
+
+
 END;
 		return $html;
+
+
 	}
 	
 }
