@@ -20,7 +20,7 @@ class AccueilVue {
                 <a href="Rejoindre.html" target="_blank">Rejoindre Une Partie</a>
            </div>
            <div class="boutton">
-                <a href="Connexion.html" target="_blank">Connexion</a>
+                <a href="/PHP/Trivial-Navigo/Connexion" target="_blank">Connexion</a>
            </div>
       
       
