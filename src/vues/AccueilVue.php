@@ -6,9 +6,9 @@ use trivial\vues\GlobaleVue;
 
 class AccueilVue {
 
-	public function render($a) {
+	public function render() {
         $ach = GlobaleVue::header();
-        $html = "<label>".$a."</label>";
+        $html = "";
 		$acf = GlobaleVue::footer();
 		return $ach.$html.$acf;
 	}
