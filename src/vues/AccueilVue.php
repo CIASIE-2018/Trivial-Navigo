@@ -14,7 +14,7 @@ class AccueilVue {
 
 		<div class="screen">
         <div class="boutton">
-             <a href="Demarer.html" target="_blank">Démarer Une Partie</a>
+             <a href="Demarer" target="_blank">Démarer Une Partie</a>
         </div>
         <div class="boutton">
                 <a href="Rejoindre.html" target="_blank">Rejoindre Une Partie</a>
