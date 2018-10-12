@@ -7,13 +7,30 @@ use trivial\controlleurs\AccueilControlleur;
 use trivial\controlleurs\ConnexionControlleur;
 use trivial\controlleurs\DemarerControlleur;
 use trivial\controlleurs\RejoindreControlleur;
+use trivial\bd\Connexion;
 
 
-#$tab = parse_ini_file('src/conf/conf.ini');
-#$db = new DB();
-#$db->addConnection($tab);
-#$db->setAsGlobal();
-#$db->bootEloquent(); 
+Connexion::setConfig('src/conf/conf.ini');
+$db = Connexion::makeConnection();
+
+$ini = parse_ini_file('src/conf/conf.ini');
+
+$db = new DB();
+
+$db->addConnection( [
+ 'driver' => $ini['driver'],
+ 'host' => $ini['host'],
+ 'database' => $ini['dbname'],
+ 'username' => $ini['username'],
+ 'password' => $ini['password'],
+ 'charset' => 'utf8',
+ 'collation' => 'utf8_unicode_ci',
+ 'prefix' => ''
+] );
+
+$db->setAsGlobal();
+$db->bootEloquent();
+
 
 session_start();
 $app = new \Slim\App();
@@ -39,6 +56,7 @@ $app->get('/Rejoindre', function() {
 	$acc = new RejoindreControlleur();
 	$acc->affichageRejoindre();
 })->setName('Rejoindre');
+
 
 
 $app->run();
