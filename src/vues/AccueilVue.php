@@ -20,8 +20,11 @@ class AccueilVue {
                 <a href="Rejoindre" >Rejoindre Une Partie</a>
            </div>
            <div class="boutton">
-                <a href="Connexion" >Connexion</a>
-           </div>
+                <a href="CreateAccount" >Creer Compte</a>
+		   </div>
+		   <div class="boutton">
+		   <a href="Connexion" >Connexion</a>
+	  </div>
       
       
     </div>

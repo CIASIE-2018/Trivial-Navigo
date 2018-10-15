@@ -40,10 +40,16 @@ $app->get('/', function() {
 	$acc->affichageAcc();
 })->setName('Accueil');
 
-$app->get('/Connexion', function() {
+$app->get('/CreateAccount', function() {
 	$acc = new ConnexionControlleur();
-	$acc->affichageConnexion();
-})->setName('Connexion');
+	$acc->CreateAccountAffichage();
+})->setName('CreateAccount');
+
+$app->post('/CreateAccount', function($request, $response, $args){
+	$acc = new ConnexionControlleur();
+	$acc->testCreationAccount(); 
+  } )
+  ->setName("testCreation");  
 
 $app->get('/Demarer', function() {
 
@@ -56,6 +62,14 @@ $app->get('/Rejoindre', function() {
 	$acc = new RejoindreControlleur();
 	$acc->affichageRejoindre();
 })->setName('Rejoindre');
+
+$app->get('/Supprimer', function($id) {
+
+	// TEST DE PDO ET ELOQUENT : Connexion à BD établie et les requêtes fonctionnent.
+	$acc = new AccueilControlleur();
+	$acc->supprimer($id);
+})->setName('Supprimer');
+
 
 
 
