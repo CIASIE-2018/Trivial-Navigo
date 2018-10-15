@@ -1,0 +1,21 @@
+{% include 'GlobalHeaderView.html.twig' %}
+<table>
+{% for cologne in 1..13 %}
+<tr>
+    {% for ligne in 1..13 %}
+        {% if board.grid[cologne][ligne].theme is defined %}
+            <td class="{{board.grid[cologne][ligne].theme}}">
+                {% if board.grid[cologne][ligne].player is defined %}
+                    <div class='divplayer'>
+                    {% for player in board.grid[cologne][ligne].player %}
+                        <div class='{{player}}'></div>
+                    {% endfor %} 
+                {% endif %}
+                </td>
+        {% else %}
+            <td class="null"></td>
+        {% endif %}
+    {% endfor %}
+</tr>
+{% endfor %}
+</table>

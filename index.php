@@ -4,7 +4,6 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Illuminate\Database\Capsule\Manager as DB;
 use trivial\controlleurs\AccueilControlleur;
-use trivial\controlleurs\JeuControlleur;
 use trivial\controlleurs\ConnexionControlleur;
 use trivial\controlleurs\DemarerControlleur;
 use trivial\controlleurs\RejoindreControlleur;
@@ -33,7 +32,11 @@ $db->setAsGlobal();
 $db->bootEloquent();
 
 session_start();
-$app = new \Slim\App();
+
+require('container.php');
+	
+$app = new \Slim\App($container);
+
 
 $app->get('/', function() {
 	$acc = new AccueilControlleur();
@@ -41,11 +44,7 @@ $app->get('/', function() {
 })->setName('Accueil');
 
 
-$app->get('/plateau', function() {
-	$acc = new jeuControlleur();
-	$acc->initJeu();
-	$acc->affichageJeu();
-})->setName('plateau');
+$app->get('/Game','GameController:renderNewBoard')->setName('Game');
 
 $app->get('/Connexion', function() {
 	$acc = new ConnexionControlleur();
@@ -63,7 +62,5 @@ $app->get('/Rejoindre', function() {
 	$acc = new RejoindreControlleur();
 	$acc->affichageRejoindre();
 })->setName('Rejoindre');
-
-
 
 $app->run();
