@@ -15,7 +15,7 @@ class GameController{
     public function renderNewBoard($request, $response, $args) {
       $game = new Game();
       return $this->view->render($response,'GameView.html.twig',[
-        'board' => $game->getBoard()
+        'board' => $game->board
     ]);
       
     }
