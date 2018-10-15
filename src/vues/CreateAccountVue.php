@@ -4,29 +4,24 @@ namespace trivial\vues;
 
 use trivial\vues\GlobaleVue;
 
-class ConnexionVue {
+class CreateAccountVue {
+	
 
 	public function render() {
         $ach = GlobaleVue::header();
 		$html ='';
         $html = $html.<<<END
-        <h4> Connexion </h4>
+        <h4> Créer Un Compte </h4>
 <div class="screen">
-        <div class="form">
-        <tr>
-        <th><label for="name"><strong>Name:</strong></label></th>
-        <td><input class="inp-text" name="name" id="name" type="text" size="30" /></td>
-    </tr>
-    <tr>
-        <th><label for="name"><strong>Password:</strong></label></th>
-        <td><input class="inp-text" name="password" id="password" type="password" size="30" /></td>
-    </tr>
-    
-    <tr>
-    <div class="boutton">
-                <a href="" target="">Jouer</a>
-           </div>
-    </tr>
+
+	 
+	 <form action="" method="post">
+		 <p>
+			<p> pseudo : </p> <input type="text" name="pseudo" /> <p> mdp : </p> <input type="password" name="mdp" /> <p> email : </p> <input type="text" name="email" /> <input type="submit" value="Valider" />
+		 </p>
+	 </form>
+
+
     </div> 
     
     
