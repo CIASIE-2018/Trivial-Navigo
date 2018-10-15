@@ -7,6 +7,7 @@ use trivial\controlleurs\AccueilControlleur;
 use trivial\controlleurs\ConnexionControlleur;
 use trivial\controlleurs\DemarerControlleur;
 use trivial\controlleurs\RejoindreControlleur;
+use trivial\controlleurs\CardController;
 use trivial\bd\Connexion;
 
 
@@ -57,6 +58,9 @@ $app->get('/Rejoindre', function() {
 	$acc->affichageRejoindre();
 })->setName('Rejoindre');
 
-
+$app->get('/ListCards', function() {
+	$acc = new CardController();
+	$acc->listCards();
+})->setName('ListCards');
 
 $app->run();
