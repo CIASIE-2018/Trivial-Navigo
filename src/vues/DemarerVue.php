@@ -4,29 +4,36 @@ namespace trivial\vues;
 
 use trivial\vues\GlobaleVue;
 
-class AccueilVue {
+class DemarerVue {
 
 	public function render() {
+
         $ach = GlobaleVue::header();
 		$html ='';
-		$html = $html.<<<END
-		
+        $html = $html.<<<END
+        <h4>Démarer Une Partie</h4>
 
-		<div class="screen">
-        <div class="boutton">
-             <a href="Demarer" >Démarer Une Partie</a>
-        </div>
-        <div class="boutton">
-                <a href="Rejoindre" >Rejoindre Une Partie</a>
-           </div>
+    <div class="screen">
+      <div class="choice">
+        <select>
+            <option value="0">Mode de Jeu:</option>
+            <option value="1">Public</option>
+            <option value="2">Privé</option>
+          </select>
+     
+      
+              <input type="text" placeholder="Entrez un nom de serveur">
+      </div>
+            
+           
            <div class="boutton">
-                <a href="Connexion" >Connexion</a>
+                <a href="Connexion.html" target="_blank">Jouer</a>
            </div>
       
       
     </div>
 
-	<style>
+    <style>
 	.screen{
 		display: flex;
 		flex-direction: column;
@@ -40,7 +47,11 @@ class AccueilVue {
 	body{
 		background: url(back.jpg);
 	}
-	
+    
+    h4{
+        text-align : center;
+    }
+
 	header{
 		text-align: center;
 		margin-top : 15%;
@@ -86,8 +97,11 @@ class AccueilVue {
 		margin-top: 10px; 
 	}
 	</style>
+       
+    
+
 END;
-		$acf = GlobaleVue::footer();
+        $acf = GlobaleVue::footer();
 		return $ach.$html.$acf;
 	}
 
