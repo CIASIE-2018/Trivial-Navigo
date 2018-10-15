@@ -49,7 +49,16 @@ $app->post('/CreateAccount', function($request, $response, $args){
 	$acc = new ConnexionControlleur();
 	$acc->testCreationAccount(); 
   } )
-  ->setName("testCreation");  
+  ->setName("testCreation");
+
+  $app->get('/Connexion',function(){
+	  $acc = new ConnexionControlleur();
+	  $acc->affichageConnexion();
+  })
+  ->setName("Connexion");
+
+
+  
 
 $app->get('/Demarer', function() {
 

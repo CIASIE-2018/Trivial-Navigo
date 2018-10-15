@@ -3,6 +3,7 @@
 namespace trivial\controlleurs;
 
 use trivial\vues\CreateAccountVue;
+use trivial\vues\ConnexionVue;
 use trivial\modeles as m;
 
 class ConnexionControlleur {
@@ -37,12 +38,18 @@ class ConnexionControlleur {
 		
 		self::creer($pseudo,$mdp,$email);
 		var_dump("ici");	
-		
+	
+	  
 	  global $app ;
       $url =  $app->getContainer()->get('router')->pathFor('Accueil');
 
       header("Location: $url");
       exit();
+	}
+
+	public function affichageConnexion(){
+		$av = new ConnexionVue();
+		echo $av->render();
 	}
 
 }
