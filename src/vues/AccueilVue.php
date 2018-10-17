@@ -11,6 +11,8 @@ class AccueilVue {
 	public function render() {
 		$ach = GlobaleVue::header();
 		
+
+		//Mennu de base
 		$menu =<<<END
 		<div class="boutton">
 		<a href="Demarer" >Démarer Une Partie</a>
@@ -25,7 +27,7 @@ class AccueilVue {
 	  <a href="Connexion" >Connexion</a>
 END;
 		
-		
+		//Menu personnalisé si le joueur est connecté
 		if(Authentication::verificationConnexion()){
 			$menu =<<<END
 		<div class="boutton">
