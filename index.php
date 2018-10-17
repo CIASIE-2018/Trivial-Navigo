@@ -48,12 +48,12 @@ $app->get('/', function() {
 $app->get('/Game','GameController:renderNewBoard')->setName('Game');
 =======
    $app->post('/Connexion' , function($request, $response, $args){
-	var_dump("here");
 	$acc = new ConnexionControlleur();
  	$acc->testConnexion() ;
  })
  ->setname("testConnexion");
   
+<<<<<<< HEAD
 >>>>>>> be97a12... Affichage primitif d'un Accueil personnalisé avec le système de Session
 
 $app->get('/Connexion', function() {
@@ -65,6 +65,18 @@ $app->get('/Demarrer', function() {
 	$acc = new StartController();
 	$acc->displayStart();
 })->setName('Demarrer');
+=======
+$app->get('/Deconnexion',function(){
+	$acc = new ConnexionControlleur();
+	$acc->testDeconnexion();
+})
+->setName('Deconnexion');
+
+$app->get('/Demarer', function() {
+	$acc = new DemarerControlleur();
+	$acc->affichageDemarer();
+})->setName('Demarer');
+>>>>>>> da3573f... Fonctionnalité deconnexion du joueur et modification de l'interface
 
 $app->get('/Rejoindre', function() {
 

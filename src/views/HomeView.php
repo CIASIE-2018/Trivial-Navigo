@@ -7,9 +7,13 @@ use trivial\views\GlobalView;
 =======
 use trivial\vues\GlobaleVue;
 <<<<<<< HEAD:src/views/HomeView.php
+<<<<<<< HEAD:src/views/HomeView.php
 use trivial\controlleurs as c;
 >>>>>>> be97a12... Affichage primitif d'un Accueil personnalisé avec le système de Session:src/vues/AccueilVue.php
 =======
+=======
+use trivial\controlleurs\Authentication;
+>>>>>>> da3573f... Fonctionnalité deconnexion du joueur et modification de l'interface:src/vues/AccueilVue.php
 
 >>>>>>> a4da986... L'affichage personnalisé s'intègre au design:src/vues/AccueilVue.php
 
@@ -35,7 +39,8 @@ class HomeView {
 	  <a href="Connexion" >Connexion</a>
 END;
 		
-		if(session_id() != ""){
+		
+		if(Authentication::verificationConnexion()){
 			$menu =<<<END
 		<div class="boutton">
 		<a href="Demarer" >Démarer Une Partie</a>
@@ -47,7 +52,7 @@ END;
 		   <a href="CreateAccount" >Creer Compte</a>
 	  </div>
 	  <div class="boutton">
-	  <a href="Connexion" >Deconnexion</a>
+	  <a href="Deconnexion" >Deconnexion</a>
 END;
 		
 

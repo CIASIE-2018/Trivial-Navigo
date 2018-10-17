@@ -12,7 +12,10 @@ class GlobalView {
 	public static function header() {
 		
 		if( c\Authentication::verificationConnexion() ){
-			$pseudo= $_SESSION['pseudoJoueur'] ;
+			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
+		}
+		else{
+			$pseudo = "";
 		}
 		$html = <<<END
 <!DOCTYPE html>
@@ -28,7 +31,7 @@ END;
 <div>
 	<header>
 		<h1>Trivial Navigo</h1>
-		<h5> Bienvenue $pseudo</h5>
+		<h5>$pseudo</h5>
 	</header>
 </div>
 	<div id="content">

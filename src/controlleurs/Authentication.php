@@ -18,6 +18,14 @@ class Authentication{
           return false ;
         }
       }
+
+      public static function deconnexion(){
+        session_destroy();
+    }
+
+     
+      
+  
     
 
 }
