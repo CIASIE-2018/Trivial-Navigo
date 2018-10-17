@@ -31,14 +31,20 @@ $db->addConnection( [
 $db->setAsGlobal();
 $db->bootEloquent();
 
-
 session_start();
-$app = new \Slim\App();
+
+require('container.php');
+	
+$app = new \Slim\App($container);
+
 
 $app->get('/', function() {
 	$acc = new AccueilControlleur();
 	$acc->affichageAcc();
 })->setName('Accueil');
+
+
+$app->get('/Game','GameController:renderNewBoard')->setName('Game');
 
 $app->get('/Connexion', function() {
 	$acc = new ConnexionControlleur();
@@ -56,7 +62,5 @@ $app->get('/Rejoindre', function() {
 	$acc = new RejoindreControlleur();
 	$acc->affichageRejoindre();
 })->setName('Rejoindre');
-
-
 
 $app->run();

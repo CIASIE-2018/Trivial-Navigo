@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+{% include 'GlobalHeaderView.html.twig' %}
+<body>
+<div class="board">
+{% for cologne in 1..13 %}
+    {% for ligne in 1..13 %}
+        {% if board.grid[cologne][ligne].theme is defined %}
+            <div class="{{board.grid[cologne][ligne].theme}}">
+                {% if board.grid[cologne][ligne].player is defined %}
+                    <div class='divplayer'>
+                    {% for player in board.grid[cologne][ligne].player %}
+                        <div class='{{player}}'></div>
+                    {% endfor %} 
+                     </div>
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="null"></div>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+</div>
+</body>
+<html>
