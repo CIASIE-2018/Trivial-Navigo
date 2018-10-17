@@ -3,6 +3,7 @@
 namespace trivial\vues;
 
 use trivial\vues\GlobaleVue;
+use trivial\controlleurs\Authentication;
 
 
 class AccueilVue {
@@ -24,7 +25,8 @@ class AccueilVue {
 	  <a href="Connexion" >Connexion</a>
 END;
 		
-		if(session_id() != ""){
+		
+		if(Authentication::verificationConnexion()){
 			$menu =<<<END
 		<div class="boutton">
 		<a href="Demarer" >Démarer Une Partie</a>
@@ -36,7 +38,7 @@ END;
 		   <a href="CreateAccount" >Creer Compte</a>
 	  </div>
 	  <div class="boutton">
-	  <a href="Connexion" >Deconnexion</a>
+	  <a href="Deconnexion" >Deconnexion</a>
 END;
 		
 

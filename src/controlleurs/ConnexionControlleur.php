@@ -30,6 +30,8 @@ class ConnexionControlleur {
 	
 	}
 
+
+
 	public static function testCreationAccount(){
 
 		$pseudo = $_POST['pseudo'] ;
@@ -84,6 +86,18 @@ class ConnexionControlleur {
 			  echo "mot de passe invalide";
 			}
 		  }
+
+		  
+	}
+	public static function testDeconnexion(){
+		
+		Authentication::deconnexion();
+		global $app ;
+
+		  $url =  $app->getContainer()->get('router')->pathFor('Accueil');
 	
-}
+		  header("Location: $url");
+		  exit();
+	
+	  }
 }

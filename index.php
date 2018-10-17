@@ -58,15 +58,18 @@ $app->post('/CreateAccount', function($request, $response, $args){
   ->setName("Connexion");
 
    $app->post('/Connexion' , function($request, $response, $args){
-	var_dump("here");
 	$acc = new ConnexionControlleur();
  	$acc->testConnexion() ;
  })
  ->setname("testConnexion");
   
+$app->get('/Deconnexion',function(){
+	$acc = new ConnexionControlleur();
+	$acc->testDeconnexion();
+})
+->setName('Deconnexion');
 
 $app->get('/Demarer', function() {
-
 	$acc = new DemarerControlleur();
 	$acc->affichageDemarer();
 })->setName('Demarer');
