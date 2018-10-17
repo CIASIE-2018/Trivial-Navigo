@@ -4,21 +4,27 @@ namespace trivial\views;
 
 use trivial\views\GlobalView;
 
-class ConnexionView {
+class CreateAccountView {
+	
 
 	public function render() {
         $ach = GlobalView::header();
-		$html ='';
+		$html ='';	
         $html = $html.<<<END
-		<h4> Se Connecter </h4>
-		<div class="screen">
-			  
-			 <form action="" method="post">
-				 <p>
-				 <p> email : </p> <input type="text" name="email" /> <p> mdp : </p> <input type="password" name="mdp" /> <input type="submit" value="Valider" />
-				 </p>
-			 </form>
+        <h4> Créer Un Compte </h4>
+<div class="screen">
 
+	 
+	 <form action="" method="post">
+		 <p>
+			<p> pseudo : </p> <input type="text" name="pseudo" /> <p> mdp : </p> <input type="password" name="mdp" /> <p> email : </p> <input type="text" name="email" /> <input type="submit" value="Valider" />
+		 </p>
+	 </form>
+
+
+    </div> 
+    
+    
     <style>
 	.screen{
 		display: flex;
@@ -26,14 +32,14 @@ class ConnexionView {
 	   align-items: center;
 	   width: 100%;
 		border : 2px solid rgb(95, 89, 89);
-
+	   
 		padding-bottom: 15px;
 		padding-top: 15px;
 	}
 	body{
 		background: url(back.jpg);
 	}
-
+    
     h4{
         text-align : center;
     }
@@ -65,26 +71,26 @@ class ConnexionView {
 		margin-bottom: 15px;
 		margin-top: 15px;
 	}
-
+	
 	a{
 		text-decoration: none;
 		color : black;
 	}
-
+	
 	.choice{
 		display: flex;
 		flex-direction: column;
 		padding:15px 0 0 0;
 		font:bold 13px Arial;
-
+		
 		border-radius:2px;
 	}
 	input{
-		margin-top: 10px;
+		margin-top: 10px; 
 	}
 	</style>
-
-
+	
+    
 
 END;
         $acf = GlobalView::footer();
