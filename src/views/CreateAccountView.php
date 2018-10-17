@@ -1,14 +1,14 @@
 <?php
 
-namespace trivial\vues;
+namespace trivial\views;
 
-use trivial\vues\GlobaleVue;
+use trivial\views\GlobalView;
 
-class CreateAccountVue {
+class CreateAccountView {
 	
 
 	public function render() {
-        $ach = GlobaleVue::header();
+        $ach = GlobalView::header();
 		$html ='';	
         $html = $html.<<<END
         <h4> Créer Un Compte </h4>
@@ -93,7 +93,7 @@ class CreateAccountVue {
     
 
 END;
-        $acf = GlobaleVue::footer();
+        $acf = GlobalView::footer();
 		return $ach.$html.$acf;
 	}
 

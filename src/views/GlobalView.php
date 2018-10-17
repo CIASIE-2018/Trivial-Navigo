@@ -1,11 +1,9 @@
 <?php
 
-<<<<<<< HEAD:src/views/GlobalView.php
 namespace trivial\views;
-=======
-namespace trivial\vues;
-use trivial\controlleurs as c;
->>>>>>> a4da986... L'affichage personnalisé s'intègre au design:src/vues/GlobaleVue.php
+
+use trivial\controllers as c;
+
 
 class GlobalView {
 

@@ -2,28 +2,18 @@
 
 namespace trivial\views;
 
-<<<<<<< HEAD:src/views/HomeView.php
-use trivial\views\GlobalView;
-=======
-use trivial\vues\GlobaleVue;
-<<<<<<< HEAD:src/views/HomeView.php
-<<<<<<< HEAD:src/views/HomeView.php
-use trivial\controlleurs as c;
->>>>>>> be97a12... Affichage primitif d'un Accueil personnalisé avec le système de Session:src/vues/AccueilVue.php
-=======
-=======
-use trivial\controlleurs\Authentication;
->>>>>>> da3573f... Fonctionnalité deconnexion du joueur et modification de l'interface:src/vues/AccueilVue.php
 
->>>>>>> a4da986... L'affichage personnalisé s'intègre au design:src/vues/AccueilVue.php
+use trivial\views\GlobalView;
+
+use trivial\controllers as c;
+
 
 class HomeView {
 
 	public function render() {
-<<<<<<< HEAD:src/views/HomeView.php
+
         $ach = GlobalView::header();
-=======
-		$ach = GlobaleVue::header();
+
 		
 
 		//Mennu de base
@@ -42,7 +32,7 @@ class HomeView {
 END;
 		
 		//Menu personnalisé si le joueur est connecté
-		if(Authentication::verificationConnexion()){
+		if(c\Authentication::verificationConnexion()){
 			$menu =<<<END
 		<div class="boutton">
 		<a href="Demarer" >Démarer Une Partie</a>
@@ -61,30 +51,17 @@ END;
 
 		}
 		
->>>>>>> 4fefc5a... La page d'accueil se modifie en fonction de l'état de connexiondu joueur:src/vues/AccueilVue.php
 		$html ='';
 		$html = $html.<<<END
 
 
 		<div class="screen">
-<<<<<<< HEAD:src/views/HomeView.php
-        <div class="boutton">
-             <a href="Demarrer" >Démarer Une Partie</a>
-        </div>
-        <div class="boutton">
-                <a href="Rejoindre" >Rejoindre Une Partie</a>
-           </div>
-           <div class="boutton">
-                <a href="Connexion" >Connexion</a>
-           </div>
 
 
-=======
 		$menu
 	  </div>
       
       
->>>>>>> 4fefc5a... La page d'accueil se modifie en fonction de l'état de connexiondu joueur:src/vues/AccueilVue.php
     </div>
 
 	<style>

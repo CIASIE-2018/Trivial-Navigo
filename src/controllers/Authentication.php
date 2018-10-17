@@ -1,6 +1,6 @@
 <?php
 
-namespace trivial\controlleurs;
+namespace trivial\controllers;
 
 class Authentication{
 

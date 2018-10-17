@@ -10,25 +10,14 @@ class ConnexionView {
         $ach = GlobalView::header();
 		$html ='';
         $html = $html.<<<END
-        <h4> Connexion </h4>
-<div class="screen">
-        <div class="form">
-        <tr>
-        <th><label for="name"><strong>Name:</strong></label></th>
-        <td><input class="inp-text" name="name" id="name" type="text" size="30" /></td>
-    </tr>
-    <tr>
-        <th><label for="name"><strong>Password:</strong></label></th>
-        <td><input class="inp-text" name="password" id="password" type="password" size="30" /></td>
-    </tr>
-
-    <tr>
-    <div class="boutton">
-                <a href="" target="">Jouer</a>
-           </div>
-    </tr>
-    </div>
-
+		<h4> Se Connecter </h4>
+		<div class="screen">
+			  
+			 <form action="" method="post">
+				 <p>
+				 <p> email : </p> <input type="text" name="email" /> <p> mdp : </p> <input type="password" name="mdp" /> <input type="submit" value="Valider" />
+				 </p>
+			 </form>
 
     <style>
 	.screen{

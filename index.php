@@ -31,57 +31,65 @@ $db->addConnection( [
 $db->setAsGlobal();
 $db->bootEloquent();
 
+
 session_start();
 
 require('container.php');
-
 $app = new \Slim\App($container);
-
 
 $app->get('/', function() {
 	$acc = new HomeController();
 	$acc->displayHome();
 })->setName('Accueil');
 
-<<<<<<< HEAD
+$app->get('/CreateAccount', function() {
+	$acc = new ConnexionController();
+	$acc->CreateAccountView();
+})->setName('CreateAccount');
 
-$app->get('/Game','GameController:renderNewBoard')->setName('Game');
-=======
+$app->post('/CreateAccount', function($request, $response, $args){
+	$acc = new ConnexionController();
+	$acc->testCreationAccount(); 
+  } )
+  ->setName("testCreation");
+
+  $app->get('/Connexion',function(){
+	  $acc = new ConnexionController();
+	  $acc->displayConnexion();
+  })
+  ->setName("Connexion");
+
    $app->post('/Connexion' , function($request, $response, $args){
-	$acc = new ConnexionControlleur();
+	$acc = new ConnexionController();
  	$acc->testConnexion() ;
  })
  ->setname("testConnexion");
   
-<<<<<<< HEAD
->>>>>>> be97a12... Affichage primitif d'un Accueil personnalisé avec le système de Session
-
-$app->get('/Connexion', function() {
-	$acc = new ConnexionController();
-	$acc->displayConnexion();
-})->setName('Connexion');
-
-$app->get('/Demarrer', function() {
-	$acc = new StartController();
-	$acc->displayStart();
-})->setName('Demarrer');
-=======
 $app->get('/Deconnexion',function(){
-	$acc = new ConnexionControlleur();
+	$acc = new ConnexionController();
 	$acc->testDeconnexion();
 })
 ->setName('Deconnexion');
 
 $app->get('/Demarer', function() {
-	$acc = new DemarerControlleur();
-	$acc->affichageDemarer();
+	$acc = new StartController();
+	$acc->displayStart();
 })->setName('Demarer');
->>>>>>> da3573f... Fonctionnalité deconnexion du joueur et modification de l'interface
 
 $app->get('/Rejoindre', function() {
 
 	$acc = new JoinController();
 	$acc->displayJoin();
 })->setName('Rejoindre');
+
+$app->get('/Supprimer', function($id) {
+
+	// TEST DE PDO ET ELOQUENT : Connexion à BD établie et les requêtes fonctionnent.
+	$acc = new HomeController();
+	$acc->supprimer($id);
+})->setName('Supprimer');
+
+
+
 
 $app->run();
