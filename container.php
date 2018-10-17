@@ -10,7 +10,7 @@ $configuration = [
 ];
 $container = new \Slim\Container($configuration);
 $container['GameController'] = function($c) {
-	$view = $c->get("view"); // retrieve the 'view' from the container
+	$view = $c->get("view");
 	return new GameController($view);
 };
 

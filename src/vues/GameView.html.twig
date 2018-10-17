@@ -1,21 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
 {% include 'GlobalHeaderView.html.twig' %}
-<table>
+<div class="board">
 {% for cologne in 1..13 %}
-<tr>
     {% for ligne in 1..13 %}
         {% if board.grid[cologne][ligne].theme is defined %}
-            <td class="{{board.grid[cologne][ligne].theme}}">
+            <div class="{{board.grid[cologne][ligne].theme}}">
                 {% if board.grid[cologne][ligne].player is defined %}
                     <div class='divplayer'>
                     {% for player in board.grid[cologne][ligne].player %}
                         <div class='{{player}}'></div>
                     {% endfor %} 
+                     </div>
                 {% endif %}
-                </td>
+            </div>
         {% else %}
-            <td class="null"></td>
+            <div class="null"></div>
         {% endif %}
     {% endfor %}
-</tr>
 {% endfor %}
-</table>
+</div>
+</body>
+<html>

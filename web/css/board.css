@@ -1,6 +1,9 @@
+.board{
+    display: grid;
+    grid-template-columns: 50px 50px 50px 50px 50px 50px 100px 50px 50px 50px 50px 50px 50px;
+    grid-template-rows: 50px 50px 50px 50px 50px 50px 100px 50px 50px 50px 50px 50px 50px;
+}
 .geo, .hist, .diver, .sport, .info, .perso{
-    width:50px;
-    height:50px;
     border: solid 1px black;
 }
 
@@ -23,8 +26,6 @@
     background-color : purple;
 }
 .depart{
-    width:100px;
-    height:100px;
     background-color : black;
 }
 table{
