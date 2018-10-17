@@ -43,8 +43,18 @@ $app->get('/', function() {
 	$acc->displayHome();
 })->setName('Accueil');
 
+<<<<<<< HEAD
 
 $app->get('/Game','GameController:renderNewBoard')->setName('Game');
+=======
+   $app->post('/Connexion' , function($request, $response, $args){
+	var_dump("here");
+	$acc = new ConnexionControlleur();
+ 	$acc->testConnexion() ;
+ })
+ ->setname("testConnexion");
+  
+>>>>>>> be97a12... Affichage primitif d'un Accueil personnalisé avec le système de Session
 
 $app->get('/Connexion', function() {
 	$acc = new ConnexionController();

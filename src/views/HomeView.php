@@ -2,13 +2,21 @@
 
 namespace trivial\views;
 
+<<<<<<< HEAD:src/views/HomeView.php
 use trivial\views\GlobalView;
+=======
+use trivial\vues\GlobaleVue;
+use trivial\controlleurs as c;
+>>>>>>> be97a12... Affichage primitif d'un Accueil personnalisé avec le système de Session:src/vues/AccueilVue.php
 
 class HomeView {
 
 	public function render() {
         $ach = GlobalView::header();
 		$html ='';
+		if( c\Authentication::verificationConnexion() ){
+			echo '<center>'.$_SESSION['pseudoJoueur'].'</center>' ;
+		}
 		$html = $html.<<<END
 
 
