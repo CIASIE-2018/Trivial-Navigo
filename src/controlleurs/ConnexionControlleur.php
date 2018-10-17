@@ -5,6 +5,7 @@ namespace trivial\controlleurs;
 use trivial\vues\CreateAccountVue;
 use trivial\vues\ConnexionVue;
 use trivial\modeles as m;
+use trivial\controlleurs\Authentication;
 
 class ConnexionControlleur {
 
@@ -34,10 +35,10 @@ class ConnexionControlleur {
 		$pseudo = $_POST['pseudo'] ;
 		$mdp = $_POST['mdp'] ;
 		$email = $_POST['email'] ;
-	  
+		$mdp=password_hash($_POST['mdp'], PASSWORD_DEFAULT , ['cost'=>12]);
 		
 		self::creer($pseudo,$mdp,$email);
-		var_dump("ici");	
+			
 	
 	  
 	  global $app ;
@@ -52,4 +53,37 @@ class ConnexionControlleur {
 		echo $av->render();
 	}
 
+	public static function testConnexion(){
+		var_dump("test");
+		$email=$_POST['email'] ;
+		$mdp=$_POST['mdp'];
+		var_dump($email);
+		var_dump($mdp);
+		$nb = m\Joueur::where('adresseMail', '=',$email);
+		if($nb->count() != 1){
+			echo "email invalide" ;
+		
+		  }
+		  else{
+			  
+			if (password_verify($mdp,$nb->first()->password)) {
+			  $nb = $nb->first();
+			  Authentication::connexion($nb->idJoueur , $nb->pseudoJoueur) ;
+			  global $app ;
+
+			  $url =  $app->getContainer()->get('router')->pathFor('Accueil');
+		
+			  header("Location: $url");
+			  exit();
+			//   c\Authentification::connexion($nb->id , $nb->login) ;
+		
+			//   header("Location: $com_url"); 
+			//   exit();
+			}
+			else{
+			  echo "mot de passe invalide";
+			}
+		  }
+	
+}
 }
