@@ -8,23 +8,47 @@ use trivial\vues\GlobaleVue;
 class AccueilVue {
 
 	public function render() {
-        $ach = GlobaleVue::header();
+		$ach = GlobaleVue::header();
+		
+		$menu =<<<END
+		<div class="boutton">
+		<a href="Demarer" >Démarer Une Partie</a>
+   </div>
+   <div class="boutton">
+		   <a href="Rejoindre" >Rejoindre Une Partie</a>
+	  </div>
+	  <div class="boutton">
+		   <a href="CreateAccount" >Creer Compte</a>
+	  </div>
+	  <div class="boutton">
+	  <a href="Connexion" >Connexion</a>
+END;
+		
+		if(session_id() != ""){
+			$menu =<<<END
+		<div class="boutton">
+		<a href="Demarer" >Démarer Une Partie</a>
+   </div>
+   <div class="boutton">
+		   <a href="Rejoindre" >Rejoindre Une Partie</a>
+	  </div>
+	  <div class="boutton">
+		   <a href="CreateAccount" >Creer Compte</a>
+	  </div>
+	  <div class="boutton">
+	  <a href="Connexion" >Deconnexion</a>
+END;
+		
+
+
+		}
+		
 		$html ='';
 		$html = $html.<<<END
 		
 
 		<div class="screen">
-        <div class="boutton">
-             <a href="Demarer" >Démarer Une Partie</a>
-        </div>
-        <div class="boutton">
-                <a href="Rejoindre" >Rejoindre Une Partie</a>
-           </div>
-           <div class="boutton">
-                <a href="CreateAccount" >Creer Compte</a>
-		   </div>
-		   <div class="boutton">
-		   <a href="Connexion" >Connexion</a>
+		$menu
 	  </div>
       
       
