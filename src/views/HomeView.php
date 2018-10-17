@@ -41,9 +41,6 @@ END;
 		   <a href="Rejoindre" >Rejoindre Une Partie</a>
 	  </div>
 	  <div class="boutton">
-		   <a href="CreateAccount" >Creer Compte</a>
-	  </div>
-	  <div class="boutton">
 	  <a href="Deconnexion" >Deconnexion</a>
 END;
 		
