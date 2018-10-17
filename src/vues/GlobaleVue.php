@@ -1,14 +1,15 @@
 <?php
 
 namespace trivial\vues;
+use trivial\controlleurs as c;
 
 class GlobaleVue {
 
 	public static function header() {
-		/*$app = \Slim\App\Config::getInstance();
-		$ac = $app->urlFor('Accueil');
-		$rootUI = $app->request->getRootUri();
-		$rootUI = str_replace('index.php','',$rootUI);*/
+		
+		if( c\Authentication::verificationConnexion() ){
+			$pseudo= $_SESSION['pseudoJoueur'] ;
+		}
 		$html = <<<END
 <!DOCTYPE html>
 <html>
@@ -22,7 +23,8 @@ END;
 <body>
 <div>
 	<header>
-		<h1><a href="">Trivial Navigo</a></h1>
+		<h1>Trivial Navigo</h1>
+		<h5> Bienvenue $pseudo</h5>
 	</header>
 </div>
 	<div id="content">

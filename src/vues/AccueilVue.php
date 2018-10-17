@@ -3,16 +3,13 @@
 namespace trivial\vues;
 
 use trivial\vues\GlobaleVue;
-use trivial\controlleurs as c;
+
 
 class AccueilVue {
 
 	public function render() {
         $ach = GlobaleVue::header();
 		$html ='';
-		if( c\Authentication::verificationConnexion() ){
-			echo '<center>'.$_SESSION['pseudoJoueur'].'</center>' ;
-		}
 		$html = $html.<<<END
 		
 
