@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/vendor/autoload.php';
-use trivial\controlleurs\GameController as GameController;
+use trivial\controllers\GameController as GameController;
 
 $configuration = [
     'settings' => [
@@ -15,7 +15,7 @@ $container['GameController'] = function($c) {
 };
 
 $container['view'] = function ($container) {
-    $view = new \Slim\Views\Twig('src/vues');
+    $view = new \Slim\Views\Twig('src/views');
 
     // Instantiate and add Slim specific extension
     $basePath = rtrim(str_ireplace('index.php', '', $container->get('request')->getUri()->getBasePath()), '/');
