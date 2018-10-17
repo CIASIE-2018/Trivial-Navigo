@@ -9,7 +9,7 @@ class CreateAccountVue {
 
 	public function render() {
         $ach = GlobaleVue::header();
-		$html ='';
+		$html ='';	
         $html = $html.<<<END
         <h4> Créer Un Compte </h4>
 <div class="screen">
