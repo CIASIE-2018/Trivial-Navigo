@@ -7,6 +7,7 @@ use trivial\controllers\HomeController;
 use trivial\controllers\ConnexionController;
 use trivial\controllers\StartController;
 use trivial\controllers\JoinController;
+use trivial\controllers\DiceController;
 use trivial\bd\Connexion;
 
 
@@ -61,5 +62,10 @@ $app->get('/Rejoindre', function() {
 	$acc = new JoinController();
 	$acc->displayJoin();
 })->setName('Rejoindre');
+
+$app->get('/De', function() {
+	$acc = new DiceController();
+	$acc->displayDice();
+})->setName('De');
 
 $app->run();
