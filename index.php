@@ -31,35 +31,65 @@ $db->addConnection( [
 $db->setAsGlobal();
 $db->bootEloquent();
 
+
 session_start();
 
 require('container.php');
-
 $app = new \Slim\App($container);
-
 
 $app->get('/', function() {
 	$acc = new HomeController();
 	$acc->displayHome();
 })->setName('Accueil');
 
-
-$app->get('/Game','GameController:renderNewBoard')->setName('Game');
-
-$app->get('/Connexion', function() {
+$app->get('/CreateAccount', function() {
 	$acc = new ConnexionController();
-	$acc->displayConnexion();
-})->setName('Connexion');
+	$acc->CreateAccountView();
+})->setName('CreateAccount');
 
-$app->get('/Demarrer', function() {
+$app->post('/CreateAccount', function($request, $response, $args){
+	$acc = new ConnexionController();
+	$acc->testCreationAccount(); 
+  } )
+  ->setName("testCreation");
+
+  $app->get('/Connexion',function(){
+	  $acc = new ConnexionController();
+	  $acc->displayConnexion();
+  })
+  ->setName("Connexion");
+
+   $app->post('/Connexion' , function($request, $response, $args){
+	$acc = new ConnexionController();
+ 	$acc->testConnexion() ;
+ })
+ ->setname("testConnexion");
+  
+$app->get('/Deconnexion',function(){
+	$acc = new ConnexionController();
+	$acc->testDeconnexion();
+})
+->setName('Deconnexion');
+
+$app->get('/Demarer', function() {
 	$acc = new StartController();
 	$acc->displayStart();
-})->setName('Demarrer');
+})->setName('Demarer');
 
 $app->get('/Rejoindre', function() {
 
 	$acc = new JoinController();
 	$acc->displayJoin();
 })->setName('Rejoindre');
+
+$app->get('/Supprimer', function($id) {
+
+	// TEST DE PDO ET ELOQUENT : Connexion à BD établie et les requêtes fonctionnent.
+	$acc = new HomeController();
+	$acc->supprimer($id);
+})->setName('Supprimer');
+
+
+
 
 $app->run();

@@ -2,82 +2,47 @@
 
 namespace trivial\views;
 
-
 use trivial\views\GlobalView;
 
-use trivial\controllers as c;
-
-
-class HomeView {
+class CreateAccountView {
+	
 
 	public function render() {
-
         $ach = GlobalView::header();
+		$html ='';	
+        $html = $html.<<<END
+        <h4> Créer Un Compte </h4>
+<div class="screen">
 
-		
-
-		//Mennu de base
-		$menu =<<<END
-		<div class="boutton">
-		<a href="Demarer" >Démarer Une Partie</a>
-   </div>
-   <div class="boutton">
-		   <a href="Rejoindre" >Rejoindre Une Partie</a>
-	  </div>
-	  <div class="boutton">
-		   <a href="CreateAccount" >Creer Compte</a>
-	  </div>
-	  <div class="boutton">
-	  <a href="Connexion" >Connexion</a>
-END;
-		
-		//Menu personnalisé si le joueur est connecté
-		if(c\Authentication::verificationConnexion()){
-			$menu =<<<END
-		<div class="boutton">
-		<a href="Demarer" >Démarer Une Partie</a>
-   </div>
-   <div class="boutton">
-		   <a href="Rejoindre" >Rejoindre Une Partie</a>
-	  </div>
-	  <div class="boutton">
-		   <a href="CreateAccount" >Creer Compte</a>
-	  </div>
-	  <div class="boutton">
-	  <a href="Deconnexion" >Deconnexion</a>
-END;
-		
+	 
+	 <form action="" method="post">
+		 <p>
+			<p> pseudo : </p> <input type="text" name="pseudo" /> <p> mdp : </p> <input type="password" name="mdp" /> <p> email : </p> <input type="text" name="email" /> <input type="submit" value="Valider" />
+		 </p>
+	 </form>
 
 
-		}
-		
-		$html ='';
-		$html = $html.<<<END
-
-
-		<div class="screen">
-
-
-		$menu
-	  </div>
-      
-      
-    </div>
-
-	<style>
+    </div> 
+    
+    
+    <style>
 	.screen{
 		display: flex;
 		flex-direction: column;
 	   align-items: center;
 	   width: 100%;
 		border : 2px solid rgb(95, 89, 89);
-
+	   
 		padding-bottom: 15px;
 		padding-top: 15px;
 	}
 	body{
 		background: url(back.jpg);
 	}
+    
+    h4{
+        text-align : center;
+    }
 
 	header{
 		text-align: center;
@@ -106,26 +71,29 @@ END;
 		margin-bottom: 15px;
 		margin-top: 15px;
 	}
-
+	
 	a{
 		text-decoration: none;
 		color : black;
 	}
-
+	
 	.choice{
 		display: flex;
 		flex-direction: column;
 		padding:15px 0 0 0;
 		font:bold 13px Arial;
-
+		
 		border-radius:2px;
 	}
 	input{
-		margin-top: 10px;
+		margin-top: 10px; 
 	}
 	</style>
+	
+    
+
 END;
-		$acf = GlobalView::footer();
+        $acf = GlobalView::footer();
 		return $ach.$html.$acf;
 	}
 
