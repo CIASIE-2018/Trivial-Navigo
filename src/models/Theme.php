@@ -1,6 +1,6 @@
 <?php
 
-namespace trivial\modeles;
+namespace trivial\models;
 
 class Theme extends \Illuminate\Database\Eloquent\Model {
 
@@ -8,8 +8,8 @@ class Theme extends \Illuminate\Database\Eloquent\Model {
     protected $primaryKey = 'idTheme';
     public $timestamps = false;
 
-    public function cartes() {
-        return $this->hasMany('trivial\modeles\Carte', 'idTheme');
+    public function cards() {
+        return $this->hasMany('trivial\models\Carte', 'idTheme');
     }
 
 }

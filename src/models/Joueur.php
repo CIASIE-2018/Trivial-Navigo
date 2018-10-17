@@ -1,6 +1,6 @@
 <?php
 
-namespace trivial\modeles;
+namespace trivial\models;
 
 class Joueur extends \Illuminate\Database\Eloquent\Model {
 
@@ -8,8 +8,8 @@ class Joueur extends \Illuminate\Database\Eloquent\Model {
     protected $primaryKey = 'idJoueur';
     public $timestamps = false;
 
-    public function salon() {
-        return $this->belongsTo('trivial\modeles\Salon', 'idJoueur');
+    public function room() {
+        return $this->belongsTo('trivial\models\Salon', 'idJoueur');
     }
 
 }

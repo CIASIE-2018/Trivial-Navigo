@@ -1,53 +1,45 @@
 <?php
 
-namespace trivial\vues;
+namespace trivial\views;
 
-use trivial\vues\GlobaleVue;
+use trivial\views\GlobalView;
 
-class ConnexionVue {
+class HomeView {
 
 	public function render() {
-        $ach = GlobaleVue::header();
+        $ach = GlobalView::header();
 		$html ='';
-        $html = $html.<<<END
-        <h4> Connexion </h4>
-<div class="screen">
-        <div class="form">
-        <tr>
-        <th><label for="name"><strong>Name:</strong></label></th>
-        <td><input class="inp-text" name="name" id="name" type="text" size="30" /></td>
-    </tr>
-    <tr>
-        <th><label for="name"><strong>Password:</strong></label></th>
-        <td><input class="inp-text" name="password" id="password" type="password" size="30" /></td>
-    </tr>
-    
-    <tr>
-    <div class="boutton">
-                <a href="" target="">Jouer</a>
+		$html = $html.<<<END
+
+
+		<div class="screen">
+        <div class="boutton">
+             <a href="Demarrer" >Démarer Une Partie</a>
+        </div>
+        <div class="boutton">
+                <a href="Rejoindre" >Rejoindre Une Partie</a>
            </div>
-    </tr>
-    </div> 
-    
-    
-    <style>
+           <div class="boutton">
+                <a href="Connexion" >Connexion</a>
+           </div>
+
+
+    </div>
+
+	<style>
 	.screen{
 		display: flex;
 		flex-direction: column;
 	   align-items: center;
 	   width: 100%;
 		border : 2px solid rgb(95, 89, 89);
-	   
+
 		padding-bottom: 15px;
 		padding-top: 15px;
 	}
 	body{
 		background: url(back.jpg);
 	}
-    
-    h4{
-        text-align : center;
-    }
 
 	header{
 		text-align: center;
@@ -76,29 +68,26 @@ class ConnexionVue {
 		margin-bottom: 15px;
 		margin-top: 15px;
 	}
-	
+
 	a{
 		text-decoration: none;
 		color : black;
 	}
-	
+
 	.choice{
 		display: flex;
 		flex-direction: column;
 		padding:15px 0 0 0;
 		font:bold 13px Arial;
-		
+
 		border-radius:2px;
 	}
 	input{
-		margin-top: 10px; 
+		margin-top: 10px;
 	}
 	</style>
-	
-    
-
 END;
-        $acf = GlobaleVue::footer();
+		$acf = GlobalView::footer();
 		return $ach.$html.$acf;
 	}
 

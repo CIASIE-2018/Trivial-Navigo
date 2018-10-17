@@ -1,8 +1,8 @@
 <?php
 
-namespace trivial\vues;
+namespace trivial\views;
 
-class GlobaleVue {
+class GlobalView {
 
 	public static function header() {
 		/*$app = \Slim\App\Config::getInstance();
@@ -14,7 +14,7 @@ class GlobaleVue {
 <html>
 <head>
 		<title>Trivial Navigo</title>
-		
+
         <meta charset="UTF-8">
 END;
 		$html = $html.<<<END
@@ -29,12 +29,12 @@ END;
 END;
 		return $html;
 	}
-	
+
 	public static function footer() {
 		$html=<<<END
 		</div>
 
-	
+
 
 </body>
 </html>
@@ -45,5 +45,5 @@ END;
 
 
 	}
-	
+
 }

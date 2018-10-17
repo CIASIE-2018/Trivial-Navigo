@@ -1,6 +1,6 @@
 <?php
 
-namespace trivial\modeles;
+namespace trivial\models;
 
 class Carte extends \Illuminate\Database\Eloquent\Model {
 
@@ -9,7 +9,7 @@ class Carte extends \Illuminate\Database\Eloquent\Model {
     public $timestamps = false;
 
     public function theme() {
-        return $this->belongsTo('trivial\modeles\Theme', 'idCarte');
+        return $this->belongsTo('trivial\models\Theme', 'idCarte');
     }
 
 }

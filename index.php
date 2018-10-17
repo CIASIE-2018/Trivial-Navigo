@@ -3,10 +3,10 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 use Illuminate\Database\Capsule\Manager as DB;
-use trivial\controlleurs\AccueilControlleur;
-use trivial\controlleurs\ConnexionControlleur;
-use trivial\controlleurs\DemarerControlleur;
-use trivial\controlleurs\RejoindreControlleur;
+use trivial\controllers\HomeController;
+use trivial\controllers\ConnexionController;
+use trivial\controllers\StartController;
+use trivial\controllers\JoinController;
 use trivial\bd\Connexion;
 
 
@@ -34,33 +34,32 @@ $db->bootEloquent();
 session_start();
 
 require('container.php');
-	
+
 $app = new \Slim\App($container);
 
 
 $app->get('/', function() {
-	$acc = new AccueilControlleur();
-	$acc->affichageAcc();
+	$acc = new HomeController();
+	$acc->displayHome();
 })->setName('Accueil');
 
 
 $app->get('/Game','GameController:renderNewBoard')->setName('Game');
 
 $app->get('/Connexion', function() {
-	$acc = new ConnexionControlleur();
-	$acc->affichageConnexion();
+	$acc = new ConnexionController();
+	$acc->displayConnexion();
 })->setName('Connexion');
 
-$app->get('/Demarer', function() {
-
-	$acc = new DemarerControlleur();
-	$acc->affichageDemarer();
-})->setName('Demarer');
+$app->get('/Demarrer', function() {
+	$acc = new StartController();
+	$acc->displayStart();
+})->setName('Demarrer');
 
 $app->get('/Rejoindre', function() {
 
-	$acc = new RejoindreControlleur();
-	$acc->affichageRejoindre();
+	$acc = new JoinController();
+	$acc->displayJoin();
 })->setName('Rejoindre');
 
 $app->run();
