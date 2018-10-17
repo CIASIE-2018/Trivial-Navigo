@@ -3,6 +3,11 @@ namespace trivial;
 
  class Board {
     public $grid = array();
+    public $player1;
+    public $player2;
+    public $player3;
+    public $player4;
+
     const hist="hist";
     const geo="geo";
     const diver="diver";
@@ -90,4 +95,14 @@ namespace trivial;
     $this->grid[7][7]['player']=["player1","player2","player3","player4"];
     }
 
+    public function join($player){
+        if(!isset($this->player1))
+        $this->player1=$player;
+        else if(!isset($this->player2))
+        $this->player2=$player;
+        else if(!isset($this->player3))
+        $this->player3=$player;
+        else if(!isset($this->player4))
+        $this->player4=$player;
+    }
  }

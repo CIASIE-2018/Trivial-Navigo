@@ -16,7 +16,7 @@ class GameController{
     public function renderBoard($request, $response, $args) {
         $idGame=$args["id"];
       $game = Game::find($idGame);
-      $board=new Board();
+      $board=json_decode($game->board,true);
       return $this->view->render($response,'GameView.html.twig',[
         'board' => $board
     ]);
@@ -25,7 +25,7 @@ class GameController{
     public function newGame($request, $response, $args){
         $user = new Game();
         $board=new Board();
-        $user->board = json_encode($board->grid);
+        $user->board = json_encode($board);
         $user->idGame = $args['id'];
         $user->save();
     }
