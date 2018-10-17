@@ -6,15 +6,20 @@ use trivial\vues\GlobaleVue;
 
 class CardView {
 
-    public function render($idCarte) {
+    public function renderCard($idCarte) {
 		$html = $idCarte;
 		return $html;
     }
+
+    public function renderTheme($idTheme) {
+        $html = $idTheme;
+        return $html;
+    }
     
-    public function renderRandomListCards($donnees) {
+    public function renderRandomListCards($donnees, $theme) {
         $tableau = array();
 		foreach ($donnees as $jeu) {
-			array_push($tableau, $this->render($jeu->idCarte));
+            array_push($tableau, $this->renderCard($jeu->idCarte));
         }
         $debtab = current($tableau);
         $fintab = end($tableau);
@@ -29,7 +34,11 @@ class CardView {
                 $nb_a_tirer--;
             }
         }
-        var_dump($tab_result);
+        foreach($tab_result as $test) {
+            var_dump($test);
+            var_dump($theme[$test]->idTheme);
+        }
+        //var_dump($tab_result);
     }
-    
+
 }
