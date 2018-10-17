@@ -10,6 +10,7 @@ class Authentication{
         $_SESSION['role'] = 1 ;
       }
     
+      //Verifier qu'une session existe
       public static function verificationConnexion(){
         if(isset($_SESSION['idJoueur']) ){
           return true ;
