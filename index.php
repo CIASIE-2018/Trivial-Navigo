@@ -3,10 +3,10 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 use Illuminate\Database\Capsule\Manager as DB;
-use trivial\controllers\HomeController;
-use trivial\controllers\ConnexionController;
-use trivial\controllers\StartController;
-use trivial\controllers\JoinController;
+use trivial\controlleurs\AccueilControlleur;
+use trivial\controlleurs\ConnexionControlleur;
+use trivial\controlleurs\DemarerControlleur;
+use trivial\controlleurs\RejoindreControlleur;
 use trivial\bd\Connexion;
 
 
@@ -34,32 +34,40 @@ $db->bootEloquent();
 session_start();
 
 require('container.php');
-
+	
 $app = new \Slim\App($container);
 
 
 $app->get('/', function() {
-	$acc = new HomeController();
-	$acc->displayHome();
+	$acc = new AccueilControlleur();
+	$acc->affichageAcc();
 })->setName('Accueil');
 
 
-$app->get('/Game','GameController:renderNewBoard')->setName('Game');
+$app->get('/Game/{id}','GameController:renderBoard')->setName('Game');
+
+$app->get('/newGame/{id}',function($request, $response, $args){
+	$controller=$this['GameController'];
+	$controller->newGame($request, $response, $args);
+	$router = $this->router;
+	return $response->withRedirect($router->pathFor('Game',["id" => $args['id']]));
+})->setName('newGame');
 
 $app->get('/Connexion', function() {
-	$acc = new ConnexionController();
-	$acc->displayConnexion();
+	$acc = new ConnexionControlleur();
+	$acc->affichageConnexion();
 })->setName('Connexion');
 
-$app->get('/Demarrer', function() {
-	$acc = new StartController();
-	$acc->displayStart();
-})->setName('Demarrer');
+$app->get('/Demarer', function() {
+
+	$acc = new DemarerControlleur();
+	$acc->affichageDemarer();
+})->setName('Demarer');
 
 $app->get('/Rejoindre', function() {
 
-	$acc = new JoinController();
-	$acc->displayJoin();
+	$acc = new RejoindreControlleur();
+	$acc->affichageRejoindre();
 })->setName('Rejoindre');
 
 $app->run();

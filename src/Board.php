@@ -10,7 +10,7 @@ namespace trivial;
     const info="info";
     const perso="perso"; 
 
-    public function newBoard(){
+    public function __construct(){
     $this->grid[1][1]=["theme"=>self::hist,"player"=>array()];
     $this->grid[1][2]=["theme"=>self::geo,"player"=>array()];
     $this->grid[1][3]=["theme"=>self::diver,"player"=>array()];
