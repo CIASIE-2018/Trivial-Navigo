@@ -10,7 +10,18 @@
                 {% if board.grid[cologne][ligne].player is defined %}
                     <div class='divplayer'>
                     {% for player in board.grid[cologne][ligne].player %}
-                        <div class='{{player}}'></div>
+                        {% if player == board.player1 %}
+                            <div class="player1"></div>
+                        {% endif %}
+                        {% if player == board.player2 %}
+                            <div class="player2"></div>
+                        {% endif %}
+                        {% if player == board.player3 %}
+                            <div class="player3"></div>
+                        {% endif %}
+                        {% if player == board.player4 %}
+                            <div class="player4"></div>
+                        {% endif %}
                     {% endfor %} 
                      </div>
                 {% endif %}

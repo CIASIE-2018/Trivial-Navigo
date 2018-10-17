@@ -23,10 +23,10 @@ class GameController{
     }
 
     public function newGame($request, $response, $args){
-        $user = new Game();
-        $board=new Board();
-        $user->board = json_encode($board);
-        $user->idGame = $args['id'];
-        $user->save();
+        $game = new Game();
+        $board=new Board("pablo","rob","po","rakan");
+        $game->board = json_encode($board);
+        $game->idGame = $args['id'];
+        $game->save();
     }
 }

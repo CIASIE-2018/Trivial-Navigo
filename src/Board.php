@@ -15,7 +15,13 @@ namespace trivial;
     const info="info";
     const perso="perso"; 
 
-    public function __construct(){
+    public function __construct($player1,$player2,$player3,$player4){
+
+            $this->player1=$player1;
+            $this->player2=$player2;
+            $this->player3=$player3;
+            $this->player4=$player4;
+
     $this->grid[1][1]=["theme"=>self::hist,"player"=>array()];
     $this->grid[1][2]=["theme"=>self::geo,"player"=>array()];
     $this->grid[1][3]=["theme"=>self::diver,"player"=>array()];
@@ -92,17 +98,7 @@ namespace trivial;
 
     $this->grid[7][7]=["theme"=>"depart","player"=>array()];
     
-    $this->grid[7][7]['player']=["player1","player2","player3","player4"];
+    $this->grid[7][7]['player']=[$player1,$player2,$player3,$player4];
     }
 
-    public function join($player){
-        if(!isset($this->player1))
-        $this->player1=$player;
-        else if(!isset($this->player2))
-        $this->player2=$player;
-        else if(!isset($this->player3))
-        $this->player3=$player;
-        else if(!isset($this->player4))
-        $this->player4=$player;
-    }
  }
