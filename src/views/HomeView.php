@@ -16,12 +16,51 @@ use trivial\controlleurs as c;
 class HomeView {
 
 	public function render() {
+<<<<<<< HEAD:src/views/HomeView.php
         $ach = GlobalView::header();
+=======
+		$ach = GlobaleVue::header();
+		
+		$menu =<<<END
+		<div class="boutton">
+		<a href="Demarer" >Démarer Une Partie</a>
+   </div>
+   <div class="boutton">
+		   <a href="Rejoindre" >Rejoindre Une Partie</a>
+	  </div>
+	  <div class="boutton">
+		   <a href="CreateAccount" >Creer Compte</a>
+	  </div>
+	  <div class="boutton">
+	  <a href="Connexion" >Connexion</a>
+END;
+		
+		if(session_id() != ""){
+			$menu =<<<END
+		<div class="boutton">
+		<a href="Demarer" >Démarer Une Partie</a>
+   </div>
+   <div class="boutton">
+		   <a href="Rejoindre" >Rejoindre Une Partie</a>
+	  </div>
+	  <div class="boutton">
+		   <a href="CreateAccount" >Creer Compte</a>
+	  </div>
+	  <div class="boutton">
+	  <a href="Connexion" >Deconnexion</a>
+END;
+		
+
+
+		}
+		
+>>>>>>> 4fefc5a... La page d'accueil se modifie en fonction de l'état de connexiondu joueur:src/vues/AccueilVue.php
 		$html ='';
 		$html = $html.<<<END
 
 
 		<div class="screen">
+<<<<<<< HEAD:src/views/HomeView.php
         <div class="boutton">
              <a href="Demarrer" >Démarer Une Partie</a>
         </div>
@@ -33,6 +72,12 @@ class HomeView {
            </div>
 
 
+=======
+		$menu
+	  </div>
+      
+      
+>>>>>>> 4fefc5a... La page d'accueil se modifie en fonction de l'état de connexiondu joueur:src/vues/AccueilVue.php
     </div>
 
 	<style>
