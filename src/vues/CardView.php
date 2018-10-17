@@ -36,7 +36,7 @@ class CardView {
         }
         foreach($tab_result as $test) {
             var_dump($test);
-            var_dump($theme[$test]->idTheme);
+            var_dump($theme[$test-1]->idTheme);
         }
         //var_dump($tab_result);
     }
