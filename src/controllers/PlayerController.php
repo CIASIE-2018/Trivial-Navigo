@@ -16,4 +16,14 @@ class PlayerController{
         $av = new PlayerView();
 		echo $av->renderQuestionSpace();
     }
+
+    public function testCreateQuestions(){
+        $theme = $_POST['theme'] ;
+		$question = $_POST['question'] ;
+        $reponse = $_POST['reponse'] ;
+        
+       
+      
+
+    }
 }

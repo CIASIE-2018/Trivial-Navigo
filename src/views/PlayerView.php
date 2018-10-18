@@ -99,14 +99,14 @@ END;
     <div class="screen">
           <form action="" method="post">
           <div class="choice">
-          <select>
+          <select name="theme">
               <option>Thème de la question:</option>
-              <option value="1">Geographie</option>
-              <option value="2">Divertissements</option>
-              <option value="3">Histoire</option>
-              <option value="4">Sports & Loisirs</option>
-              <option value="5">Informatique</option>
-              <option value="6">Personnalites</option>
+              <option name="theme">Geographie</option>
+              <option name="theme">Divertissements</option>
+              <option name="theme">Histoire</option>
+              <option name="theme">Sports & Loisirs</option>
+              <option name="theme">Informatique</option>
+              <option name="theme">Personnalites</option>
             </select>
             </div>
           <p>

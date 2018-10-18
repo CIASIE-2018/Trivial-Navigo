@@ -84,6 +84,11 @@ $app->get('/CreateQuestions',function(){
 })
 ->setName('CreateQuestions');
 
+$app->post('/CreateQuestions' , function($request, $response, $args){
+	$acc = new PlayerController();
+ 	$acc->testCreateQuestions() ;
+ })
+ ->setname("testCreateQuestions");
 
 
 $app->get('/Demarer', function() {
