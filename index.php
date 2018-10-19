@@ -3,13 +3,13 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 use Illuminate\Database\Capsule\Manager as DB;
-
 use trivial\controllers\HomeController;
 use trivial\controllers\ConnexionController;
 use trivial\controllers\StartController;
 use trivial\controllers\JoinController;
 use trivial\controllers\PlayerController;
-
+use trivial\controllers\DiceController;
+use trivial\controllers\CamembertController;
 use trivial\bd\Connexion;
 
 
@@ -114,6 +114,15 @@ $app->get('/Rejoindre', function() {
 	$acc->affichageRejoindre();
 })->setName('Rejoindre');
 
+$app->get('/De', function() {
+	$acc = new DiceController();
+	$acc->displayDice();
+})->setName('De');
+
+$app->get('/Camembert', function() {
+	$acc = new CamembertController();
+	$acc->displayCamembert();
+})->setName('Camembert');
 
 $app->get('/Supprimer', function($id) {
 
