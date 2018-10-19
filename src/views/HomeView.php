@@ -2,28 +2,63 @@
 
 namespace trivial\views;
 
+
 use trivial\views\GlobalView;
+
+use trivial\controllers as c;
+
 
 class HomeView {
 
 	public function render() {
+
         $ach = GlobalView::header();
+
+		
+
+		//Mennu de base
+		$menu =<<<END
+		<div class="boutton">
+		<a href="Demarer" >Démarer Une Partie</a>
+   </div>
+   <div class="boutton">
+		   <a href="Rejoindre" >Rejoindre Une Partie</a>
+	  </div>
+	  <div class="boutton">
+		   <a href="CreateAccount" >Creer Compte</a>
+	  </div>
+	  <div class="boutton">
+	  <a href="Connexion" >Connexion</a>
+END;
+		
+		//Menu personnalisé si le joueur est connecté
+		if(c\Authentication::verificationConnexion()){
+			$menu =<<<END
+		<div class="boutton">
+		<a href="Demarer" >Démarer Une Partie</a>
+   </div>
+   <div class="boutton">
+		   <a href="Rejoindre" >Rejoindre Une Partie</a>
+	  </div>
+	  <div class="boutton">
+	  <a href="Deconnexion" >Deconnexion</a>
+END;
+		
+
+
+		}
+		
 		$html ='';
 		$html = $html.<<<END
 
 
 		<div class="screen">
-        <div class="boutton">
-             <a href="Demarrer" >Démarer Une Partie</a>
-        </div>
-        <div class="boutton">
-                <a href="Rejoindre" >Rejoindre Une Partie</a>
-           </div>
-           <div class="boutton">
-                <a href="Connexion" >Connexion</a>
-           </div>
 
 
+		$menu
+	  </div>
+      
+      
     </div>
 
 	<style>
