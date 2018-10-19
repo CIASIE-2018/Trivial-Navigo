@@ -7,6 +7,7 @@ use trivial\controllers\HomeController;
 use trivial\controllers\ConnexionController;
 use trivial\controllers\StartController;
 use trivial\controllers\JoinController;
+use trivial\controllers\PlayerController;
 use trivial\controllers\DiceController;
 use trivial\controllers\CamembertController;
 use trivial\bd\Connexion;
@@ -82,6 +83,25 @@ $app->get('/Deconnexion',function(){
 	$acc->testDeconnexion();
 })
 ->setName('Deconnexion');
+
+$app->get('/MyAccount',function(){
+	$acc = new PlayerController();
+	$acc->displayAccount();
+})
+->setName('MyAccount');
+
+$app->get('/CreateQuestions',function(){
+	$acc = new PlayerController();
+	$acc->displayQuestionSpace();
+})
+->setName('CreateQuestions');
+
+$app->post('/CreateQuestions' , function($request, $response, $args){
+	$acc = new PlayerController();
+ 	$acc->testCreateQuestions() ;
+ })
+ ->setname("testCreateQuestions");
+
 
 $app->get('/Demarer', function() {
 	$acc = new StartController();
