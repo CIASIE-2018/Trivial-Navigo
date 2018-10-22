@@ -15,22 +15,19 @@ class StartView {
 
 	<div class="screen">
 	<h4> Créer Un Salon </h4>
+	<form action="" method="post">
       <div class="choice">
-        <select>
-            <option value="0">Mode de Jeu:</option>
-            <option value="1">Public</option>
-            <option value="2">Privé</option>
-          </select>
-
-
-              <input type="text" placeholder="Entrez un nom de serveur">
-      </div>
-
-
-           <div class="boutton">
-                <a href="Connexion.html" target="_blank">Jouer</a>
-           </div>
-
+	  <select name="mode">
+	  <option>Mode de Jeu:</option>
+	  <option name="mode">Privé</option>
+	  <option name="mode">Publique</option>
+	</select>
+	</div>
+  <p>
+	 <p> Nom du Salon: </p> <input type="text" name="salon" /> <input type="submit" value="Jouer" />
+  </p>
+	  </form>
+      
 
     </div>
 
