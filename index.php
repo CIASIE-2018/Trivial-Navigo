@@ -114,7 +114,7 @@ $app->post('/Demarer' , function($request, $response, $args){
  })
  ->setname("testCreateQuestions");
 
- $app->get('/Salon',function(){
+ $app->get('/Salon/{name}',function(){
 	$acc = new StartController();
 	$acc->displaySaloon();
  })->setName('Saloon');

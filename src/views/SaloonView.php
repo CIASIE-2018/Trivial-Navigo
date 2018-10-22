@@ -15,7 +15,7 @@ class SaloonView{
         $cookie = $_COOKIE['salon'];
 		$html ='';
         $html = $html.<<<END
-        <h4>$cookie</h4>
+        <h4>Salon: $cookie</h4>
 
 	<div class="screen">
     Joueur dans le salon
