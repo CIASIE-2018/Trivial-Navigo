@@ -1,20 +1,26 @@
 <?php
 
-namespace trivial\vues;
+namespace trivial\views;
 
-class GlobaleVue {
+use trivial\controllers as c;
+
+
+class GlobalView {
 
 	public static function header() {
-		/*$app = \Slim\App\Config::getInstance();
-		$ac = $app->urlFor('Accueil');
-		$rootUI = $app->request->getRootUri();
-		$rootUI = str_replace('index.php','',$rootUI);*/
+		
+		if( c\Authentication::verificationConnexion() ){
+			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
+		}
+		else{
+			$pseudo = "";
+		}
 		$html = <<<END
 <!DOCTYPE html>
 <html>
 <head>
 		<title>Trivial Navigo</title>
-		
+
         <meta charset="UTF-8">
 END;
 		$html = $html.<<<END
@@ -22,19 +28,20 @@ END;
 <body>
 <div>
 	<header>
-		<h1><a href="">Trivial Navigo</a></h1>
+		<h1>Trivial Navigo</h1>
+		<h5>$pseudo</h5>
 	</header>
 </div>
 	<div id="content">
 END;
 		return $html;
 	}
-	
+
 	public static function footer() {
 		$html=<<<END
 		</div>
 
-	
+
 
 </body>
 </html>
@@ -45,5 +52,5 @@ END;
 
 
 	}
-	
+
 }

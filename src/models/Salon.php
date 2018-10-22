@@ -1,6 +1,6 @@
 <?php
 
-namespace trivial\modeles;
+namespace trivial\models;
 
 class Salon extends \Illuminate\Database\Eloquent\Model {
 
@@ -8,8 +8,8 @@ class Salon extends \Illuminate\Database\Eloquent\Model {
     protected $primaryKey = 'idSalon';
     public $timestamps = false;
 
-    public function joueurs() {
-        return $this->hasMany('trivial\modeles\Joueur', 'idSalon');
+    public function players() {
+        return $this->hasMany('trivial\models\Joueur', 'idSalon');
     }
 
 }

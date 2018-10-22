@@ -1,14 +1,14 @@
 <?php
 
-namespace trivial\vues;
+namespace trivial\views;
 
-use trivial\vues\GlobaleVue;
+use trivial\views\GlobalView;
 
-class DemarerVue {
+class StartView {
 
 	public function render() {
 
-        $ach = GlobaleVue::header();
+        $ach = GlobalView::header();
 		$html ='';
         $html = $html.<<<END
         <h4>Démarer Une Partie</h4>
@@ -20,17 +20,17 @@ class DemarerVue {
             <option value="1">Public</option>
             <option value="2">Privé</option>
           </select>
-     
-      
+
+
               <input type="text" placeholder="Entrez un nom de serveur">
       </div>
-            
-           
+
+
            <div class="boutton">
                 <a href="Connexion.html" target="_blank">Jouer</a>
            </div>
-      
-      
+
+
     </div>
 
     <style>
@@ -40,14 +40,14 @@ class DemarerVue {
 	   align-items: center;
 	   width: 100%;
 		border : 2px solid rgb(95, 89, 89);
-	   
+
 		padding-bottom: 15px;
 		padding-top: 15px;
 	}
 	body{
 		background: url(back.jpg);
 	}
-    
+
     h4{
         text-align : center;
     }
@@ -79,29 +79,29 @@ class DemarerVue {
 		margin-bottom: 15px;
 		margin-top: 15px;
 	}
-	
+
 	a{
 		text-decoration: none;
 		color : black;
 	}
-	
+
 	.choice{
 		display: flex;
 		flex-direction: column;
 		padding:15px 0 0 0;
 		font:bold 13px Arial;
-		
+
 		border-radius:2px;
 	}
 	input{
-		margin-top: 10px; 
+		margin-top: 10px;
 	}
 	</style>
-       
-    
+
+
 
 END;
-        $acf = GlobaleVue::footer();
+        $acf = GlobalView::footer();
 		return $ach.$html.$acf;
 	}
 
