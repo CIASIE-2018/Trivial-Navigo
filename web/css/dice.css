@@ -1,0 +1,67 @@
+#dice{
+    cursor: pointer;
+    height : 50px;
+    width : 50px;
+    border : solid 2px;
+    border-radius : 7px;
+    display : flex;
+    flex-direction: row;
+    flex-wrap : wrap;
+    justify-content : center;
+  }
+
+  .un{
+    margin : auto;
+  }
+  .deux1{
+    margin-top : 5px;
+    margin-bottom : 5px;
+    margin-right : 15px;
+    margin-left : 0px;
+  }
+  .deux2{
+    margin-top : 5px;
+    margin-bottom : 5px;
+    margin-right : 0px;
+    margin-left : 15px;
+  }
+  .trois1{
+    margin-top : 2px;
+    margin-bottom : 2px;
+    margin-right : 20px;
+    margin-left : 0px;
+  }
+  .trois2{
+      margin-right : 5px;
+      margin-left : 5px;
+  }
+  .trois3{
+    margin-top : 2px;
+    margin-bottom : 2px;
+    margin-right : 0px;
+    margin-left : 20px;
+  }
+  .quatre{
+    margin : 5px;
+  }
+  .cinq1, .cinq2, .cinq4, .cinq5{
+    margin-top : 2px;
+    margin-bottom : 2px;
+    margin-right : 5px;
+    margin-left : 5px;
+  }
+  .cinq3{
+    margin-right : 10px;
+    margin-left : 10px;
+  }
+  .six{
+    margin : 2px;
+  }
+
+  .point{
+    height : 9px;
+    width : 9px;
+    border : solid 2px;
+    border-radius : 7px;
+    background-color : black;
+  }

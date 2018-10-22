@@ -94,10 +94,7 @@ $app->get('/Rejoindre', function() {
 	$acc->affichageRejoindre();
 })->setName('Rejoindre');
 
-$app->get('/De', function() {
-	$acc = new DiceController();
-	$acc->displayDice();
-})->setName('De');
+$app->get('/Dice','DiceController:displayDice')->setName('Dice');
 
 $app->get('/Camembert', function() {
 	$acc = new CamembertController();
