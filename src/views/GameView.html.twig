@@ -2,36 +2,40 @@
 <html>
 {% include 'GlobalHeaderView.html.twig' %}
 <body>
-<div class="board">
-{% for cologne in 1..13 %}
-    {% for ligne in 1..13 %}
-        {% if board.grid[cologne][ligne].theme is defined %}
-            <div class="{{board.grid[cologne][ligne].theme}}">
-                {% if board.grid[cologne][ligne].player is defined %}
-                    <div class='divplayer'>
-                    {% for player in board.grid[cologne][ligne].player %}
-                        {% if player["name"] == board.player[0]["name"] %}
-                            <div class="player1"></div>
-                        {% endif %}
-                        {% if player["name"] == board.player[1]["name"] %}
-                            <div class="player2"></div>
-                        {% endif %}
-                        {% if player["name"] == board.player[2]["name"] %}
-                            <div class="player3"></div>
-                        {% endif %}
-                        {% if player["name"] == board.player[3]["name"] %}
-                            <div class="player4"></div>
-                        {% endif %}
-                    {% endfor %} 
-                     </div>
-                {% endif %}
-            </div>
-        {% else %}
-            <div class="null"></div>
-        {% endif %}
+<div class="game">
+    <div class="board">
+    {% for cologne in 1..13 %}
+        {% for ligne in 1..13 %}
+            {% if board.grid[cologne][ligne].theme is defined %}
+                <div class="{{board.grid[cologne][ligne].theme}}">
+                    {% if board.grid[cologne][ligne].player is defined %}
+                        <div class='divplayer'>
+                        {% for player in board.grid[cologne][ligne].player %}
+                            {% if player["name"] == board.player[0]["name"] %}
+                                <div class="player1"></div>
+                            {% endif %}
+                            {% if player["name"] == board.player[1]["name"] %}
+                                <div class="player2"></div>
+                            {% endif %}
+                            {% if player["name"] == board.player[2]["name"] %}
+                                <div class="player3"></div>
+                            {% endif %}
+                            {% if player["name"] == board.player[3]["name"] %}
+                                <div class="player4"></div>
+                            {% endif %}
+                        {% endfor %} 
+                        </div>
+                    {% endif %}
+                </div>
+            {% else %}
+                <div class="null"></div>
+            {% endif %}
+        {% endfor %}
     {% endfor %}
-{% endfor %}
+    </div>
+    <div class="bandeau">
+        {% include 'DiceView.html.twig' %}
+        {% include 'CamembertView.html.twig' %}
+    </div>
 </div>
-{% include 'DiceView.html.twig' %}
-{% include 'CamembertView.html.twig' %}
 <html>
