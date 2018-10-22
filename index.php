@@ -42,8 +42,8 @@ require('container.php');
 $app = new \Slim\App($container);
 
 $app->get('/', function() {
-	$acc = new AccueilControlleur();
-	$acc->affichageAcc();
+	$acc = new HomeController();
+	$acc->displayHome();
 })->setName('Accueil');
 
 $app->get('/Game/{id}','GameController:renderBoard')->setName('Game');
