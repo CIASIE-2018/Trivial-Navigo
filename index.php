@@ -110,8 +110,8 @@ $app->get('/Demarer', function() {
 
 $app->get('/Rejoindre', function() {
 
-	$acc = new RejoindreControlleur();
-	$acc->affichageRejoindre();
+	$acc = new JoinController();
+	$acc->displayJoin();
 })->setName('Rejoindre');
 
 $app->get('/De', function() {
