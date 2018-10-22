@@ -3,6 +3,7 @@
 namespace trivial\controllers;
 
 use trivial\views\StartView;
+use trivial\views\SaloonView;
 use trivial\models as m;
 
 
@@ -13,6 +14,11 @@ class StartController {
 	public function displayStart() {
 
 		$av = new StartView();
+		echo $av->render();
+	}
+
+	public function displaySaloon(){
+		$av = new SaloonView();
 		echo $av->render();
 	}
 
@@ -31,6 +37,13 @@ class StartController {
 		}
 		
 		self::createSaloon($mode,$saloon);
+
+		global $app ;
+
+        $url =  $app->getContainer()->get('router')->pathFor('Saloon');
+  
+        header("Location: $url");
+        exit();
 	}
 
 	public static function createSaloon($mode,$saloon){

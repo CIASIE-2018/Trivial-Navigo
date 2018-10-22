@@ -114,6 +114,11 @@ $app->post('/Demarer' , function($request, $response, $args){
  })
  ->setname("testCreateQuestions");
 
+ $app->get('/Salon',function(){
+	$acc = new StartController();
+	$acc->displaySaloon();
+ })->setName('Saloon');
+
 $app->get('/Rejoindre', function() {
 
 	$acc = new JoinController();
