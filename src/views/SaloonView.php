@@ -8,14 +8,15 @@ use trivial\views\GlobalView;
 use trivial\controllers as c;
 
 class SaloonView{
-    public function render() {
-
+    public function render($args) {
+		
         $ach = GlobalView::header();
-        $pseudo =    $_SESSION['pseudoJoueur'];
-        $cookie = $_COOKIE['salon'];
+		$pseudo =    $_SESSION['pseudoJoueur'];
+	
+       
 		$html ='';
         $html = $html.<<<END
-        <h4>Salon: $cookie</h4>
+        <h4>Salon: $args</h4>
 
 	<div class="screen">
     Joueur dans le salon

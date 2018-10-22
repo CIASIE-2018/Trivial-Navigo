@@ -17,9 +17,9 @@ class StartController {
 		echo $av->render();
 	}
 
-	public function displaySaloon(){
+	public function displaySaloon($args){
 		$av = new SaloonView();
-		echo $av->render();
+		echo $av->render($args);
 	}
 
 
