@@ -13,7 +13,8 @@ class StartView {
         $html = $html.<<<END
         <h4>Démarer Une Partie</h4>
 
-    <div class="screen">
+	<div class="screen">
+	<h4> Créer Un Salon </h4>
       <div class="choice">
         <select>
             <option value="0">Mode de Jeu:</option>
