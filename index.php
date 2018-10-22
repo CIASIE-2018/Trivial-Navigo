@@ -134,10 +134,7 @@ $app->get('/Rejoindre', function() {
 
 $app->get('/Dice','DiceController:displayDice')->setName('Dice');
 
-$app->get('/Camembert', function() {
-	$acc = new CamembertController();
-	$acc->displayCamembert();
-})->setName('Camembert');
+$app->get('/Camembert','CamembertController:displayCamembert')->setName('Camembert');
 
 $app->get('/Supprimer', function($id) {
 

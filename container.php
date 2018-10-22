@@ -3,6 +3,7 @@
 require_once __DIR__ . '/vendor/autoload.php';
 use trivial\controllers\GameController as GameController;
 use trivial\controllers\DiceController as DiceController;
+use trivial\controllers\CamembertController as CamembertController;
 
 $configuration = [
     'settings' => [
@@ -26,8 +27,13 @@ $container['view'] = function ($container) {
 };
 
 $container['DiceController'] = function($c) {
-	$viewDice = $c->get("view");
-	return new DiceController($viewDice);
+	$view = $c->get("view");
+	return new DiceController($view);
+};
+
+$container['CamembertController'] = function($c) {
+	$view = $c->get("view");
+	return new CamembertController($view);
 };
 
 ?>
