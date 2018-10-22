@@ -7,6 +7,7 @@ use trivial\controllers\HomeController;
 use trivial\controllers\ConnexionController;
 use trivial\controllers\StartController;
 use trivial\controllers\JoinController;
+use trivial\controllers\PlayerController;
 use trivial\controllers\DiceController;
 use trivial\controllers\CamembertController;
 use trivial\bd\Connexion;
@@ -41,8 +42,8 @@ require('container.php');
 $app = new \Slim\App($container);
 
 $app->get('/', function() {
-	$acc = new AccueilControlleur();
-	$acc->affichageAcc();
+	$acc = new HomeController();
+	$acc->displayHome();
 })->setName('Accueil');
 
 $app->get('/Game/{id}','GameController:renderBoard')->setName('Game');
@@ -83,6 +84,25 @@ $app->get('/Deconnexion',function(){
 })
 ->setName('Deconnexion');
 
+$app->get('/MyAccount',function(){
+	$acc = new PlayerController();
+	$acc->displayAccount();
+})
+->setName('MyAccount');
+
+$app->get('/CreateQuestions',function(){
+	$acc = new PlayerController();
+	$acc->displayQuestionSpace();
+})
+->setName('CreateQuestions');
+
+$app->post('/CreateQuestions' , function($request, $response, $args){
+	$acc = new PlayerController();
+ 	$acc->testCreateQuestions() ;
+ })
+ ->setname("testCreateQuestions");
+
+
 $app->get('/Demarer', function() {
 	$acc = new StartController();
 	$acc->displayStart();
@@ -90,8 +110,8 @@ $app->get('/Demarer', function() {
 
 $app->get('/Rejoindre', function() {
 
-	$acc = new RejoindreControlleur();
-	$acc->affichageRejoindre();
+	$acc = new JoinController();
+	$acc->displayJoin();
 })->setName('Rejoindre');
 
 $app->get('/Dice','DiceController:displayDice')->setName('Dice');
