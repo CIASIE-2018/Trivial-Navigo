@@ -37,7 +37,7 @@ class StartController {
 		}
 		
 		self::createSaloon($mode,$saloon);
-
+		setcookie('salon', $saloon, time() + 365*24*3600, null, null, false, true);
 		global $app ;
 
         $url =  $app->getContainer()->get('router')->pathFor('Saloon');

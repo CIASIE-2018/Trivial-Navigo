@@ -11,12 +11,17 @@ class SaloonView{
     public function render() {
 
         $ach = GlobalView::header();
+        $pseudo =    $_SESSION['pseudoJoueur'];
+        $cookie = $_COOKIE['salon'];
 		$html ='';
         $html = $html.<<<END
-        <h4>Salon</h4>
+        <h4>$cookie</h4>
 
 	<div class="screen">
-	Ecran de salon
+    Joueur dans le salon
+    <div class="player">
+    $pseudo
+    </div>
     </div>
 
     <style>
