@@ -66,7 +66,7 @@ $app->get('/Rejoindre', function() {
 
 $app->get('/ListCards', function() {
 	$acc = new CardController();
-	$acc->listCards();
+	$acc->listCardsGeo();
 })->setName('ListCards');
 
 $app->run();
