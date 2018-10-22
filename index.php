@@ -108,6 +108,17 @@ $app->get('/Demarer', function() {
 	$acc->displayStart();
 })->setName('Demarer');
 
+$app->post('/Demarer' , function($request, $response, $args){
+	$acc = new StartController();
+ 	$acc->testCreateSaloon() ;
+ })
+ ->setname("testCreateQuestions");
+
+ $app->get('/Salon/{name}',function(){
+	$acc = new StartController();
+	$acc->displaySaloon();
+ })->setName('Saloon');
+
 $app->get('/Rejoindre', function() {
 
 	$acc = new JoinController();
