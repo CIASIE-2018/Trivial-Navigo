@@ -10,6 +10,7 @@ use trivial\controllers\JoinController;
 use trivial\controllers\PlayerController;
 use trivial\controllers\DiceController;
 use trivial\controllers\CamembertController;
+
 use trivial\bd\Connexion;
 
 
@@ -47,13 +48,14 @@ $app->get('/', function() {
 })->setName('Accueil');
 
 $app->get('/Game/{id}','GameController:renderBoard')->setName('Game');
+$app->get('/Game/{id}/{theme}','GameController:renderQuestion')->setName('Question');
 
 $app->get('/Game/{id}/{dep}/{dir}',function($request, $response, $args){
 	$controller=$this['GameController'];
-	$controller->playerMove($request, $response, $args);
+	$theme = $controller->playerMove($request, $response, $args);
 	$router = $this->router;
-	return $response->withRedirect($router->pathFor('Game',["id" => $args['id']]));
-})->setName('move');
+	return $response->withRedirect($router->pathFor('Question',["id" => $args['id'], "theme" => $theme]));
+})->setName('Move');
 
 $app->get('/newGame/{id}',function($request, $response, $args){
 	$controller=$this['GameController'];

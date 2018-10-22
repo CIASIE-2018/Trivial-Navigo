@@ -62,5 +62,42 @@ class GameController{
         $board["player"][$board["turn"]]=$player;
         $game->board=json_encode($board);
         $game->save();
+        return $board["grid"][$player["position"][0]][$player["position"][1]]["theme"];
+    }
+
+    public function renderQuestion($request, $response, $args) {
+        $idGame = $args["id"];
+        $game = Game::find($idGame);
+        $board = json_decode($game->board,true);
+        $cards = $board['cards'];
+        $themeQuestion = $args["theme"];
+        $arr = array_filter($cards, function ($card) use ($themeQuestion) {
+            switch($themeQuestion) {
+                case "geo":
+                    return $card['idTheme'] == 1;
+                    break;
+                case "diver":
+                    return $card['idTheme'] == 2;
+                    break;
+                case "hist":
+                    return $card['idTheme'] == 3;
+                    break;
+                case "sport":
+                    return $card['idTheme'] == 4;
+                    break;
+                case "info":
+                    return $card['idTheme'] == 5;
+                    break;
+                case "perso":
+                    return $card['idTheme'] == 6;
+                    break;
+            }
+        });
+        $question = $arr[array_keys($arr)[0]];
+        var_dump($question);
+        unset($board['cards'][array_keys($arr)[0]]);
+        $game->board = json_encode($board);
+        $game->save();
+        return $question;
     }
 }
