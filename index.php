@@ -44,8 +44,8 @@ require('container.php');
 $app = new \Slim\App($container);
 
 $app->get('/', function() {
-	$acc = new AccueilControlleur();
-	$acc->affichageAcc();
+	$acc = new HomeController();
+	$acc->displayHome();
 })->setName('Accueil');
 
 $app->get('/Game/{id}','GameController:renderBoard')->setName('Game');
@@ -112,8 +112,8 @@ $app->get('/Demarer', function() {
 
 $app->get('/Rejoindre', function() {
 
-	$acc = new RejoindreControlleur();
-	$acc->affichageRejoindre();
+	$acc = new JoinController();
+	$acc->displayJoin();
 })->setName('Rejoindre');
 
 $app->get('/ListCards', function() {
