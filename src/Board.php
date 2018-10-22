@@ -3,10 +3,9 @@ namespace trivial;
 
  class Board {
     public $grid = array();
-    public $player1;
-    public $player2;
-    public $player3;
-    public $player4;
+    public $player;
+    public $turn=1;
+
 
     const hist="hist";
     const geo="geo";
@@ -17,10 +16,10 @@ namespace trivial;
 
     public function __construct($player1,$player2,$player3,$player4){
 
-            $this->player1=$player1;
-            $this->player2=$player2;
-            $this->player3=$player3;
-            $this->player4=$player4;
+        $this->player[0]=["name" => $player1,"position"=>[7,1]];
+        $this->player[1]=["name" => $player2,"position"=>[7,1]];
+        $this->player[2]=["name" => $player3,"position"=>[7,1]];
+        $this->player[3]=["name" => $player4,"position"=>[7,1]];
 
     $this->grid[1][1]=["theme"=>self::hist,"player"=>array()];
     $this->grid[1][2]=["theme"=>self::geo,"player"=>array()];
@@ -98,7 +97,7 @@ namespace trivial;
 
     $this->grid[7][7]=["theme"=>"depart","player"=>array()];
     
-    $this->grid[7][7]['player']=[$player1,$player2,$player3,$player4];
+    $this->grid[7][1]['player']=[$this->player[0],$this->player[1],$this->player[2],$this->player[3]];
     }
 
  }

@@ -45,6 +45,13 @@ $app->get('/', function() {
 
 $app->get('/Game/{id}','GameController:renderBoard')->setName('Game');
 
+$app->get('/Game/{id}/{dep}/{dir}',function($request, $response, $args){
+	$controller=$this['GameController'];
+	$controller->playerMove($request, $response, $args);
+	$router = $this->router;
+	return $response->withRedirect($router->pathFor('Game',["id" => $args['id']]));
+})->setName('move');
+
 $app->get('/newGame/{id}',function($request, $response, $args){
 	$controller=$this['GameController'];
 	$controller->newGame($request, $response, $args);
