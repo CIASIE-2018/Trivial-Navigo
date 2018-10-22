@@ -6,8 +6,12 @@ use trivial\views\GlobalView;
 
 class JoinView {
 
-	public function render() {
-
+	public function render($salonDispo) {
+        $liste ='';
+        foreach($salonDispo as $value)
+        {
+    $liste .= '<option>'.$value['nomSalon'].'</option>';
+        }
         $ach = GlobalView::header();
 		$html ='';
         $html = $html.<<<END
@@ -15,8 +19,13 @@ class JoinView {
         <div class="screen">
         Rejoindre le salon : 
         <form action="" method="post">
-				 <p>
-				 <p> Nom du Salon à Rejoindre : </p> <input type="text" name="salonName" /> <input type="submit" value="Valider" />
+        <div class = "choice">
+        <select name="nomSalon">
+        $liste
+        </select>
+        </div>
+        <p>
+				  <input type="submit" value="Valider" />
 				 </p>
 			 </form>
         </div>
