@@ -10,36 +10,36 @@
     grid-template-rows: 50px 50px 50px 50px 50px 50px 100px 50px 50px 50px 50px 50px 50px;
 }
 .bandeau{
-    background-color: rgb(185, 185, 185);
+    background-color: #EFEFEF;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
 }
-.geo, .hist, .diver, .sport, .info, .perso{
+.geo, .hist, .diver, .sport, .info, .perso, .depart{
     border: solid 1px black;
 }
 
 .geo{
-    background-color : cyan;
+    background-color : #77B5FE;
 }
 .hist{
-    background-color : yellow;
+    background-color : #F7FF3C;
 }
 .diver{
     background-color : pink;
 }
 .sport{
-    background-color : orange;
+    background-color : #FF8C00;
 }
 .info{
-    background-color : green;
+    background-color : #7FDD4C;
 }
 .perso{
-    background-color : purple;
+    background-color : #BA55D3;
 }
 .depart{
-    background-color : black;
+    background-color : #5A5E6B;
 }
 table{
     background:grey;
@@ -54,16 +54,16 @@ table{
 }
 
 .player1{
-  background-color : red;
+  background-color : #F7230C;
 }
 .player2{
-  background-color : blue;
+  background-color : #1560BD;
 }
 .player3{
-  background-color : violet;
+  background-color : #9E0E40;
 }
 .player4{
-  background-color : brown;
+  background-color : #582900;
 }
 .divplayer{
 width:100%;
