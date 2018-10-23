@@ -1,61 +1,108 @@
-.board{
+.board {
     display: grid;
     grid-template-columns: 50px 50px 50px 50px 50px 50px 100px 50px 50px 50px 50px 50px 50px;
     grid-template-rows: 50px 50px 50px 50px 50px 50px 100px 50px 50px 50px 50px 50px 50px;
 }
-.geo, .hist, .diver, .sport, .info, .perso{
+
+.geo,
+.hist,
+.diver,
+.sport,
+.info,
+.perso {
     border: solid 1px black;
 }
 
-.geo{
-    background-color : cyan;
-}
-.hist{
-    background-color : yellow;
-}
-.diver{
-    background-color : pink;
-}
-.sport{
-    background-color : orange;
-}
-.info{
-    background-color : green;
-}
-.perso{
-    background-color : purple;
-}
-.depart{
-    background-color : black;
-}
-table{
-    background:grey;
+.geo {
+    background-color: cyan;
 }
 
-.player1, .player2, .player3, .player4{
-  width:90%;
-  height:90%;
-  margin : auto;
-  border: solid 1px black;
-  display:flex;
+.hist {
+    background-color: yellow;
 }
 
-.player1{
-  background-color : red;
+.diver {
+    background-color: pink;
 }
-.player2{
-  background-color : blue;
+
+.sport {
+    background-color: orange;
 }
-.player3{
-  background-color : violet;
+
+.info {
+    background-color: green;
 }
-.player4{
-  background-color : brown;
+
+.perso {
+    background-color: purple;
 }
-.divplayer{
-width:100%;
-height : 100%;
-display : grid;
-grid-template-columns: 50% 50%;
-grid-template-rows: 50% 50%;
+
+.depart {
+    background-color: black;
+}
+
+table {
+    background: grey;
+}
+
+.player1,
+.player2,
+.player3,
+.player4 {
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    border: solid 1px black;
+    display: flex;
+}
+
+.player1 {
+    background-color: red;
+}
+
+.player2 {
+    background-color: blue;
+}
+
+.player3 {
+    background-color: violet;
+}
+
+.player4 {
+    background-color: brown;
+}
+
+.divplayer {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+}
+
+#question {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 14pt;
+    font-weight: bold;
+    color: white;
+}
+
+form {
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+#formQuestion {
+    border: none;
+}
+
+#labelreponse {
+    font-weight: bold;
+    color: white;
 }

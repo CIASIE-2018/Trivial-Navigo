@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+{% include 'GlobalHeaderView.html.twig' %}
+<body>
+    <form id="formQuestion" method="post" class={{theme}}>
+        <p>
+            <label id="question">{{ question.question }}</label>
+        </p>
+        <p>
+            <label for="reponse" id="labelreponse">Votre réponse :</label>
+            <input type="text" name="reponse" id="reponse" placeholder="Ex : test"/>
+        </p>
+    </form>
+</body>
+<html>

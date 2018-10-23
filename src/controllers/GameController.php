@@ -98,6 +98,10 @@ class GameController{
         unset($board['cards'][array_keys($arr)[0]]);
         $game->board = json_encode($board);
         $game->save();
-        return $question;
+        //return $question;
+        return $this->view->render($response,'FormQuestionView.html.twig',[
+            'question' => $question,
+            'theme' => $themeQuestion
+        ]);
     }
 }
