@@ -9,10 +9,25 @@
     grid-template-columns: 50px 50px 50px 50px 50px 50px 100px 50px 50px 50px 50px 50px 50px;
     grid-template-rows: 50px 50px 50px 50px 50px 50px 100px 50px 50px 50px 50px 50px 50px;
 }
-.bandeau{
-    background-color: #EFEFEF;
+.bandeaux{
     display: flex;
     flex-direction: column;
+}
+.bandeauJoueur{
+    width: 500px;
+    margin: 2px;
+    background-color: #EFEFEF;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.bandeau{
+    width: 500px;
+    margin: 2px;
+    background-color: #EFEFEF;
+    display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
 }
