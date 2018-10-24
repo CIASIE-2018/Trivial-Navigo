@@ -19,12 +19,24 @@ class JoinController {
 
 	public function testJoinSaloon(){
 		$nomSalon = $_POST['nomSalon'];
+		//Id du joueur permettra de modifier l'idSalon de ce joueur en base
+		$idJoueur = $_SESSION['idJoueur'];
 		
-		self::joinSaloon($nomSalon);
+		//récupère l'id du salon qui correspond au nom du salon.
+		$salon= m\Salon::where('nomSalon','=',$nomSalon);
+		$salon= $salon->first();
+		$idSalon = $salon->idSalon;
+		self::joinSaloon($nomSalon,$idSalon,$idJoueur);
 	}
 
-	public static function joinSaloon($nomSalon){
+	public static function joinSaloon($nomSalon,$idSalon,$idJoueur){
 	
+		$joueur =m\Joueur::find($idJoueur);
+		if($joueur){
+		$joueur->idSalon = $idSalon;
+		$joueur->save();
+		}
+		
 		global $app ;
 
         $url =  $app->getContainer()->get('router')->pathFor('Saloon',[
