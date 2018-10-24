@@ -4,6 +4,7 @@ namespace trivial\controllers;
 
 use trivial\views\CamembertView;
 use \Slim\Views\Twig as twig;
+use trivial\models\Joueur as joueur;
 
 class CamembertController {
 	protected $view;
