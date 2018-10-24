@@ -127,9 +127,9 @@ $app->post('/Demarer' , function($request, $response, $args){
  })
  ->setname("testCreateQuestions");
 
- $app->get('/Salon/{name}',function(){
+ $app->get('/Salon/{name}',function($request, $response, $args){
 	$acc = new StartController();
-	$acc->displaySaloon();
+	$acc->displaySaloon($args['name']);
  })->setName('Saloon');
 
 $app->get('/Rejoindre', function() {
@@ -139,6 +139,11 @@ $app->get('/Rejoindre', function() {
 })->setName('Rejoindre');
 
 $app->get('/Dice','DiceController:displayDice')->setName('Dice');
+$app->post('/Rejoindre' , function($request, $response, $args){
+	$acc = new JoinController();
+ 	$acc->testJoinSaloon() ;
+ })
+ ->setname("testCreateQuestions");
 
 $app->get('/Camembert','CamembertController:displayCamembert')->setName('Camembert');
 
