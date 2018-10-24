@@ -4,6 +4,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 use trivial\controllers\GameController as GameController;
 use trivial\controllers\ConnexionController as ConnexionController;
 use trivial\controllers\StartController as StartController;
+use trivial\controllers\HomeController as HomeController;
+
 $configuration = [
     'settings' => [
         'displayErrorDetails' => true,
@@ -34,5 +36,12 @@ $container['StartController'] = function ($c){
     $view = $c->get('view');
     return new StartController($view);
 };
+
+$container['HomeController'] = function ($c){
+    $view = $c->get('view');
+    return new HomeController($view);
+};
+
+
 
 ?>
