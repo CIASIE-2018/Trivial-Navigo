@@ -64,6 +64,16 @@ $app->post('/CreateAccount', function($request, $response, $args){
 	$account = $controller->testCreationAccount($request,$response,$args);
   })->setName("testCreation");
 
+  $app->get('/Demarer', 'StartController:displayStart')->setName('Demarer');
+
+$app->post('/Demarer' , function($request, $response, $args){
+	$controller =  $this['StartController'];
+	$start = $controller->testCreateSaloon($request,$response,$args);
+}) ->setname("testCreateQuestions");
+
+$app->get('/Salon/{name}',"StartController:displaySaloon")->setName('Saloon');
+
+
 $app->get('/Game/{id}/{dep}/{dir}',function($request, $response, $args){
 	$controller=$this['GameController'];
 	$controller->playerMove($request, $response, $args);
@@ -78,14 +88,6 @@ $app->get('/newGame/{id}',function($request, $response, $args){
 	return $response->withRedirect($router->pathFor('Game',["id" => $args['id']]));
 })->setName('newGame');
 
-
-
-
-//    $app->post('/Connexion' , function($request, $response, $args){
-// 	$acc = new ConnexionController();
-//  	$acc->testConnexion() ;
-//  })
-//  ->setname("testConnexion");
   
 
 
@@ -108,22 +110,9 @@ $app->post('/CreateQuestions' , function($request, $response, $args){
  ->setname("testCreateQuestions");
 
 
-$app->get('/Demarer', function() {
-	$acc = new StartController();
-	$acc->displayStart();
-})->setName('Demarer');
 
-$app->post('/Demarer' , function($request, $response, $args){
-	$acc = new StartController();
- 	$acc->testCreateSaloon() ;
- })
- ->setname("testCreateQuestions");
 
- $app->get('/Salon/{name}',function($request, $response, $args){
-	$acc = new StartController();
-	$acc->displaySaloon($args['name']);
- })->setName('Saloon');
-
+ 
 $app->get('/Rejoindre', function() {
 
 	$acc = new JoinController();
