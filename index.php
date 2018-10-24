@@ -57,6 +57,13 @@ $app->post('/Connexion',function($request,$response,$args){
 
 $app->get('/Deconnexion','ConnexionController:testDeconnexion')->setName('Deconnexion');
 
+$app->get('/CreateAccount', 'ConnexionController:createAccount')->setName('CreateAccount');
+
+$app->post('/CreateAccount', function($request, $response, $args){
+	$controller = $this['ConnexionController'];
+	$account = $controller->testCreationAccount($request,$response,$args);
+  })->setName("testCreation");
+
 $app->get('/Game/{id}/{dep}/{dir}',function($request, $response, $args){
 	$controller=$this['GameController'];
 	$controller->playerMove($request, $response, $args);
@@ -71,16 +78,7 @@ $app->get('/newGame/{id}',function($request, $response, $args){
 	return $response->withRedirect($router->pathFor('Game',["id" => $args['id']]));
 })->setName('newGame');
 
-$app->get('/CreateAccount', function() {
-	$acc = new ConnexionController();
-	$acc->CreateAccountView();
-})->setName('CreateAccount');
 
-$app->post('/CreateAccount', function($request, $response, $args){
-	$acc = new ConnexionController();
-	$acc->testCreationAccount(); 
-  } )
-  ->setName("testCreation");
 
 
 //    $app->post('/Connexion' , function($request, $response, $args){

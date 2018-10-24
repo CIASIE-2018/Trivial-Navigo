@@ -29,9 +29,8 @@ class ConnexionController {
 		]);
 	}
 
-	public function CreateAccountView() {
-		$av = new CreateAccountView();
-		echo $av->render();
+	public function createAccount($request,$response,$args) {
+		return $this->view->render($response,'CreateAccountView.html.twig',[]);
 	}
 
 	public static function creer($pseudo , $mdp , $email){

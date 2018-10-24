@@ -1,32 +1,4 @@
-<?php
-
-namespace trivial\views;
-
-use trivial\views\GlobalView;
-
-class CreateAccountView {
-	
-
-	public function render() {
-        $ach = GlobalView::header();
-		$html ='';	
-        $html = $html.<<<END
-        <h4> Créer Un Compte </h4>
-<div class="screen">
-
-	 
-	 <form action="" method="post">
-		 <p>
-			<p> pseudo : </p> <input type="text" name="pseudo" /> <p> mdp : </p> <input type="password" name="mdp" /> <p> email : </p> <input type="text" name="email" /> <input type="submit" value="Valider" />
-		 </p>
-	 </form>
-
-
-    </div> 
-    
-    
-    <style>
-	.screen{
+.screen{
 		display: flex;
 		flex-direction: column;
 	   align-items: center;
@@ -88,13 +60,5 @@ class CreateAccountView {
 	input{
 		margin-top: 10px; 
 	}
-	</style>
 	
-    
-
-END;
-        $acf = GlobalView::footer();
-		return $ach.$html.$acf;
-	}
-
-}
+	
