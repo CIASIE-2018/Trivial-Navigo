@@ -48,6 +48,15 @@ $app->get('/', function() {
 
 $app->get('/Game/{id}','GameController:renderBoard')->setName('Game');
 
+
+$app->get('/Connexion','ConnexionController:displayConnexion')->setName("Connexion");
+$app->post('/Connexion',function($request,$response,$args){
+	$controller = $this['ConnexionController'];
+	$con = $controller->testConnexion($request,$response,$args);
+})->setName("testCreation");
+
+$app->get('/Deconnexion','ConnexionController:testDeconnexion')->setName('Deconnexion');
+
 $app->get('/Game/{id}/{dep}/{dir}',function($request, $response, $args){
 	$controller=$this['GameController'];
 	$controller->playerMove($request, $response, $args);
@@ -73,23 +82,14 @@ $app->post('/CreateAccount', function($request, $response, $args){
   } )
   ->setName("testCreation");
 
-  $app->get('/Connexion',function(){
-	  $acc = new ConnexionController();
-	  $acc->displayConnexion();
-  })
-  ->setName("Connexion");
 
-   $app->post('/Connexion' , function($request, $response, $args){
-	$acc = new ConnexionController();
- 	$acc->testConnexion() ;
- })
- ->setname("testConnexion");
+//    $app->post('/Connexion' , function($request, $response, $args){
+// 	$acc = new ConnexionController();
+//  	$acc->testConnexion() ;
+//  })
+//  ->setname("testConnexion");
   
-$app->get('/Deconnexion',function(){
-	$acc = new ConnexionController();
-	$acc->testDeconnexion();
-})
-->setName('Deconnexion');
+
 
 $app->get('/MyAccount',function(){
 	$acc = new PlayerController();

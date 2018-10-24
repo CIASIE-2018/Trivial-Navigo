@@ -3,18 +3,30 @@
 namespace trivial\controllers;
 
 use trivial\views\ConnexionView;
+use \Slim\Views\Twig as twig;
 use trivial\views\CreateAccountView;
 use trivial\models as m;
 use trivial\controllers\Authentication;
 
 class ConnexionController {
 
+	protected $view;
 
+    public function __construct(twig $view) {
+        $this->view = $view;
+    }
 
-	public function displayConnexion() {
+	public function displayConnexion($request,$response,$args) {
 
-		$av = new ConnexionView();
-		echo $av->render();
+		if( Authentication::verificationConnexion() ){
+			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
+		}
+		else{
+			$pseudo = "";
+		}
+		return $this->view->render($response,'ConnexionView.html.twig',[
+			'pseudo'=>$pseudo,
+		]);
 	}
 
 	public function CreateAccountView() {
