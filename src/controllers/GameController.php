@@ -95,11 +95,9 @@ class GameController{
             }
         });
         $question = $arr[array_keys($arr)[0]];
-        var_dump($question);
         unset($board['cards'][array_keys($arr)[0]]);
         $game->board = json_encode($board);
         $game->save();
-        //return $question;
         return $this->view->render($response,'FormQuestionView.html.twig',[
             'question' => $question,
             'theme' => $themeQuestion
@@ -107,16 +105,42 @@ class GameController{
     }
 
     public function checkSubmissionForm($request, $response, $args) {
-        $idCarte = $_POST["idCarte"];
-        $rep = $_POST["reponse"];
+        $idCarte = strtolower($_POST["idCarte"]);
+        $repSaisie = $_POST["reponse"];
         $carte = Carte::find($idCarte);
         $arrCarte = json_decode($carte, true);
-        $repCarte = $arrCarte["reponse"];
-        if($rep == $repCarte) {
-            echo "Même réponse";
+        $repCarte = strtolower($arrCarte["reponse"]);
+        $simi = self::similaire($repCarte, $repSaisie);
+        if ($simi >= 80.00) {
+            echo "Réponse acceptée";
         }
         else {
             echo "Mauvaise réponse";
         }
+    }
+
+    public static function similaire($str1, $str2) { 
+        $strlen1=strlen($str1);
+        $strlen2=strlen($str2);
+        $max=max($strlen1, $strlen2);
+        $splitSize=250;
+        if($max>$splitSize) {
+            $lev=0;
+            for($cont=0;$cont<$max;$cont+=$splitSize) {
+                if($strlen1<=$cont || $strlen2<=$cont) {
+                    $lev=$lev/($max/min($strlen1,$strlen2));
+                    break;
+                }
+                $lev+=levenshtein(substr($str1,$cont,$splitSize), substr($str2,$cont,$splitSize));
+            }
+        }
+        else {
+            $lev=levenshtein($str1, $str2);
+        }
+        $porcentage= -100*$lev/$max+100;
+        if($porcentage>75) {
+            similar_text($str1,$str2,$porcentage);
+        }
+        return $porcentage;
     }
 }

@@ -155,7 +155,7 @@ VALUES(42, 'Dans quelle ville le festival, appelé Les Transmusicales, a-t-il li
 INSERT INTO CARTE
 VALUES(43, 'Dans quelle ville le festival, appelé les Eurockéennes, a-t-il lieu ?', 'Belfort', '1');
 INSERT INTO CARTE
-VALUES(44, 'Quel fleuve ou qulle rivière arrose la ville de Limoges ?', 'La Vienne', '1');
+VALUES(44, 'Quel fleuve ou quelle rivière arrose la ville de Limoges ?', 'La Vienne', '1');
 INSERT INTO CARTE
 VALUES(45, 'Quel fleuve ou quelle rivière arrose la ville de Toulouse ?', 'La Garonne', '1');
 INSERT INTO CARTE
@@ -258,7 +258,7 @@ VALUES(93, 'Quel est le nom du groupe auquel appartenait Beyoncé, avant d''enta
 INSERT INTO CARTE
 VALUES(94, 'Quel est le nom du groupe auquel appartenait Justin Timberlake, avant d''entamer une carrière solo ?', '*NSYNC', '2');
 INSERT INTO CARTE
-VALUES(95, 'Quel estle nom du groupe auquel appartenait Jean-Louis Aubert, avant d''entamer une carrière solo ?', 'Téléphone', '2');
+VALUES(95, 'Quel est le nom du groupe auquel appartenait Jean-Louis Aubert, avant d''entamer une carrière solo ?', 'Téléphone', '2');
 INSERT INTO CARTE
 VALUES(96, 'Quel est le prénom de la petite soeur de Titeuf ?', 'Zizie', '2');
 INSERT INTO CARTE
@@ -267,27 +267,27 @@ INSERT INTO CARTE
 VALUES(98, 'Quel est le surnom de l''ami de Titeuf qui a souvent la nausée ?', 'Vomito', '2');
 
 INSERT INTO CARTE
-VALUES(99, 'À quelle date célébrons-nous la victoire des Alliés sur l''Allemagne nazie, en France ?', 'Le 8 mai', '3');
+VALUES(99, 'À quelle date célébrons-nous la victoire des Alliés sur l''Allemagne nazie, en France ?', '8 mai', '3');
 INSERT INTO CARTE
-VALUES(100, 'À quelle date célébrons-nous la déclaration d''indépendance des États-Unis, en 1776 ?', 'Le 4 juillet', '3');
+VALUES(100, 'À quelle date célébrons-nous la déclaration d''indépendance des États-Unis, en 1776 ?', '4 juillet', '3');
 INSERT INTO CARTE
-VALUES(101, 'À quelle date célébrons-nous la fin de la Première Guerre mondiale, en France ?', 'Le 11 novembre', '3');
+VALUES(101, 'À quelle date célébrons-nous la fin de la Première Guerre mondiale, en France ?', '11 novembre', '3');
 INSERT INTO CARTE
 VALUES(102, 'Quel gangster américain était surnommé Scarface ?', 'Al Capone', '3');
 INSERT INTO CARTE
-VALUES(103, 'Comment appelle-t-on un membredu crime organisé au Japon ?', 'Un yakuza', '3');
+VALUES(103, 'Comment appelle-t-on un membredu crime organisé au Japon ?', 'Yakuza', '3');
 INSERT INTO CARTE
 VALUES(104, 'De quel pays, la mafia est-elle appelée triade ?', 'En Chine', '3');
 INSERT INTO CARTE
-VALUES(105, 'En quelle décennie, l''évènement historique, Le premier bébé-éprouvette est né, a-t-il eu lieu ?', 'Années 1970', '3');
+VALUES(105, 'En quelle décennie, l''évènement historique, Le premier bébé-éprouvette est né, a-t-il eu lieu ?', '1970', '3');
 INSERT INTO CARTE
-VALUES(106, 'En quelle décennie, l''évènement historique, Un petit pas pour l''homme un grand pas pour l''humanité !, a-t-il eu lieu ?', 'Années 1960', '3');
+VALUES(106, 'En quelle décennie, l''évènement historique, Un petit pas pour l''homme un grand pas pour l''humanité !, a-t-il eu lieu ?', '1960', '3');
 INSERT INTO CARTE
-VALUES(107, 'En quelle année, l''évènement historique, Dolly première brebis clonée!, a-t-il eu lieu ?', 'Années 1990', '3');
+VALUES(107, 'En quelle année, l''évènement historique, Dolly première brebis clonée!, a-t-il eu lieu ?', '1990', '3');
 INSERT INTO CARTE
-VALUES(108, 'Où a été filmée la première vidéo diffusée sur Youtube : dans un festival, une salle de bains ou un zoo ?', '', '3');
+VALUES(108, 'Où a été filmée la première vidéo diffusée sur Youtube : dans un festival, une salle de bains ou un zoo ?', 'Dans un zoo', '3');
 INSERT INTO CARTE
-VALUES(109, 'Dans un zoo', '', '3');
+VALUES(109, 'Quel peuple fut le premier à maîtriser la boussole ?', 'Les Chinois', '3');
 INSERT INTO CARTE
 VALUES(110, 'Quelle entreprise a racheté YouTube en 2006 ?', 'Google', '3');
 INSERT INTO CARTE
@@ -309,9 +309,9 @@ VALUES(118, 'Quel artiste a été ajouté numériquement au clip de la chanson W
 INSERT INTO CARTE
 VALUES(119, 'Qui devient la marraine des Restos du coeur en 2007 ?', 'Mimie Mathy', '3');
 INSERT INTO CARTE
-VALUES(120, 'Dans quel jeu de hasard les numéros gagnants sont-ils tirés toutes les 4 minutes approximativement ?', 'Au Keno', '3');
+VALUES(120, 'Dans quel jeu de hasard les numéros gagnants sont-ils tirés toutes les 4 minutes approximativement ?', 'Keno', '3');
 INSERT INTO CARTE
-VALUES(121, 'Comment s''appelle l''entreprise publique française qui gère le Loto ?', 'La Française des Jeux', '3');
+VALUES(121, 'Comment s''appelle l''entreprise publique française qui gère le Loto ?', 'Française des Jeux', '3');
 INSERT INTO CARTE
 VALUES(122, 'Quel prix Nobel Barack Obama a-t-il reçu ?', 'Paix', '3');
 INSERT INTO CARTE
@@ -325,9 +325,9 @@ VALUES(126, 'Sous quel nom, Vladimir Ilitch Oulianov, est-il mieux connu ?', 'L�
 INSERT INTO CARTE
 VALUES(127, 'Sous quel nom, Siddhartha Gautama, est-il mieux connu ?', 'Bouddha', '3');
 INSERT INTO CARTE
-VALUES(128, 'Quelle pizza a été créée à la fin du XIXe siècle en l''honneur de la reine d''Italie ?', 'La pizza Margherita', '3');
+VALUES(128, 'Quelle pizza a été créée à la fin du XIXe siècle en l''honneur de la reine d''Italie ?', 'Pizza Margherita', '3');
 INSERT INTO CARTE
-VALUES(129, 'À quel conflit attribue-t-on le début du succès des pizzas ?', 'Seconde Gurre mondiale', '3');
+VALUES(129, 'À quel conflit attribue-t-on le début du succès des pizzas ?', 'Seconde Guerre mondiale', '3');
 INSERT INTO CARTE
 VALUES(130, 'De quelle couleur étaient les pizzas avant l''introduction de la tomate dans la cuisine napolitaine ?', 'Blanches', '3');
 INSERT INTO CARTE
@@ -346,7 +346,7 @@ VALUES(136, 'Quel sportif a comme surnom Spice Boy ?', 'David Beckham', '4');
 INSERT INTO CARTE
 VALUES(137, 'Quel sportif a comme surnom La Guêpe ?', 'Laura Flessel', '4');
 INSERT INTO CARTE
-VALUES(138, 'Quel alcool tire sa saveur des grains et desbaies du genévrier ?', 'Le gin', '4');
+VALUES(138, 'Quel alcool tire sa saveur des grains et des baies du genévrier ?', 'Le gin', '4');
 INSERT INTO CARTE
 VALUES(139, 'Quelle eau-de-vie est traditionnellement produite à partir de la canne à sucre ?', 'Le rhum', '4');
 INSERT INTO CARTE
@@ -398,7 +398,7 @@ VALUES(162, 'Quel est le sport pratiqué par les frèers Ralf et Michael Schumac
 INSERT INTO CARTE
 VALUES(163, 'Quel est le sport pratiqué par les frères Andy et Jamie Murray ?', 'Tennis', '4');
 INSERT INTO CARTE
-VALUES(164, 'Quel est le sport pratiqué par les frères patrice et Tony Estanguet ?', 'Canoë-kayak', '4');
+VALUES(164, 'Quel est le sport pratiqué par les frères Patrice et Tony Estanguet ?', 'Canoë-kayak', '4');
 INSERT INTO CARTE
 VALUES(165, 'Quel est le nombre de joueurs présents sur le terrain pour un match de football ?', '22', '4');
 INSERT INTO CARTE
@@ -412,9 +412,9 @@ VALUES(169, 'Quel est le sport à l''honneur dans le film Million Dolar Baby ?',
 INSERT INTO CARTE
 VALUES(170, 'Quel est le sport qui est à l''honneur dans le film Invictus ?', 'Rugby', '4');
 INSERT INTO CARTE
-VALUES(171, 'À quel jeu ancien le tennis doit-il sa manière particulière de compter les points ?', 'Au jeu de paume', '4');
+VALUES(171, 'À quel jeu ancien le tennis doit-il sa manière particulière de compter les points ?', 'Jeu de paume', '4');
 INSERT INTO CARTE
-VALUES(172, 'Sur quelle surface les joueurs évoluent-ils à Roland-Garros ?', 'De la terre battue', '4');
+VALUES(172, 'Sur quelle surface les joueurs évoluent-ils à Roland-Garros ?', 'Terre battue', '4');
 INSERT INTO CARTE
 VALUES(173, 'Quels sont les 4 tournois de tennis du Grand Chelem ?', 'Open d''Australie, Roland-Garros, Wimbledon, US Open', '4');
 INSERT INTO CARTE
@@ -462,9 +462,9 @@ INSERT INTO CARTE VALUES(202, 'Quelle est l’erreur envoyée par le serveur lor
 INSERT INTO CARTE VALUES(203, 'Quelle commande permet de vérifier le temps de réponse d''une machine distante ?', 'ping', '5');
 
 INSERT INTO CARTE VALUES(204, 'Avec Steve Wozniak, qui a créé Apple ?', 'Steve Jobs', '6');
-INSERT INTO CARTE VALUES(205, 'Qu’est ce qu’a fondé Bill Gates et Paul Allen ?', 'Microsoft', '6');
+INSERT INTO CARTE VALUES(205, 'Qu’est-ce que Bill Gates et Paul Allen ont fondé ?', 'Microsoft', '6');
 INSERT INTO CARTE VALUES(206, 'Qui est le père de l’informatique moderne ?', 'Alan Turing', '6');
 INSERT INTO CARTE VALUES(207, 'Qui a créé Linux ?', 'Linus Torvalds', '6');
 INSERT INTO CARTE VALUES(208, 'Qui dirige Apple en 2018 ?', 'Tim Cook', '4');
 INSERT INTO CARTE VALUES(209, 'Avec Larry Page, qui a créé Google ?', 'Sergeï Brin', '6');
-INSERT INTO CARTE VALUES(210, 'A l’origine, pour quel université Mark Zuckerberg a t-il créé Facebook ?', 'Harvard', '6');
+INSERT INTO CARTE VALUES(210, 'A l’origine, pour quelle université Mark Zuckerberg a-t-il créé Facebook ?', 'Harvard', '6');
