@@ -7,6 +7,7 @@ use trivial\controllers\HomeController;
 use trivial\controllers\ConnexionController;
 use trivial\controllers\StartController;
 use trivial\controllers\JoinController;
+use trivial\controllers\PlayerController;
 use trivial\controllers\DiceController;
 use trivial\controllers\CamembertController;
 use trivial\bd\Connexion;
@@ -41,11 +42,18 @@ require('container.php');
 $app = new \Slim\App($container);
 
 $app->get('/', function() {
-	$acc = new AccueilControlleur();
-	$acc->affichageAcc();
+	$acc = new HomeController();
+	$acc->displayHome();
 })->setName('Accueil');
 
 $app->get('/Game/{id}','GameController:renderBoard')->setName('Game');
+
+$app->get('/Game/{id}/{dep}/{dir}',function($request, $response, $args){
+	$controller=$this['GameController'];
+	$controller->playerMove($request, $response, $args);
+	$router = $this->router;
+	return $response->withRedirect($router->pathFor('Game',["id" => $args['id']]));
+})->setName('move');
 
 $app->get('/newGame/{id}',function($request, $response, $args){
 	$controller=$this['GameController'];
@@ -83,18 +91,53 @@ $app->get('/Deconnexion',function(){
 })
 ->setName('Deconnexion');
 
+$app->get('/MyAccount',function(){
+	$acc = new PlayerController();
+	$acc->displayAccount();
+})
+->setName('MyAccount');
+
+$app->get('/CreateQuestions',function(){
+	$acc = new PlayerController();
+	$acc->displayQuestionSpace();
+})
+->setName('CreateQuestions');
+
+$app->post('/CreateQuestions' , function($request, $response, $args){
+	$acc = new PlayerController();
+ 	$acc->testCreateQuestions() ;
+ })
+ ->setname("testCreateQuestions");
+
+
 $app->get('/Demarer', function() {
 	$acc = new StartController();
 	$acc->displayStart();
 })->setName('Demarer');
 
+$app->post('/Demarer' , function($request, $response, $args){
+	$acc = new StartController();
+ 	$acc->testCreateSaloon() ;
+ })
+ ->setname("testCreateQuestions");
+
+ $app->get('/Salon/{name}',function($request, $response, $args){
+	$acc = new StartController();
+	$acc->displaySaloon($args['name']);
+ })->setName('Saloon');
+
 $app->get('/Rejoindre', function() {
 
-	$acc = new RejoindreControlleur();
-	$acc->affichageRejoindre();
+	$acc = new JoinController();
+	$acc->displayJoin();
 })->setName('Rejoindre');
 
 $app->get('/Dice','DiceController:displayDice')->setName('Dice');
+$app->post('/Rejoindre' , function($request, $response, $args){
+	$acc = new JoinController();
+ 	$acc->testJoinSaloon() ;
+ })
+ ->setname("testCreateQuestions");
 
 $app->get('/Camembert', function() {
 	$acc = new CamembertController();

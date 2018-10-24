@@ -42,6 +42,10 @@ END;
 	  </div>
 	  <div class="boutton">
 	  <a href="Deconnexion" >Deconnexion</a>
+	  </div>
+	  <div class="boutton">
+	  <a href="MyAccount" >My Account</a>
+	  </div>
 END;
 		
 

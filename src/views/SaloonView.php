@@ -2,33 +2,31 @@
 
 namespace trivial\views;
 
+
 use trivial\views\GlobalView;
 
-class StartView {
+use trivial\controllers as c;
 
-	public function render() {
-
+class SaloonView{
+    public function render($args,$listeJoueur) {
+		
         $ach = GlobalView::header();
+		$pseudo='';
+		//Pseudo affiche la liste de tous les joueurs présents dans le salon.
+		foreach($listeJoueur as $value){
+		$pseudo.= $value."</BR>";
+		}
+		
+       
 		$html ='';
         $html = $html.<<<END
-        <h4>Démarer Une Partie</h4>
+        <h4>Salon: $args</h4>
 
 	<div class="screen">
-	<h4> Créer Un Salon </h4>
-	<form action="" method="post">
-      <div class="choice">
-	  <select name="mode">
-	  <option>Mode de Jeu:</option>
-	  <option name="mode">Privé</option>
-	  <option name="mode">Publique</option>
-	</select>
-	</div>
-  <p>
-	 <p> Nom du Salon: </p> <input type="text" name="salon" /> <input type="submit" value="Jouer" />
-  </p>
-	  </form>
-      
-
+    Joueur dans le salon
+    <div class="player">
+    $pseudo
+    </div>
     </div>
 
     <style>
@@ -102,5 +100,4 @@ END;
         $acf = GlobalView::footer();
 		return $ach.$html.$acf;
 	}
-
 }
