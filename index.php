@@ -50,9 +50,8 @@ $app->get('/', function() {
 $app->get('/Game/{id}','GameController:renderBoard')->setName('Game');
 $app->get('/Game/{id}/{theme}','GameController:renderQuestion')->setName('Question');
 $app->post('/SubmitQ', function($request, $response, $args) {
-	echo "Réussi";
-	$test = new GameController;
-	$test->testSubmissionForm();
+	$controller=$this['GameController'];
+	$checkSubForm = $controller->checkSubmissionForm($request, $response, $args);
 })->setName('SubmitQ');
 
 $app->get('/Game/{id}/{dep}/{dir}',function($request, $response, $args){

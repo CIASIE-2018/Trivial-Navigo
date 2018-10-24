@@ -4,6 +4,7 @@ namespace trivial\controllers;
 
 use trivial\views\GameView;
 use trivial\models\Game;
+use trivial\models\Carte;
 use trivial\Board;
 use \Slim\Views\Twig as twig;
 
@@ -103,5 +104,19 @@ class GameController{
             'question' => $question,
             'theme' => $themeQuestion
         ]);
+    }
+
+    public function checkSubmissionForm($request, $response, $args) {
+        $idCarte = $_POST["idCarte"];
+        $rep = $_POST["reponse"];
+        $carte = Carte::find($idCarte);
+        $arrCarte = json_decode($carte, true);
+        $repCarte = $arrCarte["reponse"];
+        if($rep == $repCarte) {
+            echo "Même réponse";
+        }
+        else {
+            echo "Mauvaise réponse";
+        }
     }
 }
