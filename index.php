@@ -49,6 +49,11 @@ $app->get('/', function() {
 
 $app->get('/Game/{id}','GameController:renderBoard')->setName('Game');
 $app->get('/Game/{id}/{theme}','GameController:renderQuestion')->setName('Question');
+$app->post('/SubmitQ', function($request, $response, $args) {
+	echo "Réussi";
+	$test = new GameController;
+	$test->testSubmissionForm();
+})->setName('SubmitQ');
 
 $app->get('/Game/{id}/{dep}/{dir}',function($request, $response, $args){
 	$controller=$this['GameController'];
