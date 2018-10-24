@@ -20,7 +20,22 @@ class StartController {
 
 	public function displaySaloon($args){
 		$av = new SaloonView();
-		echo $av->render($args);
+		//Verifier si il y a d'autres joueurs dans le salon
+		//on récpère l'id du salon sur le quel la route nous mène.
+		$salon= m\Salon::where('nomSalon','=',$args);
+		$salon= $salon->first();
+		$idSalon = $salon->idSalon;
+		
+		//on récupère tous les joueurs qui ont l'idSalon que l'on vient de récupérer
+		$joueur = m\Joueur::where('idSalon','=',$idSalon)->get();
+		//On crée une liste pour y stocker le nom des Joueurs qui ont l'idSalon
+		$listeJoueur=array();
+		foreach($joueur as $nomJoueur){
+			$joueurSalon= $nomJoueur->pseudoJoueur;
+			array_push($listeJoueur,$joueurSalon);
+			
+		}
+		echo $av->render($args,$listeJoueur);
 	}
 
 

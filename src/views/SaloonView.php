@@ -8,11 +8,15 @@ use trivial\views\GlobalView;
 use trivial\controllers as c;
 
 class SaloonView{
-    public function render($args) {
+    public function render($args,$listeJoueur) {
 		
         $ach = GlobalView::header();
-		$pseudo =    $_SESSION['pseudoJoueur'];
-	
+		$pseudo='';
+		//Pseudo affiche la liste de tous les joueurs présents dans le salon.
+		foreach($listeJoueur as $value){
+		$pseudo.= $value."</BR>";
+		}
+		
        
 		$html ='';
         $html = $html.<<<END
