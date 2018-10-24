@@ -4,18 +4,34 @@ namespace trivial\controllers;
 
 use trivial\views\JoinView;
 use trivial\models as m;
+use \Slim\Views\Twig as twig;
+use trivial\controllers\Autentication;
+
 
 class JoinController {
 
+	protected $view;
+
+    public function __construct(twig $view) {
+        $this->view = $view;
+    }
 
 
-	public function displayJoin() {
+	public function displayJoin($request,$response,$args) {
 		$salonDispo =  m\Salon::all('nomSalon')->toArray();
-		$av = new JoinView();
-		   
+		if( Authentication::verificationConnexion() ){
+			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
+		}
+		else{
+			$pseudo = "";
+		}
 		
-		echo $av->render($salonDispo);
+		return $this->view->render($response,'JoinView.html.twig',[
+			'pseudo'=>$pseudo,
+			'salonDispo'=>$salonDispo,
+		]);
 	}
+	
 
 	public function testJoinSaloon(){
 		$nomSalon = $_POST['nomSalon'];

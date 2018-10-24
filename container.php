@@ -5,6 +5,7 @@ use trivial\controllers\GameController as GameController;
 use trivial\controllers\ConnexionController as ConnexionController;
 use trivial\controllers\StartController as StartController;
 use trivial\controllers\HomeController as HomeController;
+use trivial\controllers\JoinController as JoinController;
 
 $configuration = [
     'settings' => [
@@ -40,6 +41,11 @@ $container['StartController'] = function ($c){
 $container['HomeController'] = function ($c){
     $view = $c->get('view');
     return new HomeController($view);
+};
+
+$container['JoinController'] = function ($c){
+    $view = $c->get('view');
+    return new JoinController($view);
 };
 
 

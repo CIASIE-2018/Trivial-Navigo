@@ -71,6 +71,14 @@ $app->post('/Demarer' , function($request, $response, $args){
 $app->get('/Salon/{name}',"StartController:displaySaloon")->setName('Saloon');
 
 
+$app->get('/Rejoindre', 'JoinController:displayJoin')->setName('Rejoindre');
+
+$app->post('/Rejoindre' , function($request, $response, $args){
+	$controller = $this['JoinController'];
+ 	$join= $controller->testJoinSaloon($request,$response,$args) ;
+ }) ->setname("testCreateQuestions");
+
+
 $app->get('/Game/{id}/{dep}/{dir}',function($request, $response, $args){
 	$controller=$this['GameController'];
 	$controller->playerMove($request, $response, $args);
@@ -106,21 +114,6 @@ $app->post('/CreateQuestions' , function($request, $response, $args){
  })
  ->setname("testCreateQuestions");
 
-
-
-
- 
-$app->get('/Rejoindre', function() {
-
-	$acc = new JoinController();
-	$acc->displayJoin();
-})->setName('Rejoindre');
-
-$app->post('/Rejoindre' , function($request, $response, $args){
-	$acc = new JoinController();
- 	$acc->testJoinSaloon() ;
- })
- ->setname("testCreateQuestions");
 
 $app->get('/De', function() {
 	$acc = new DiceController();
