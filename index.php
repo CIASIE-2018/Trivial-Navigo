@@ -132,16 +132,12 @@ $app->get('/Rejoindre', function() {
 	$acc->displayJoin();
 })->setName('Rejoindre');
 
+$app->get('/Dice','DiceController:displayDice')->setName('Dice');
 $app->post('/Rejoindre' , function($request, $response, $args){
 	$acc = new JoinController();
  	$acc->testJoinSaloon() ;
  })
  ->setname("testCreateQuestions");
-
-$app->get('/De', function() {
-	$acc = new DiceController();
-	$acc->displayDice();
-})->setName('De');
 
 $app->get('/Camembert', function() {
 	$acc = new CamembertController();

@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 use trivial\controllers\GameController as GameController;
+use trivial\controllers\DiceController as DiceController;
 
 $configuration = [
     'settings' => [
@@ -22,6 +23,11 @@ $container['view'] = function ($container) {
     $view->addExtension(new Slim\Views\TwigExtension($container->get('router'), $basePath));
 
     return $view;
+};
+
+$container['DiceController'] = function($c) {
+	$viewDice = $c->get("view");
+	return new DiceController($viewDice);
 };
 
 ?>
