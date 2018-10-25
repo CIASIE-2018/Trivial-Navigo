@@ -109,10 +109,6 @@ $app->get('/newGame/{id}',function($request, $response, $args){
 
 
 
-$app->get('/De', function() {
-	$acc = new DiceController();
-	$acc->displayDice();
-})->setName('De');
 
 $app->get('/Camembert', function() {
 	$acc = new CamembertController();

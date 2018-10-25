@@ -3,13 +3,17 @@
 namespace trivial\controllers;
 
 use trivial\views\DiceView;
+use \Slim\Views\Twig as twig;
 
 class DiceController {
+	protected $view;
+	
+	public function __construct(twig $view) {
+        $this->view = $view;
+    }
+	public function displayDice($request, $response, $args){
 
-	public function displayDice(){
-
-		$av = new DiceView();
-		echo $av->render();
+		return $this->view->render($response,'DiceView.html.twig',[]);
 	}
 
 }
