@@ -76,8 +76,10 @@ $app->get('/Rejoindre', 'JoinController:displayJoin')->setName('Rejoindre');
 $app->post('/Rejoindre' , function($request, $response, $args){
 	$controller = $this['JoinController'];
  	$join= $controller->testJoinSaloon($request,$response,$args) ;
- }) ->setname("testCreateQuestions");
+ })
+ ->setname("testCreateQuestions");
 
+ $app->get('/MyAccount','PlayerController:displayAccount')->setName('MyAccount');
 
 $app->get('/Game/{id}/{dep}/{dir}',function($request, $response, $args){
 	$controller=$this['GameController'];
@@ -96,11 +98,7 @@ $app->get('/newGame/{id}',function($request, $response, $args){
   
 
 
-$app->get('/MyAccount',function(){
-	$acc = new PlayerController();
-	$acc->displayAccount();
-})
-->setName('MyAccount');
+
 
 $app->get('/CreateQuestions',function(){
 	$acc = new PlayerController();

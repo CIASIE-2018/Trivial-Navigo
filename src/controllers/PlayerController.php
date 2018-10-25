@@ -4,14 +4,29 @@ namespace trivial\controllers;
 
 use trivial\views\PlayerView;
 use trivial\models as m;
+use \Slim\Views\Twig as twig;
+use trivial\controllers\Autentication;
+
 
 class PlayerController{
 
+	protected $view;
 
-    public function displayAccount(){
-        $av = new PlayerView();
-		echo $av->render();
+    public function __construct(twig $view) {
+        $this->view = $view;
     }
+
+    public function displayAccount($request,$response,$args){
+    if( Authentication::verificationConnexion() ){
+			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
+		}
+		else{
+			$pseudo = "";
+		}
+		return $this->view->render($response,'PlayerView.html.twig',[
+			'pseudo'=>$pseudo,
+		]);
+		}
 
     public function displayQuestionSpace(){
         $av = new PlayerView();
