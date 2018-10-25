@@ -119,12 +119,7 @@ $app->get('/Camembert', function() {
 	$acc->displayCamembert();
 })->setName('Camembert');
 
-$app->get('/Supprimer', function($id) {
 
-	// TEST DE PDO ET ELOQUENT : Connexion à BD établie et les requêtes fonctionnent.
-	$acc = new HomeController();
-	$acc->supprimer($id);
-})->setName('Supprimer');
 
 
 $app->run();
