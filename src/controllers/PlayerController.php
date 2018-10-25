@@ -28,9 +28,17 @@ class PlayerController{
 		]);
 		}
 
-    public function displayQuestionSpace(){
-        $av = new PlayerView();
-		echo $av->renderQuestionSpace();
+    public function displayQuestionSpace($request,$response,$args){
+        if( Authentication::verificationConnexion() ){
+			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
+		}
+		else{
+			$pseudo = "";
+		}
+		return $this->view->render($response,'QuestionView.html.twig',[
+			'pseudo'=>$pseudo,
+		]);
+		
     }
 
     public function testCreateQuestions(){

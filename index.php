@@ -79,6 +79,15 @@ $app->post('/Rejoindre' , function($request, $response, $args){
  })
  ->setname("testCreateQuestions");
 
+ $app->get('/CreateQuestions','PlayerController:displayQuestionSpace')->setName('CreateQuestions');
+
+ $app->post('/CreateQuestions' , function($request, $response, $args){
+	$controller = $this['PlayerController'];
+ 	$quest=$controller->testCreateQuestions($request, $response, $args) ;
+ })
+ ->setname("testCreateQuestions");
+
+
  $app->get('/MyAccount','PlayerController:displayAccount')->setName('MyAccount');
 
 $app->get('/Game/{id}/{dep}/{dir}',function($request, $response, $args){
@@ -95,22 +104,9 @@ $app->get('/newGame/{id}',function($request, $response, $args){
 	return $response->withRedirect($router->pathFor('Game',["id" => $args['id']]));
 })->setName('newGame');
 
-  
 
 
 
-
-$app->get('/CreateQuestions',function(){
-	$acc = new PlayerController();
-	$acc->displayQuestionSpace();
-})
-->setName('CreateQuestions');
-
-$app->post('/CreateQuestions' , function($request, $response, $args){
-	$acc = new PlayerController();
- 	$acc->testCreateQuestions() ;
- })
- ->setname("testCreateQuestions");
 
 
 $app->get('/De', function() {
