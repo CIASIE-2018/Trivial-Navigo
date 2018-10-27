@@ -9,7 +9,7 @@ use trivial\controllers\StartController;
 use trivial\controllers\JoinController;
 use trivial\controllers\PlayerController;
 use trivial\controllers\DiceController;
-use trivial\controllers\CamembertController;
+
 use trivial\bd\Connexion;
 
 
@@ -44,6 +44,12 @@ $app = new \Slim\App($container);
 $app->get('/', 'HomeController:displayHome')->setName('Accueil');
 
 $app->get('/Game/{id}','GameController:renderBoard')->setName('Game');
+$app->get('/Game/{id}/Cam','GameController:renderCamembert')->setName('Camembert');
+$app->get('/Game/{id}/{theme}','GameController:renderQuestion')->setName('Question');
+$app->post('/SubmitQ', function($request, $response, $args) {
+	$controller=$this['GameController'];
+	$checkSubForm = $controller->checkSubmissionForm($request, $response, $args);
+})->setName('SubmitQ');
 
 
 $app->get('/Connexion','ConnexionController:displayConnexion')->setName("Connexion");
@@ -92,10 +98,10 @@ $app->post('/Rejoindre' , function($request, $response, $args){
 
 $app->get('/Game/{id}/{dep}/{dir}',function($request, $response, $args){
 	$controller=$this['GameController'];
-	$controller->playerMove($request, $response, $args);
+	$theme = $controller->playerMove($request, $response, $args);
 	$router = $this->router;
-	return $response->withRedirect($router->pathFor('Game',["id" => $args['id']]));
-})->setName('move');
+	return $response->withRedirect($router->pathFor('Question',["id" => $args['id'], "theme" => $theme]));
+})->setName('Move');
 
 $app->get('/newGame/{id}',function($request, $response, $args){
 	$controller=$this['GameController'];
@@ -110,10 +116,6 @@ $app->get('/newGame/{id}',function($request, $response, $args){
 
 
 
-$app->get('/Camembert', function() {
-	$acc = new CamembertController();
-	$acc->displayCamembert();
-})->setName('Camembert');
 
 
 

@@ -3,7 +3,9 @@
 namespace trivial\controllers;
 
 use trivial\views\GameView;
+use trivial\views\CamembertView;
 use trivial\models\Game;
+use trivial\models\Carte;
 use trivial\models\Salon;
 use trivial\models\Joueur;
 use trivial\Board;
@@ -27,6 +29,7 @@ class GameController{
     public function newGame($request, $response, $args){
         $idSalon=Salon::all()->where("nomSalon","=",$args['id'])->first()->idSalon;
         $game = new Game();
+        $board=new Board("Lily","Leo","Quentin","Camille");
         $player=array();
         foreach(Joueur::all()->where("idSalon","=",$idSalon)->toArray() as $name){
             $player[]=$name["pseudoJoueur"];
@@ -69,5 +72,97 @@ class GameController{
         $board["player"][$board["turn"]]=$player;
         $game->board=json_encode($board);
         $game->save();
+        return $board["grid"][$player["position"][0]][$player["position"][1]]["theme"];
+    }
+
+    public function renderQuestion($request, $response, $args) {
+        $idGame = $args["id"];
+        $game = Game::find($idGame);
+        $board = json_decode($game->board,true);
+        $cards = $board['cards'];
+        $themeQuestion = $args["theme"];
+        $arr = array_filter($cards, function ($card) use ($themeQuestion) {
+            switch($themeQuestion) {
+                case "geo":
+                    return $card['idTheme'] == 1;
+                    break;
+                case "diver":
+                    return $card['idTheme'] == 2;
+                    break;
+                case "hist":
+                    return $card['idTheme'] == 3;
+                    break;
+                case "sport":
+                    return $card['idTheme'] == 4;
+                    break;
+                case "info":
+                    return $card['idTheme'] == 5;
+                    break;
+                case "perso":
+                    return $card['idTheme'] == 6;
+                    break;
+            }
+        });
+        $question = $arr[array_keys($arr)[0]];
+        unset($board['cards'][array_keys($arr)[0]]);
+        $game->board = json_encode($board);
+        $game->save();
+        return $this->view->render($response,'FormQuestionView.html.twig',[
+            'question' => $question,
+            'theme' => $themeQuestion
+        ]);
+    }
+
+    public function checkSubmissionForm($request, $response, $args) {
+        $idCarte = strtolower($_POST["idCarte"]);
+        $repSaisie = $_POST["reponse"];
+        $carte = Carte::find($idCarte);
+        $arrCarte = json_decode($carte, true);
+        $repCarte = strtolower($arrCarte["reponse"]);
+        $simi = self::similaire($repCarte, $repSaisie);
+        if ($simi >= 80.00) {
+            echo "Réponse acceptée";
+        }
+        else {
+            echo "Mauvaise réponse";
+        }
+    }
+
+    public static function similaire($str1, $str2) { 
+        $strlen1=strlen($str1);
+        $strlen2=strlen($str2);
+        $max=max($strlen1, $strlen2);
+        $splitSize=250;
+        if($max>$splitSize) {
+            $lev=0;
+            for($cont=0;$cont<$max;$cont+=$splitSize) {
+                if($strlen1<=$cont || $strlen2<=$cont) {
+                    $lev=$lev/($max/min($strlen1,$strlen2));
+                    break;
+                }
+                $lev+=levenshtein(substr($str1,$cont,$splitSize), substr($str2,$cont,$splitSize));
+            }
+        }
+        else {
+            $lev=levenshtein($str1, $str2);
+        }
+        $porcentage= -100*$lev/$max+100;
+        if($porcentage>75) {
+            similar_text($str1,$str2,$porcentage);
+        }
+        return $porcentage;
+    }
+
+    public function renderCamembert($request, $response, $args){
+        $idGame=$args["id"];
+        $game = Game::find($idGame);
+        $board=json_decode($game->board,true);
+
+        $n = $board["player"][$board["turn"]]['name'];
+        $joueur = Joueur::where('pseudoJoueur','=',$n)->first()->toArray();
+        $tab = ['name' => $joueur['pseudoJoueur'], 'camGeo' => $joueur['camembertGeo'], 'camDiver' => $joueur['camembertDiver'], 'camHist' => $joueur['camembertHist'], 'camSport' => $joueur['camembertSport'], 'camInfo' => $joueur['camembertInfo'], 'camPerso' => $joueur['camembertPerso']];
+        return $this->view->render($response,'GameView.html.twig',[
+            'board'=>$board, 'cam' => $tab
+        ]);
     }
 }
