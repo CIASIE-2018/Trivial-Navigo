@@ -100,11 +100,18 @@ class GameController{
         $game->save();
         return $this->view->render($response,'FormQuestionView.html.twig',[
             'question' => $question,
-            'theme' => $themeQuestion
+            'theme' => $themeQuestion,
+            'idGame' => $idGame
         ]);
     }
 
     public function checkSubmissionForm($request, $response, $args) {
+        $idGame = $args["id"];
+        $game = Game::find($idGame);
+        $board = json_decode($game->board,true);
+        $player=$board["player"][$board["turn"]];
+        $themeQuestion = ucfirst($args["theme"]);
+
         $idCarte = strtolower($_POST["idCarte"]);
         $repSaisie = $_POST["reponse"];
         $carte = Carte::find($idCarte);
@@ -112,10 +119,11 @@ class GameController{
         $repCarte = strtolower($arrCarte["reponse"]);
         $simi = self::similaire($repCarte, $repSaisie);
         if ($simi >= 80.00) {
-            echo "Réponse acceptée";
+            
+            return true;
         }
         else {
-            echo "Mauvaise réponse";
+            return false;
         }
     }
 

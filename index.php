@@ -49,7 +49,7 @@ $app->get('/', function() {
 
 $app->get('/Game/{id}','GameController:renderBoard')->setName('Game');
 $app->get('/Game/{id}/{theme}','GameController:renderQuestion')->setName('Question');
-$app->post('/SubmitQ', function($request, $response, $args) {
+$app->post('/SubmitQ/Game/{id}/{theme}', function($request, $response, $args) {
 	$controller=$this['GameController'];
 	$checkSubForm = $controller->checkSubmissionForm($request, $response, $args);
 })->setName('SubmitQ');
