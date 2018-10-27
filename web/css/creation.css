@@ -1,49 +1,17 @@
-<?php
-
-namespace trivial\views;
-
-
-use trivial\views\GlobalView;
-
-use trivial\controllers as c;
-
-class SaloonView{
-    public function render($args,$listeJoueur) {
-		
-        $ach = GlobalView::header();
-		$pseudo='';
-		//Pseudo affiche la liste de tous les joueurs présents dans le salon.
-		foreach($listeJoueur as $value){
-		$pseudo.= $value."</BR>";
-		}
-		
-       
-		$html ='';
-        $html = $html.<<<END
-        <h4>Salon: $args</h4>
-
-	<div class="screen">
-    Joueur dans le salon
-    <div class="player">
-    $pseudo
-    </div>
-    </div>
-
-    <style>
-	.screen{
+.screen{
 		display: flex;
 		flex-direction: column;
 	   align-items: center;
 	   width: 100%;
 		border : 2px solid rgb(95, 89, 89);
-
+	   
 		padding-bottom: 15px;
 		padding-top: 15px;
 	}
 	body{
 		background: url(back.jpg);
 	}
-
+    
     h4{
         text-align : center;
     }
@@ -75,29 +43,22 @@ class SaloonView{
 		margin-bottom: 15px;
 		margin-top: 15px;
 	}
-
+	
 	a{
 		text-decoration: none;
 		color : black;
 	}
-
+	
 	.choice{
 		display: flex;
 		flex-direction: column;
 		padding:15px 0 0 0;
 		font:bold 13px Arial;
-
+		
 		border-radius:2px;
 	}
 	input{
-		margin-top: 10px;
+		margin-top: 10px; 
 	}
-	</style>
-
-
-
-END;
-        $acf = GlobalView::footer();
-		return $ach.$html.$acf;
-	}
-}
+	
+	

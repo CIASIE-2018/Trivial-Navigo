@@ -6,23 +6,42 @@ use trivial\views\StartView;
 use trivial\views\SaloonView;
 use trivial\models as m;
 use trivial\controllers\JoinController;
-
+use trivial\controllers\Autentication;
+use \Slim\Views\Twig as twig;
 
 class StartController {
 
+	protected $view;
+
+    public function __construct(twig $view) {
+        $this->view = $view;
+    }
 
 
-	public function displayStart() {
+	public function displayStart($request,$response,$args) {
+		if( Authentication::verificationConnexion() ){
+			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
+		}
+		else{
+			$pseudo = "";
+		}
+		return $this->view->render($response,'StartView.html.twig',[
+			'pseudo'=>$pseudo,
+		]);
+		}
 
-		$av = new StartView();
-		echo $av->render();
-	}
-
-	public function displaySaloon($args){
-		$av = new SaloonView();
+	public function displaySaloon($request,$response,$args){
+		if( Authentication::verificationConnexion() ){
+			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
+		}
+		else{
+			$pseudo = "";
+		}
+		$nameSaloon=$args['name'];
+		
 		//Verifier si il y a d'autres joueurs dans le salon
 		//on récpère l'id du salon sur le quel la route nous mène.
-		$salon= m\Salon::where('nomSalon','=',$args);
+		$salon= m\Salon::where('nomSalon','=',$nameSaloon);
 		$salon= $salon->first();
 		$idSalon = $salon->idSalon;
 		
@@ -35,7 +54,13 @@ class StartController {
 			array_push($listeJoueur,$joueurSalon);
 			
 		}
-		echo $av->render($args,$listeJoueur);
+		
+		return $this->view->render($response,'SaloonView.html.twig',[
+			'pseudo'=>$pseudo,
+			'nameSaloon'=>$nameSaloon,
+			'joueurSalon'=>$joueurSalon,
+			'listeJoueur'=>$listeJoueur,
+		]);
 	}
 
 
