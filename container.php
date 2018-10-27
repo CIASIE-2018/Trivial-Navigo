@@ -56,6 +56,7 @@ $container['JoinController'] = function ($c){
 $container['PlayerController'] = function ($c){
     $view = $c->get('view');
     return new PlayerController($view);
+};
 
 $container['DiceController'] = function($c) {
 	$viewDice = $c->get("view");
