@@ -4,6 +4,8 @@ namespace trivial\controllers;
 
 use trivial\views\GameView;
 use trivial\models\Game;
+use trivial\models\Salon;
+use trivial\models\Joueur;
 use trivial\Board;
 use \Slim\Views\Twig as twig;
 
@@ -23,11 +25,16 @@ class GameController{
     }
 
     public function newGame($request, $response, $args){
+        $idSalon=Salon::all()->where("nomSalon","=",$args['id'])->first()->idSalon;
         $game = new Game();
-        $board=new Board("pablo","rob","po","rakan");
+        $player=array();
+        foreach(Joueur::all()->where("idSalon","=",$idSalon)->toArray() as $name){
+            $player[]=$name["pseudoJoueur"];
+        }
+        $board=new Board($player);
         $game->board = json_encode($board);
         $game->idGame = $args['id'];
-        $game->save();
+       $game->save();
     }
 
     public function playerMove($request, $response, $args){
