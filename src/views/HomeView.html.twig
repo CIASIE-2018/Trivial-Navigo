@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+{% include 'GlobalHeaderView.html.twig' %}
+<body>
+
+<header>
+		<h1>Trivial Navigo</h1>
+		<h5>{{pseudo}}</h5>
+	</header>
+    {% if pseudo == null %}
+		<div class="screen">
+		<div class="boutton">
+		<a href="Demarer" >Démarer Une Partie</a>
+   </div>
+   <div class="boutton">
+		   <a href="Rejoindre" >Rejoindre Une Partie</a>
+	  </div>
+	  <div class="boutton">
+		   <a href="CreateAccount" >Creer Compte</a>
+	  </div>
+	  <div class="boutton">
+	  <a href="Connexion" >Connexion</a>
+      </div>
+  </div>
+    {% endif %}
+    {% if pseudo != null %}
+        <div class="screen">
+		<div class="boutton">
+		<a href="Demarer" >Démarer Une Partie</a>
+   </div>
+   <div class="boutton">
+		   <a href="Rejoindre" >Rejoindre Une Partie</a>
+	  </div>
+	  <div class="boutton">
+	  <a href="Deconnexion" >Deconnexion</a>
+	  </div>
+	  <div class="boutton">
+	  <a href="MyAccount" >My Account</a>
+	  </div>
+	  </div>
+      </div>
+      
+    </div>
+        {% endif %}
+

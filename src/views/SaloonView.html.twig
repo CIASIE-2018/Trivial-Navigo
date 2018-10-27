@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+{% include 'GlobalHeaderView.html.twig' %}
+<body>
+
+<header>
+		<h1>Trivial Navigo</h1>
+		<h5>{{pseudo}}</h5>
+	</header>
+
+     <h4>Salon: {{nameSaloon}}</h4>
+
+	<div class="screen">
+    Joueur dans le salon
+    <div class="player">
+    {% for values in listeJoueur %}
+        {{ values  }}</BR>
+    {% endfor %}
+    </div>
+    </div>
+</header>
+</body>
+</html>
