@@ -3,8 +3,11 @@
 namespace trivial\controllers;
 
 use trivial\views\GameView;
+use trivial\views\CamembertView;
 use trivial\models\Game;
 use trivial\models\Carte;
+use trivial\models\Salon;
+use trivial\models\Joueur;
 use trivial\Board;
 use \Slim\Views\Twig as twig;
 
@@ -24,11 +27,17 @@ class GameController{
     }
 
     public function newGame($request, $response, $args){
+        $idSalon=Salon::all()->where("nomSalon","=",$args['id'])->first()->idSalon;
         $game = new Game();
-        $board=new Board("pablo","rob","po","rakan");
+        $board=new Board("Lily","Leo","Quentin","Camille");
+        $player=array();
+        foreach(Joueur::all()->where("idSalon","=",$idSalon)->toArray() as $name){
+            $player[]=$name["pseudoJoueur"];
+        }
+        $board=new Board($player);
         $game->board = json_encode($board);
         $game->idGame = $args['id'];
-        $game->save();
+       $game->save();
     }
 
     public function playerMove($request, $response, $args){
@@ -150,5 +159,18 @@ class GameController{
             similar_text($str1,$str2,$porcentage);
         }
         return $porcentage;
+    }
+
+    public function renderCamembert($request, $response, $args){
+        $idGame=$args["id"];
+        $game = Game::find($idGame);
+        $board=json_decode($game->board,true);
+
+        $n = $board["player"][$board["turn"]]['name'];
+        $joueur = Joueur::where('pseudoJoueur','=',$n)->first()->toArray();
+        $tab = ['name' => $joueur['pseudoJoueur'], 'camGeo' => $joueur['camembertGeo'], 'camDiver' => $joueur['camembertDiver'], 'camHist' => $joueur['camembertHist'], 'camSport' => $joueur['camembertSport'], 'camInfo' => $joueur['camembertInfo'], 'camPerso' => $joueur['camembertPerso']];
+        return $this->view->render($response,'GameView.html.twig',[
+            'board'=>$board, 'cam' => $tab
+        ]);
     }
 }

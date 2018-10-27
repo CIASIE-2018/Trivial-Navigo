@@ -34,19 +34,13 @@
     {% endfor %}
     </div>
     <div class="bandeaux">
-        <div class ="bandeauJoueur">
-            {% include 'DiceView.html.twig' %}
-            {% include 'CamembertView.html.twig' %}
-        </div>
-        <div class ="bandeau">
-            {% include 'CamembertView.html.twig' %}
-        </div>
-        <div class ="bandeau">
-            {% include 'CamembertView.html.twig' %}
-        </div>
-        <div class ="bandeau">
-            {% include 'CamembertView.html.twig' %}
-        </div>
+    {% include 'DiceView.html.twig' %}
+        {% for player in board.player %}
+            <div class ="bandeau">
+                {% include 'CamembertView.html.twig' with {'player':player, 'cam':cam} %}
+            </div>
+        {% endfor %}
     </div>
 </div>
-<html>
+</body>
+</html>

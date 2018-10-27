@@ -9,7 +9,6 @@ use trivial\controllers\StartController;
 use trivial\controllers\JoinController;
 use trivial\controllers\PlayerController;
 use trivial\controllers\DiceController;
-use trivial\controllers\CamembertController;
 
 use trivial\bd\Connexion;
 
@@ -42,17 +41,60 @@ require('container.php');
 
 $app = new \Slim\App($container);
 
-$app->get('/', function() {
-	$acc = new HomeController();
-	$acc->displayHome();
-})->setName('Accueil');
+$app->get('/', 'HomeController:displayHome')->setName('Accueil');
 
 $app->get('/Game/{id}','GameController:renderBoard')->setName('Game');
+$app->get('/Game/{id}/Cam','GameController:renderCamembert')->setName('Camembert');
 $app->get('/Game/{id}/{theme}','GameController:renderQuestion')->setName('Question');
 $app->post('/SubmitQ/Game/{id}/{theme}', function($request, $response, $args) {
 	$controller=$this['GameController'];
 	$checkSubForm = $controller->checkSubmissionForm($request, $response, $args);
 })->setName('SubmitQ');
+
+
+$app->get('/Connexion','ConnexionController:displayConnexion')->setName("Connexion");
+$app->post('/Connexion',function($request,$response,$args){
+	$controller = $this['ConnexionController'];
+	$con = $controller->testConnexion($request,$response,$args);
+})->setName("testCreation");
+
+$app->get('/Deconnexion','ConnexionController:testDeconnexion')->setName('Deconnexion');
+
+$app->get('/CreateAccount', 'ConnexionController:createAccount')->setName('CreateAccount');
+
+$app->post('/CreateAccount', function($request, $response, $args){
+	$controller = $this['ConnexionController'];
+	$account = $controller->testCreationAccount($request,$response,$args);
+  })->setName("testCreation");
+
+  $app->get('/Demarer', 'StartController:displayStart')->setName('Demarer');
+
+$app->post('/Demarer' , function($request, $response, $args){
+	$controller =  $this['StartController'];
+	$start = $controller->testCreateSaloon($request,$response,$args);
+}) ->setname("testCreateQuestions");
+
+$app->get('/Salon/{name}',"StartController:displaySaloon")->setName('Saloon');
+
+
+$app->get('/Rejoindre', 'JoinController:displayJoin')->setName('Rejoindre');
+
+$app->post('/Rejoindre' , function($request, $response, $args){
+	$controller = $this['JoinController'];
+ 	$join= $controller->testJoinSaloon($request,$response,$args) ;
+ })
+ ->setname("testCreateQuestions");
+
+ $app->get('/CreateQuestions','PlayerController:displayQuestionSpace')->setName('CreateQuestions');
+
+ $app->post('/CreateQuestions' , function($request, $response, $args){
+	$controller = $this['PlayerController'];
+ 	$quest=$controller->testCreateQuestions($request, $response, $args) ;
+ })
+ ->setname("testCreateQuestions");
+
+
+ $app->get('/MyAccount','PlayerController:displayAccount')->setName('MyAccount');
 
 $app->get('/Game/{id}/{dep}/{dir}',function($request, $response, $args){
 	$controller=$this['GameController'];
@@ -68,91 +110,14 @@ $app->get('/newGame/{id}',function($request, $response, $args){
 	return $response->withRedirect($router->pathFor('Game',["id" => $args['id']]));
 })->setName('newGame');
 
-$app->get('/CreateAccount', function() {
-	$acc = new ConnexionController();
-	$acc->CreateAccountView();
-})->setName('CreateAccount');
-
-$app->post('/CreateAccount', function($request, $response, $args){
-	$acc = new ConnexionController();
-	$acc->testCreationAccount(); 
-  } )
-  ->setName("testCreation");
-
-  $app->get('/Connexion',function(){
-	  $acc = new ConnexionController();
-	  $acc->displayConnexion();
-  })
-  ->setName("Connexion");
-
-   $app->post('/Connexion' , function($request, $response, $args){
-	$acc = new ConnexionController();
- 	$acc->testConnexion() ;
- })
- ->setname("testConnexion");
-  
-$app->get('/Deconnexion',function(){
-	$acc = new ConnexionController();
-	$acc->testDeconnexion();
-})
-->setName('Deconnexion');
-
-$app->get('/MyAccount',function(){
-	$acc = new PlayerController();
-	$acc->displayAccount();
-})
-->setName('MyAccount');
-
-$app->get('/CreateQuestions',function(){
-	$acc = new PlayerController();
-	$acc->displayQuestionSpace();
-})
-->setName('CreateQuestions');
-
-$app->post('/CreateQuestions' , function($request, $response, $args){
-	$acc = new PlayerController();
- 	$acc->testCreateQuestions() ;
- })
- ->setname("testCreateQuestions");
 
 
-$app->get('/Demarer', function() {
-	$acc = new StartController();
-	$acc->displayStart();
-})->setName('Demarer');
 
-$app->post('/Demarer' , function($request, $response, $args){
-	$acc = new StartController();
- 	$acc->testCreateSaloon() ;
- })
- ->setname("testCreateQuestions");
 
- $app->get('/Salon/{name}',function($request, $response, $args){
-	$acc = new StartController();
-	$acc->displaySaloon($args['name']);
- })->setName('Saloon');
 
-$app->get('/Rejoindre', function() {
 
-	$acc = new JoinController();
-	$acc->displayJoin();
-})->setName('Rejoindre');
 
-$app->get('/Dice','DiceController:displayDice')->setName('Dice');
-$app->post('/Rejoindre' , function($request, $response, $args){
-	$acc = new JoinController();
- 	$acc->testJoinSaloon() ;
- })
- ->setname("testCreateQuestions");
 
-$app->get('/Camembert','CamembertController:displayCamembert')->setName('Camembert');
-
-$app->get('/Supprimer', function($id) {
-
-	// TEST DE PDO ET ELOQUENT : Connexion à BD établie et les requêtes fonctionnent.
-	$acc = new HomeController();
-	$acc->supprimer($id);
-})->setName('Supprimer');
 
 
 $app->run();

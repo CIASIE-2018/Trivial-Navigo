@@ -15,16 +15,6 @@
     flex-direction: column;
 }
 
-.bandeauJoueur {
-    width: 500px;
-    margin: 2px;
-    background-color: #EFEFEF;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
 .bandeau {
     width: 500px;
     margin: 2px;
@@ -102,7 +92,7 @@ table {
     color: white;
 }
 
-form {
+#formQuestion {
     width: auto;
     height: auto;
     position: absolute;

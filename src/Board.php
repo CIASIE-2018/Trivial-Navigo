@@ -5,7 +5,7 @@ use trivial\models\Carte;
 
  class Board {
     public $grid = array();
-    public $player;
+    public $player=array();
     public $turn=1;
     public $cards;
 
@@ -17,11 +17,11 @@ use trivial\models\Carte;
     const info="info";
     const perso="perso"; 
 
-    public function __construct($player1,$player2,$player3,$player4){
-        $this->player[0]=["name" => $player1,"position"=>[7,1]];
-        $this->player[1]=["name" => $player2,"position"=>[7,1]];
-        $this->player[2]=["name" => $player3,"position"=>[7,1]];
-        $this->player[3]=["name" => $player4,"position"=>[7,1]];
+    public function __construct($player){
+
+        for ($i=0;$i<count($player);$i++){
+            $this->player[$i]=["name" => $player[$i],"position"=>[7,1]];
+         }
 
         $this->grid[1][1]=["theme"=>self::hist,"player"=>array()];
         $this->grid[1][2]=["theme"=>self::geo,"player"=>array()];
@@ -99,11 +99,12 @@ use trivial\models\Carte;
 
         $this->grid[7][7]=["theme"=>"depart","player"=>array()];
         
-        $this->grid[7][1]['player']=[$this->player[0],$this->player[1],$this->player[2],$this->player[3]];
-
         $this->cards = Carte::all()->toArray();
-        
         shuffle($this->cards);
+
+        for ($i=0;$i<count($this->player);$i++){
+            $this->grid[7][1]['player'][]=$this->player[$i];
+        }
     }
 
  }
