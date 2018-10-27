@@ -20,7 +20,7 @@ use trivial\models\Carte;
     public function __construct($player){
 
         for ($i=0;$i<count($player);$i++){
-            $this->player[$i]=["name" => $player[$i],"position"=>[7,1]];
+            $this->player[$i]=["name" => $player[$i],"position"=>[7,1], "camemberts" =>["camembertGeo" => 0, "camembertDiver" => 0, "camembertHist" => 0, "camembertSport" => 0, "camembertInfo" => 0, "camembertPerso" => 0]];
          }
 
         $this->grid[1][1]=["theme"=>self::hist,"player"=>array()];

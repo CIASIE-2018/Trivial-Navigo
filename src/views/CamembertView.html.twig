@@ -1,15 +1,34 @@
     <div class="camContainer">
-      <div class= "cam" id="camGeo{{player['name']}}"> </div>
-      <div class= "cam" id="camDiver{{player['name']}}"> </div>
-      <div class= "cam" id="camHist{{player['name']}}"> </div>
-      <div class= "cam" id="camSport{{player['name']}}"> </div>
-      <div class= "cam" id="camInfo{{player['name']}}"> </div>
-      <div class= "cam" id="camPerso{{player['name']}}"> </div>
+      {% if player["camemberts"]['camembertGeo'] == 1 %}
+        <div class= "cam camGeo"> </div>
+      {% else %}
+        <div class= "cam"></div>
+      {% endif %}
+      {% if player["camemberts"]['camembertDiver'] == 1 %}
+        <div class= "cam camDiver"> </div>
+      {% else %}
+        <div class= "cam"></div>
+      {% endif %}
+      {% if player["camemberts"]['camembertHist'] == 1 %}
+        <div class= "cam camHist"> </div>
+      {% else %}
+        <div class= "cam"></div>
+      {% endif %}
+      {% if player["camemberts"]['camembertSport'] == 1 %}
+        <div class= "cam camSport"> </div>
+      {% else %}
+        <div class= "cam"></div>
+      {% endif %}
+      {% if player["camemberts"]['camembertInfo'] == 1 %}
+        <div class= "cam camInfo"> </div>
+      {% else %}
+        <div class= "cam"></div>
+      {% endif %}
+      {% if player["camemberts"]['camembertPersp'] == 1 %}
+        <div class= "cam camPerso"> </div>
+      {% else %}
+        <div class= "cam"></div>
+      {% endif %}
     </div>
 
     {{player['name']}}
-
-    {% if cam["name"] is same as (player['name']) %}
-      <script id="cam" type="text/javascript" src="{{ base_url() }}/js/camembert.js?{{cam['camGeo']}}?{{cam['camDiver']}}?{{cam['camHist']}}?{{cam['camSport']}}?{{cam['camInfo']}}?{{cam['camPerso']}}?{{player['name']}}"></script>
-    {% endif %}
-

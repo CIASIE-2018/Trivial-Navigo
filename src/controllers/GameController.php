@@ -118,7 +118,6 @@ class GameController{
         $idGame = $args["id"];
         $game = Game::find($idGame);
         $board = json_decode($game->board,true);
-        $player=$board["player"][$board["turn"]];
         $themeQuestion = ucfirst($args["theme"]);
 
         $idCarte = strtolower($_POST["idCarte"]);
@@ -128,11 +127,9 @@ class GameController{
         $repCarte = strtolower($arrCarte["reponse"]);
         $simi = self::similaire($repCarte, $repSaisie);
         if ($simi >= 80.00) {
-            
-            return true;
-        }
-        else {
-            return false;
+            $board["player"][$board["turn"]]["camemberts"]['camembert'.$themeQuestion] = 1;
+            $game->board=json_encode($board);
+            $game->save();
         }
     }
 
@@ -161,16 +158,4 @@ class GameController{
         return $porcentage;
     }
 
-    public function renderCamembert($request, $response, $args){
-        $idGame=$args["id"];
-        $game = Game::find($idGame);
-        $board=json_decode($game->board,true);
-
-        $n = $board["player"][$board["turn"]]['name'];
-        $joueur = Joueur::where('pseudoJoueur','=',$n)->first()->toArray();
-        $tab = ['name' => $joueur['pseudoJoueur'], 'camGeo' => $joueur['camembertGeo'], 'camDiver' => $joueur['camembertDiver'], 'camHist' => $joueur['camembertHist'], 'camSport' => $joueur['camembertSport'], 'camInfo' => $joueur['camembertInfo'], 'camPerso' => $joueur['camembertPerso']];
-        return $this->view->render($response,'GameView.html.twig',[
-            'board'=>$board, 'cam' => $tab
-        ]);
-    }
 }
