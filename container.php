@@ -60,15 +60,8 @@ $container['PlayerController'] = function ($c){
 };
 
 $container['DiceController'] = function($c) {
-<<<<<<< HEAD
-	$view = $c->get("view");
-	return new DiceController($view);
-=======
 	$viewDice = $c->get("view");
 	return new DiceController($viewDice);
-
->>>>>>> 7bb77654852aa84efb376e3272986b78865dc575
 };
-
 
 ?>

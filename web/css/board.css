@@ -92,7 +92,7 @@ table {
     color: white;
 }
 
-form {
+#formQuestion {
     width: auto;
     height: auto;
     position: absolute;
