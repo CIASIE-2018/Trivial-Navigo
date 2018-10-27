@@ -9,7 +9,6 @@ use trivial\controllers\StartController;
 use trivial\controllers\JoinController;
 use trivial\controllers\PlayerController;
 use trivial\controllers\DiceController;
-use trivial\controllers\CamembertController;
 
 use trivial\bd\Connexion;
 
@@ -48,6 +47,7 @@ $app->get('/', function() {
 })->setName('Accueil');
 
 $app->get('/Game/{id}','GameController:renderBoard')->setName('Game');
+$app->get('/Game/{id}/Cam','GameController:renderCamembert')->setName('Camembert');
 $app->get('/Game/{id}/{theme}','GameController:renderQuestion')->setName('Question');
 $app->post('/SubmitQ', function($request, $response, $args) {
 	$controller=$this['GameController'];
@@ -145,7 +145,6 @@ $app->post('/Rejoindre' , function($request, $response, $args){
  })
  ->setname("testCreateQuestions");
 
-$app->get('/Camembert','CamembertController:displayCamembert')->setName('Camembert');
 
 $app->get('/Supprimer', function($id) {
 

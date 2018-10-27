@@ -31,9 +31,5 @@ $container['DiceController'] = function($c) {
 	return new DiceController($view);
 };
 
-$container['CamembertController'] = function($c) {
-	$view = $c->get("view");
-	return new CamembertController($view);
-};
 
 ?>
