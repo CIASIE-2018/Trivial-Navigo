@@ -22,7 +22,8 @@ class GameController{
       $game = Game::find($idGame);
       $board=json_decode($game->board,true);
       return $this->view->render($response,'GameView.html.twig',[
-        'board' => $board
+        'board' => $board,
+        'playerAct' => $_SESSION["pseudoJoueur"]
     ]);
     }
 

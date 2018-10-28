@@ -1,3 +1,33 @@
+.play{
+  background-color: gray;
+  padding: 10px;
+  border: double 5px black;
+  text-align: center;
+}
+#contdice{
+  display: flex;
+  width: 100%;
+  justify-content:center;
+  align-items: center;
+}
+
+#gauche {
+  margin-right:20px; 
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent;
+  border-right: 50px solid #77B5FE;
+  border-bottom: 25px solid transparent;
+}
+
+#droite {
+  margin-left:20px; 
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent;
+  border-left: 50px solid #77B5FE;
+  border-bottom: 25px solid transparent;
+}
 #dice{
     background-color: white;
     cursor: pointer;
