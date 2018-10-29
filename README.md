@@ -55,4 +55,4 @@ Pour installer et lancer en production :
 ```
 Un makefile est aussi mit à disposition afin d'aider : lancer "make help" pour connaitre les commandes utilisables.
 
-Ouvrez alors votre navigateur sur http://localhost:8080 pour jouer sur votre trivial navigo.
+Ouvrez alors votre navigateur sur http://localhost:8080 pour jouer sur votre trivial navigo.(Le chargement de la bdd peut prendre un certain temps et faire apparaitre une erreur pdo si l'on charge la page web avant la fin de ce chargement, il suffit juste d'attendre un peu avant de recharger la page);
