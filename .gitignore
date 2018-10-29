@@ -4,6 +4,5 @@ src/*.ini
 bin/
 out/
 conf.ini
-.htaccess
 vendor
 .DS_Store
