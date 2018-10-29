@@ -11,7 +11,7 @@ Jeu à développer :
 
 Règles du Jeu :
 
-  Nombre de joueurs : de 2 à 6 joueurs.
+  Nombre de joueurs : de 2 à 4 joueurs.
   
   Chaque joueur est représenté par un camembert sur le plateau.
   Un camembert contient un emplacement de 6 portions de camembert.
@@ -23,25 +23,15 @@ Règles du Jeu :
   Déroulement de la partie :
   Tous les joueurs sont situés au centre du plateau.
   Le joueur lance le dé et avance sur le plateau en fonction du résultat. Il doit ensuite répondre à une question correspondant
-  au thème de la case où il est arrivé. Si il répond juste, il relance le dé, sinon il passe son tour.
-  
-  Récolte des portions :
-  Le plateau comporte 6 cases spéciales permettant d'obtenir une portion de camembert. Il y a donc une case spéciale pour chaque thème.
-  Si le joueur répond correctement à la question, il remporte la portion de camembert, sinon il passe son tour.
-  
+  au thème de la case où il est arrivé. Si il répond juste, il gagne un camembert, sinon il passe son tour.
+    
   Fin de partie :
   Quand un joueur à compléter son camembert, il doit venir se positionner sur une case 'spéciale' et remonter au centre du plateau en       répondant correctement à tous les thèmes du jeu.
   
   Sens de déplacement :
   Le joueur peut:
   - Se déplacer dans le sens horraire et anti-horraire.
-  - Passer par le milieu en cours de partie.
-  MAIS
-  - Le joueur choisi un sens sur le plateau et ne peut le changer que si il est sur une case 'spéciale'.
-  
-  
-  
-  
+    
   Options :
   
   Administration des questions ( création de questions et de thèmes )
@@ -50,3 +40,19 @@ Règles du Jeu :
   Difficulté : 
   
  Système permettant de repérer la bonne réponse par rapport à celle donné par le joueur.
+
+### Instalation via Docker
+
+prérequis: 
+
+* Docker
+* Docker Compose
+
+Pour installer et lancer en production :
+```
+	docker-compose -f ./docker-compose.yml build
+  docker-compose -f ./docker-compose.yml up -d
+```
+Un makefile est aussi mit à disposition afin d'aider : lancer "make help" pour connaitre les commandes utilisables.
+
+Ouvrez alors votre navigateur sur http://localhost:8080 pour jouer sur votre trivial navigo.
