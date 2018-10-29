@@ -2,18 +2,18 @@ version: '3.6'
 
 services:
 
-  php:
-    container_name: php
+  trivial-navigo-server:
+    container_name: trivial-navigo-server
     build:
             context: .
             dockerfile: ./apache/Dockerfile
     ports:
         - 8080:80
     links:
-         - mysql
+         - trivial-navigo-mysql
 
-  mysql:
-    container_name: mysql
+  trivial-navigo-mysql:
+    container_name: trivial-navigo-mysql
     build:
             context: .
             dockerfile: ./mysql/Dockerfile
@@ -26,6 +26,6 @@ services:
     container_name: trivial-navigo-phpmyadmin
     image: phpmyadmin/phpmyadmin
     links:
-       - mysql:db
+       - trivial-navigo-mysql:db
     ports:
         - 8081:80
