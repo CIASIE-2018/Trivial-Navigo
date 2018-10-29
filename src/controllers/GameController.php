@@ -128,7 +128,7 @@ class GameController{
         $repCarte = strtolower($arrCarte["reponse"]);
         $simi = self::similaire($repCarte, $repSaisie);
         if ($simi >= 80.00) {
-            $board["player"][$board["turn"]]["camemberts"]['camembert'.$themeQuestion] = 1;
+            $board["player"][$board["turn"]]["camemberts"]['camembert'.ucfirst($themeQuestion)] = 1;
             $game->board=json_encode($board);
             $game->save();
         }
