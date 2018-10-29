@@ -1,0 +1,7 @@
+Dockerfile
+docker-compose.*
+Makefile
+.git/
+vendor/
+tmp/
+src/conf/
