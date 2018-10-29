@@ -34,7 +34,12 @@
     {% endfor %}
     </div>
     <div class="bandeaux">
-    {% include 'DiceView.html.twig' %}
+    <div class="play">
+    <p>c'est au tour de {{board.player[board.turn]["name"]}} de jouer<p>
+    {% if playerAct == board.player[board.turn]["name"] %}
+        {% include 'DiceView.html.twig' %}
+    {% endif %}
+    </div>
         {% for player in board.player %}
             <div class ="bandeau">
                 {% include 'CamembertView.html.twig' with {'player':player} %}
