@@ -44,8 +44,8 @@ $app = new \Slim\App($container);
 $app->get('/', 'HomeController:displayHome')->setName('Accueil');
 
 $app->get('/Game/{id}','GameController:renderBoard')->setName('Game');
-$app->get('/Game/{id}/{theme}','GameController:renderQuestion')->setName('Question');
 
+$app->get('/Game/{id}/{theme}','GameController:renderQuestion')->setName('Question');
 $app->post('/SubmitQ/Game/{id}/{theme}', function($request, $response, $args) {
 	$controller=$this['GameController'];
 	$checkSubForm = $controller->checkSubmissionForm($request, $response, $args);
@@ -58,7 +58,7 @@ $app->get('/Connexion','ConnexionController:displayConnexion')->setName("Connexi
 $app->post('/Connexion',function($request,$response,$args){
 	$controller = $this['ConnexionController'];
 	$con = $controller->testConnexion($request,$response,$args);
-})->setName("testCreation");
+})->setName("testConnection");
 
 $app->get('/Deconnexion','ConnexionController:testDeconnexion')->setName('Deconnexion');
 
