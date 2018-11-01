@@ -30,7 +30,6 @@ class GameController{
     public function newGame($request, $response, $args){
         $idSalon=Salon::all()->where("nomSalon","=",$args['id'])->first()->idSalon;
         $game = new Game();
-        $board=new Board("Lily","Leo","Quentin","Camille");
         $player=array();
         foreach(Joueur::all()->where("idSalon","=",$idSalon)->toArray() as $name){
             $player[]=$name["pseudoJoueur"];
@@ -73,7 +72,11 @@ class GameController{
         $board["player"][$board["turn"]]=$player;
         $game->board=json_encode($board);
         $game->save();
-        return $board["grid"][$player["position"][0]][$player["position"][1]]["theme"];
+        $theme=$board["grid"][$player["position"][0]][$player["position"][1]]["theme"];
+        if($player["camemberts"]['camembert'.ucfirst($theme)]==1)
+        return "alreadyHave";
+        else
+        return $theme;
     }
 
     public function renderQuestion($request, $response, $args) {

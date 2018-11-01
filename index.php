@@ -45,6 +45,7 @@ $app->get('/', 'HomeController:displayHome')->setName('Accueil');
 
 $app->get('/Game/{id}','GameController:renderBoard')->setName('Game');
 $app->get('/Game/{id}/{theme}','GameController:renderQuestion')->setName('Question');
+
 $app->post('/SubmitQ/Game/{id}/{theme}', function($request, $response, $args) {
 	$controller=$this['GameController'];
 	$checkSubForm = $controller->checkSubmissionForm($request, $response, $args);
@@ -84,7 +85,7 @@ $app->post('/Rejoindre' , function($request, $response, $args){
 	$controller = $this['JoinController'];
  	$join= $controller->testJoinSaloon($request,$response,$args) ;
  })
- ->setname("testCreateQuestions");
+ ->setname("testJoinSaloon");
 
  $app->get('/CreateQuestions','PlayerController:displayQuestionSpace')->setName('CreateQuestions');
 
@@ -101,7 +102,10 @@ $app->get('/Game/{id}/{dep}/{dir}',function($request, $response, $args){
 	$controller=$this['GameController'];
 	$theme = $controller->playerMove($request, $response, $args);
 	$router = $this->router;
+	if($theme!="alreadyHave")
 	return $response->withRedirect($router->pathFor('Question',["id" => $args['id'], "theme" => $theme]));
+	else
+	return $response->withRedirect($router->pathFor('Game',["id" => $args['id']]));
 })->setName('Move');
 
 $app->get('/newGame/{id}',function($request, $response, $args){
