@@ -130,7 +130,10 @@ class GameController{
         $game = Game::find($idGame);
         $board = json_decode($game->board,true);
         $themeQuestion = ucfirst($args["theme"]);
-
+        
+        $joueur=Joueur::where('pseudoJoueur','=',$board["player"][$board["turn"]])->first();
+        $joueur['nbTotalQuestion']+=1;
+        var_dump($joueur);
         $idCarte = strtolower($_POST["idCarte"]);
         $repSaisie = $_POST["reponse"];
         $carte = Carte::find($idCarte);
@@ -145,6 +148,7 @@ class GameController{
             }
         }
         if ($simi >= 80.00) {
+
             if($final){
                 $x=$board["player"][$board["turn"]]["position"][0];
                 $y=$board["player"][$board["turn"]]["position"][1]; 
@@ -167,6 +171,7 @@ class GameController{
             }
             else{
                 $board["player"][$board["turn"]]["camemberts"]['camembert'.ucfirst($themeQuestion)] = 1;
+                $joueur['nbBonnesReponses']+=1;
             }
         }
         $board["turn"]+=1;
@@ -174,6 +179,7 @@ class GameController{
         $board["turn"]=0;
         $game->board=json_encode($board);
         $game->save();
+        $joueur->save();
     }
 
     public static function similaire($str1, $str2) { 

@@ -10,6 +10,9 @@
 
       <h4> Mon Compte </h4>
         <div class="screen">
+        {% if totalQues > 0 %}
+        <p>Tu as {{bonneRep}} bonnes réponses sur {{totalQues}} questions</p>
+        {% endif %}
         <div class="boutton">
 		<a href="CreateQuestions">Créer Questions</a>
    </div>
