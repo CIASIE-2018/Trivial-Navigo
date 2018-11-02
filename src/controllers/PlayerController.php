@@ -17,7 +17,7 @@ class PlayerController{
     }
 
     public function displayAccount($request,$response,$args){
-    if( Authentication::verificationConnexion() ){
+    if( Authentication::checkConnection() ){
 			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
 		}
 		else{
@@ -29,7 +29,7 @@ class PlayerController{
 		}
 
     public function displayQuestionSpace($request,$response,$args){
-        if( Authentication::verificationConnexion() ){
+        if( Authentication::checkConnection() ){
 			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
 		}
 		else{

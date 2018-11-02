@@ -19,7 +19,7 @@ class StartController {
 
 
 	public function displayStart($request,$response,$args) {
-		if( Authentication::verificationConnexion() ){
+		if( Authentication::checkConnection() ){
 			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
 		}
 		else{
@@ -31,7 +31,7 @@ class StartController {
 		}
 
 	public function displaySaloon($request,$response,$args){
-		if( Authentication::verificationConnexion() ){
+		if( Authentication::checkConnection() ){
 			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
 		}
 		else{

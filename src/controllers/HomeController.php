@@ -17,7 +17,7 @@ class HomeController {
     }
 
 	public function displayHome($request,$response,$args) {
-		if( Authentication::verificationConnexion() ){
+		if( Authentication::checkConnection() ){
 			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
 		}
 		else{

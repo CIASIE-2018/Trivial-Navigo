@@ -2,23 +2,26 @@
 
 namespace trivial\controllers;
 
+use trivial\models as m;
+use trivial\controllers\Authentication;
 use trivial\views\ConnexionView;
 use \Slim\Views\Twig as twig;
 use trivial\views\CreateAccountView;
-use trivial\models as m;
-use trivial\controllers\Authentication;
 
-class ConnexionController {
+/**
+ * Class ConnectionController
+ */
+class ConnectionController {
 
 	protected $view;
 
+	// Constructor of the class ConnectionController
     public function __construct(twig $view) {
         $this->view = $view;
     }
 
 	public function displayConnexion($request,$response,$args) {
-
-		if( Authentication::verificationConnexion() ){
+		if( Authentication::checkConnection() ){
 			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
 		}
 		else{
@@ -42,15 +45,12 @@ class ConnexionController {
 		$r->adresseMail = $email ;
 		$r->password = $mdp ;
 
-		
 		$r->save();
-	
 	}
 
 
 
 	public static function testCreationAccount(){
-
 		$pseudo = $_POST['pseudo'] ;
 		$mdp = $_POST['mdp'] ;
 		$email = $_POST['email'] ;
@@ -59,11 +59,11 @@ class ConnexionController {
 		
 		self::creer($pseudo,$mdp,$email);
 			
-	  global $app ;
-      $url =  $app->getContainer()->get('router')->pathFor('Accueil');
+		global $app ;
+		$url =  $app->getContainer()->get('router')->pathFor('Home');
 
-      header("Location: $url");
-      exit();
+		header("Location: $url");
+		exit();
 	}
 
 	
@@ -74,35 +74,30 @@ class ConnexionController {
 		$nb = m\Joueur::where('adresseMail', '=',$email);
 		if($nb->count() != 1){
 			echo "email invalide" ;
-		  }
-		  else{
-			  
+		}
+		else {	
 			if (password_verify($mdp,$nb->first()->password)) {
-			  $nb = $nb->first();
-			  Authentication::connexion($nb->idJoueur , $nb->pseudoJoueur) ;
-			  global $app ;
+				$nb = $nb->first();
+				Authentication::connexion($nb->idJoueur , $nb->pseudoJoueur) ;
+				global $app ;
 
-			  $url =  $app->getContainer()->get('router')->pathFor('Accueil');
+				$url =  $app->getContainer()->get('router')->pathFor('Home');
 		
-			  header("Location: $url");
-			  exit();
+				header("Location: $url");
+				exit();
 			}
 			else{
-			  echo "mot de passe invalide";
+				echo "mot de passe invalide";
 			}
-		  }
-
-		  
+		} 
 	}
+
 	public static function testDeconnexion(){
-		
 		Authentication::deconnexion();
 		global $app ;
+		$url =  $app->getContainer()->get('router')->pathFor('Home');
+		header("Location: $url");
+		exit();
+	}
 
-		  $url =  $app->getContainer()->get('router')->pathFor('Accueil');
-	
-		  header("Location: $url");
-		  exit();
-	
-	  }
 }

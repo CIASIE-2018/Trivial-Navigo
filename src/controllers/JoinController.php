@@ -19,7 +19,7 @@ class JoinController {
 
 	public function displayJoin($request,$response,$args) {
 		$salonDispo =  m\Salon::all('nomSalon')->toArray();
-		if( Authentication::verificationConnexion() ){
+		if( Authentication::checkConnection() ){
 			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
 		}
 		else{

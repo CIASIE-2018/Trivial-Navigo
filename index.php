@@ -4,23 +4,21 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Illuminate\Database\Capsule\Manager as DB;
 use trivial\controllers\HomeController;
-use trivial\controllers\ConnexionController;
+use trivial\controllers\ConnectionController;
 use trivial\controllers\StartController;
 use trivial\controllers\JoinController;
 use trivial\controllers\PlayerController;
 use trivial\controllers\DiceController;
+use trivial\bd\Connection;
 
-use trivial\bd\Connexion;
-
-
-Connexion::setConfig('src/conf/conf.ini');
-$db = Connexion::makeConnection();
+Connection::setConfig('src/conf/conf.ini');
+$db = Connection::makeConnection();
 
 $ini = parse_ini_file('src/conf/conf.ini');
 
 $db = new DB();
 
-$db->addConnection( [
+$db->addConnection([
  'driver' => $ini['driver'],
  'host' => $ini['host'],
  'database' => $ini['dbname'],
@@ -29,11 +27,10 @@ $db->addConnection( [
  'charset' => 'utf8',
  'collation' => 'utf8_unicode_ci',
  'prefix' => ''
-] );
+]);
 
 $db->setAsGlobal();
 $db->bootEloquent();
-
 
 session_start();
 
@@ -41,7 +38,7 @@ require('container.php');
 
 $app = new \Slim\App($container);
 
-$app->get('/', 'HomeController:displayHome')->setName('Accueil');
+$app->get('/', 'HomeController:displayHome')->setName('Home');
 
 $app->get('/Game/{id}','GameController:renderBoard')->setName('Game');
 $app->get('/Game/{id}/{theme}','GameController:renderQuestion')->setName('Question');
@@ -52,50 +49,46 @@ $app->post('/SubmitQ/Game/{id}/{theme}', function($request, $response, $args) {
 	return $response->withRedirect($router->pathFor('Game',["id" => $args['id']]));
 })->setName('SubmitQ');
 
+$app->get('/Connection','ConnectionController:displayConnexion')->setName("Connection");
 
-$app->get('/Connexion','ConnexionController:displayConnexion')->setName("Connexion");
-$app->post('/Connexion',function($request,$response,$args){
-	$controller = $this['ConnexionController'];
+$app->post('/Connection',function($request,$response,$args){
+	$controller = $this['ConnectionController'];
 	$con = $controller->testConnexion($request,$response,$args);
 })->setName("testCreation");
 
-$app->get('/Deconnexion','ConnexionController:testDeconnexion')->setName('Deconnexion');
+$app->get('/Disconnection','ConnectionController:testDisconnection')->setName('Disconnection');
 
-$app->get('/CreateAccount', 'ConnexionController:createAccount')->setName('CreateAccount');
+$app->get('/CreateAccount', 'ConnectionController:createAccount')->setName('CreateAccount');
 
 $app->post('/CreateAccount', function($request, $response, $args){
-	$controller = $this['ConnexionController'];
+	$controller = $this['ConnectionController'];
 	$account = $controller->testCreationAccount($request,$response,$args);
-  })->setName("testCreation");
+})->setName("testCreation");
 
-  $app->get('/Demarer', 'StartController:displayStart')->setName('Demarer');
+$app->get('/Start', 'StartController:displayStart')->setName('Start');
 
-$app->post('/Demarer' , function($request, $response, $args){
+$app->post('/Start', function($request, $response, $args){
 	$controller =  $this['StartController'];
 	$start = $controller->testCreateSaloon($request,$response,$args);
-}) ->setname("testCreateQuestions");
+})->setname("testCreateQuestions");
 
-$app->get('/Salon/{name}',"StartController:displaySaloon")->setName('Saloon');
+$app->get('/Saloon/{name}', "StartController:displaySaloon")->setName('Saloon');
 
+$app->get('/Rejoin', 'JoinController:displayJoin')->setName('Rejoin');
 
-$app->get('/Rejoindre', 'JoinController:displayJoin')->setName('Rejoindre');
-
-$app->post('/Rejoindre' , function($request, $response, $args){
+$app->post('/Rejoin', function($request, $response, $args){
 	$controller = $this['JoinController'];
- 	$join= $controller->testJoinSaloon($request,$response,$args) ;
- })
- ->setname("testCreateQuestions");
+ 	$join= $controller->testJoinSaloon($request,$response,$args);
+})->setname("testCreateQuestions");
 
- $app->get('/CreateQuestions','PlayerController:displayQuestionSpace')->setName('CreateQuestions');
+$app->get('/CreateQuestions', 'PlayerController:displayQuestionSpace')->setName('CreateQuestions');
 
- $app->post('/CreateQuestions' , function($request, $response, $args){
+$app->post('/CreateQuestions', function($request, $response, $args){
 	$controller = $this['PlayerController'];
  	$quest=$controller->testCreateQuestions($request, $response, $args) ;
- })
- ->setname("testCreateQuestions");
+})->setname("testCreateQuestions");
 
-
- $app->get('/MyAccount','PlayerController:displayAccount')->setName('MyAccount');
+$app->get('/MyAccount', 'PlayerController:displayAccount')->setName('MyAccount');
 
 $app->get('/Game/{id}/{dep}/{dir}',function($request, $response, $args){
 	$controller=$this['GameController'];
