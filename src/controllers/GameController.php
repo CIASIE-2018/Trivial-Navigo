@@ -21,6 +21,8 @@ class GameController{
       $idGame=$args["id"];
       $game = Game::find($idGame);
       $board=json_decode($game->board,true);
+      if($_SESSION["pseudoJoueur"] != $board["player"][$board["turn"]]["name"])
+        header("Refresh:2");
       return $this->view->render($response,'GameView.html.twig',[
         'board' => $board,
         'playerAct' => $_SESSION["pseudoJoueur"],
