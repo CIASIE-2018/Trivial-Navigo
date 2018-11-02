@@ -35,9 +35,28 @@
     </div>
     <div class="bandeaux">
     <div class="play">
-    <p>c'est au tour de {{board.player[board.turn]["name"]}} de jouer<p>
-    {% if playerAct == board.player[board.turn]["name"] %}
-        {% include 'DiceView.html.twig' %}
+    {% if board.grid[7][7].player|length == 0 %}
+        <p>c'est au tour de {{board.player[board.turn]["name"]}} de jouer<p>
+        {% if playerAct == board.player[board.turn]["name"] %}
+            {% set fin = true %}
+            {% for camembert in board.player[board.turn]["camemberts"] %}
+                {% if camembert == 0 %}
+                    {% set fin = false %}
+                {% endif %}
+            {% endfor %}
+            {% if (board.player[board.turn]["position"][0] == 7 or board.player[board.turn]["position"][1] == 7) and fin %}
+                <a class="finalButton" href="{{currentURI}}/{{board.grid[board.player[board.turn]["position"][0]][board.player[board.turn]["position"][1]].theme}}">Jouer phase finale<a>
+            {% else %}
+                {% if fin %}
+                    <p>Rejoignez le bas d'une cologne rejoignant le millieu pour passer à l'étape final<p>
+                {% endif %}
+                {% include 'DiceView.html.twig' %}
+            {% endif %}
+        {% endif %}
+    {% else %}
+        {% for player in board.grid[7][7].player %}
+             <p>LE JOUEUR {{player["name"]}} A GAGNÉ LA PARTIE<p>
+        {% endfor %}
     {% endif %}
     </div>
         {% for player in board.player %}

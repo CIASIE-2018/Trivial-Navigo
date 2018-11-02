@@ -6,7 +6,7 @@ use trivial\models\Carte;
  class Board {
     public $grid = array();
     public $player=array();
-    public $turn=1;
+    public $turn;
     public $cards;
 
 
@@ -20,8 +20,10 @@ use trivial\models\Carte;
     public function __construct($player){
 
         for ($i=0;$i<count($player);$i++){
-            $this->player[$i]=["name" => $player[$i],"position"=>[7,1], "camemberts" =>["camembertGeo" => 0, "camembertDiver" => 0, "camembertHist" => 0, "camembertSport" => 0, "camembertInfo" => 0, "camembertPerso" => 0]];
+            $this->player[$i]=["name" => $player[$i],"position"=>[1,7], "camemberts" =>["camembertGeo" => 0, "camembertDiver" => 0, "camembertHist" => 0, "camembertSport" => 0, "camembertInfo" => 0, "camembertPerso" => 0]];
          }
+
+        $this->turn=rand(0,count($player)-1);
 
         $this->grid[1][1]=["theme"=>self::hist,"player"=>array()];
         $this->grid[1][2]=["theme"=>self::geo,"player"=>array()];
@@ -97,13 +99,13 @@ use trivial\models\Carte;
         $this->grid[11][7]=["theme"=>self::info,"player"=>array()];
         $this->grid[12][7]=["theme"=>self::perso,"player"=>array()];
 
-        $this->grid[7][7]=["theme"=>"depart","player"=>array()];
+        $this->grid[7][7]=["theme"=>"fin","player"=>array()];
         
         $this->cards = Carte::all()->toArray();
         shuffle($this->cards);
 
         for ($i=0;$i<count($this->player);$i++){
-            $this->grid[7][1]['player'][]=$this->player[$i];
+            $this->grid[1][7]['player'][]=$this->player[$i];
         }
     }
 
