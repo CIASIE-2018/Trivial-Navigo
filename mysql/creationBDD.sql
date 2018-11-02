@@ -57,15 +57,6 @@ INSERT INTO THEME VALUES('4', 'Sports & Loisirs', 'Orange');
 INSERT INTO THEME VALUES('5', 'Informatique', 'Vert');
 INSERT INTO THEME VALUES('6', 'Personnalites', 'Violet');
 
-INSERT INTO SALON VALUES('1', 'test', TRUE);
-
-INSERT INTO `JOUEUR` (`idJoueur`, `role`, `pseudoJoueur`, `adresseMail`, `password`, `nbTotalQuestion`, `nbBonnesReponses`, `idSalon`) VALUES
-(1, 1, 'Lily', 'test@test.fr', '1', 0, 0, 1),
-(2, 1, 'Leo', 'leo@leo.leo', 'leo', 0, 0, 1),
-(3, 1, 'Quentin', 'svz@svz.fr', 'svz', 0, 0, 1),
-(4, 1, 'Camille', 'camille@camille.fr', 'camille', 0, 0, 1),
-(5, NULL, 'Maeva', 'maeva@gmail.com', '$2y$12$p9n6CvkhLrPvUARdgx43F.an9K..1FE7goMOv0QuMFnhi0zTIxdZa', 0, 0, 3);
-
 INSERT INTO CARTE
 VALUES(1, 'Quel est le numéro de la nationale chantée par Charles Trenet, et qui reliait Paris à Menton ?', '7', '1');
 INSERT INTO CARTE
