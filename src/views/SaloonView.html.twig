@@ -13,10 +13,15 @@
 	<div class="screen">
     Joueur dans le salon
     <div class="player">
+    {% set count = 0  %}
     {% for values in listeJoueur %}
         {{ values  }}</BR>
+        {% set count = count + 1 %}
     {% endfor %}
     </div>
+    {% if count >= 2 and count <= 4 %}
+      <input type="submit" value="Lancer Partie" />
+    {% endif %}
     </div>
 </header>
 </body>
