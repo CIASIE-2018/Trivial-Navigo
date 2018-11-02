@@ -28,7 +28,10 @@ class Connection {
         return self::$db;
     }
 
-    // Method that sets a config
+    /**
+     * Method that sets a config
+     * @param file
+     */
     public static function setConfig($file) {
         self::$tab = parse_ini_file($file);
     }

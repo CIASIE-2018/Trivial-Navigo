@@ -8,12 +8,11 @@ namespace trivial\controllers;
 class Authentication {
 
     /**
-     * Method that
-     * 
+     * Method that instantiates a session
      * @param idPlayer
      * @param pseudoPlayer
      */ 
-    public static function connexion($idPlayer, $pseudoPlayer){
+    public static function instantiateSession($idPlayer, $pseudoPlayer){
       $_SESSION['idPlayer'] = $idPlayer;
       $_SESSION['pseudoPlayer'] = $pseudoPlayer;
       $_SESSION['role'] = 1;
@@ -29,8 +28,8 @@ class Authentication {
       }
     }
 
-    // Method that
-    public static function deconnexion(){
+    // Method that destroys a session
+    public static function destroySession(){
       session_destroy();
     }
 

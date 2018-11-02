@@ -15,16 +15,25 @@ class ConnectionController {
 
 	protected $view;
 
-	// Constructor of the class ConnectionController
+	/**
+	 * Constructor of the class ConnectionController
+	 * @param view
+	 */
     public function __construct(twig $view) {
         $this->view = $view;
     }
 
-	public function displayConnexion($request,$response,$args) {
-		if( Authentication::checkConnection() ){
-			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
+	/**
+	 * Method that displays a connection
+	 * @param request
+	 * @param response
+	 * @param args
+	 */
+	public function displayConnection($request, $response, $args) {
+		if(Authentication::checkConnection()) {
+			$pseudo = "Bienvenue ".$_SESSION['pseudoJoueur'];
 		}
-		else{
+		else {
 			$pseudo = "";
 		}
 		return $this->view->render($response,'ConnexionView.html.twig',[
@@ -32,42 +41,41 @@ class ConnectionController {
 		]);
 	}
 
-	public function createAccount($request,$response,$args) {
+	/**
+	 * Method that displays a form for account creation
+	 * @param request
+	 * @param response
+	 * @param args
+	 */
+	public function createAccount($request, $response, $args) {
 		return $this->view->render($response,'CreateAccountView.html.twig',[]);
 	}
 
-	public static function creer($pseudo , $mdp , $email){
-
-		$r = new m\Joueur() ;
-	
-		//Paramètres provenant du formulaire
-		$r->pseudoJoueur = $pseudo ;
-		$r->adresseMail = $email ;
-		$r->password = $mdp ;
-
+	/**
+	 * Method that creates a player
+	 * @param pseudoPlayer
+	 * @param passwordPlayer
+	 * @param emailPlayer
+	 */
+	public static function createPlayer($pseudoPlayer, $passwordPlayer, $emailPlayer){
+		$r = new m\Joueur();
+		$r->pseudoJoueur = $pseudoPlayer;
+		$r->adresseMail = $emailPlayer;
+		$r->password = $passwordPlayer;
 		$r->save();
 	}
 
-
-
-	public static function testCreationAccount(){
-		$pseudo = $_POST['pseudo'] ;
-		$mdp = $_POST['mdp'] ;
-		$email = $_POST['email'] ;
-		//Fonction de hashage du mot de passe
-		$mdp=password_hash($_POST['mdp'], PASSWORD_DEFAULT , ['cost'=>12]);
-		
-		self::creer($pseudo,$mdp,$email);
-			
-		global $app ;
-		$url =  $app->getContainer()->get('router')->pathFor('Home');
-
-		header("Location: $url");
-		exit();
+	// 
+	public static function testCreationAccount() {
+		$pseudo = $_POST['pseudo'];
+		$mdp = $_POST['mdp'];
+		$email = $_POST['email'];
+		// Function that allows password hashing
+		$mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT, ['cost'=>12]);
+		self::createPlayer($pseudo,$mdp,$email);
 	}
 
-	
-
+	//
 	public static function testConnexion(){
 		$email=$_POST['email'] ;
 		$mdp=$_POST['mdp'];
@@ -78,7 +86,7 @@ class ConnectionController {
 		else {	
 			if (password_verify($mdp,$nb->first()->password)) {
 				$nb = $nb->first();
-				Authentication::connexion($nb->idJoueur , $nb->pseudoJoueur) ;
+				Authentication::instantiateSession($nb->idJoueur , $nb->pseudoJoueur) ;
 				global $app ;
 
 				$url =  $app->getContainer()->get('router')->pathFor('Home');
@@ -92,8 +100,8 @@ class ConnectionController {
 		} 
 	}
 
-	public static function testDeconnexion(){
-		Authentication::deconnexion();
+	public static function testdestroySession(){
+		Authentication::destroySession();
 		global $app ;
 		$url =  $app->getContainer()->get('router')->pathFor('Home');
 		header("Location: $url");

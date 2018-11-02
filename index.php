@@ -49,7 +49,7 @@ $app->post('/SubmitQ/Game/{id}/{theme}', function($request, $response, $args) {
 	return $response->withRedirect($router->pathFor('Game',["id" => $args['id']]));
 })->setName('SubmitQ');
 
-$app->get('/Connection','ConnectionController:displayConnexion')->setName("Connection");
+$app->get('/Connection','ConnectionController:displayConnection')->setName("Connection");
 
 $app->post('/Connection',function($request,$response,$args){
 	$controller = $this['ConnectionController'];
@@ -62,8 +62,10 @@ $app->get('/CreateAccount', 'ConnectionController:createAccount')->setName('Crea
 
 $app->post('/CreateAccount', function($request, $response, $args){
 	$controller = $this['ConnectionController'];
-	$account = $controller->testCreationAccount($request,$response,$args);
-})->setName("testCreation");
+	$account = $controller->testCreationAccount($request, $response, $args);
+	$router = $this->router;
+	return $response->withRedirect($router->pathFor('Home',[]));
+})->setName("testCreationAccount");
 
 $app->get('/Start', 'StartController:displayStart')->setName('Start');
 
