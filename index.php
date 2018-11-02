@@ -77,7 +77,10 @@ $app->post('/Demarer' , function($request, $response, $args){
 }) ->setname("testCreateQuestions");
 
 $app->get('/Salon/{name}',"StartController:displaySaloon")->setName('Saloon');
-
+$app->post('/Salon/{name}' , function($request, $response, $args){
+	$router = $this->router;
+	return $response->withRedirect($router->pathFor('newGame',["id" => $args['name']]));
+}) ->setname("testCreateQuestions");
 
 $app->get('/Rejoindre', 'JoinController:displayJoin')->setName('Rejoindre');
 
