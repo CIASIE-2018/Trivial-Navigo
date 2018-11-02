@@ -5,22 +5,44 @@
 
 <header>
 		<h1>Trivial Navigo</h1>
-		<h5>{{pseudo}}</h5>
+		<h5>Bienvenue {{pseudo}}</h5>
 	</header>
 
      <h4>Salon: {{nameSaloon}}</h4>
 
 	<div class="screen">
-    Joueur dans le salon
+    <p>Joueur dans le salon</p>
     <div class="player">
     {% set count = 0  %}
-    {% for values in listeJoueur %}
-        {{ values  }}</BR>
+    {% set present = false %}
+    {% for value in listeJoueur %}
+        <p>{{value}}</p>
         {% set count = count + 1 %}
+        {% if pseudo == value %}
+            {% set present = true %}
+        {% endif %}
     {% endfor %}
     </div>
-    {% if count >= 2 and count <= 4 %}
-      <input type="submit" value="Lancer Partie" />
+    {% if pseudo != "" %}
+        {% if present %}
+            {% if gameExist %}
+                <button type="button" value="Rejoindre Partie" title="Rejoindre Partie" onclick="location.href='{{base_url()}}/Game/{{nameSaloon}}'">Rejoindre Partie</button>
+            {% else %}
+                {% if count >= 2 and count <= 4 %}
+                    <form class="formMenu" action="{{base_url()}}/newGame/{{nameSaloon}}" method="post">
+                    <input type="submit" value="Lancer Partie" />
+                    </form>
+                {% endif %}
+            {% endif %}
+        {% else %}
+            {% if count < 4 and (gameExist == false) %}
+                    <form class="formMenu" action="" method="post">
+                    <input type="submit" value="Rejoindre le salon" />
+                    </form>
+            {% else %}
+                <p> le salon est deja remplie </p>
+            {% endif %}
+        {% endif %}
     {% endif %}
     </div>
 </header>
