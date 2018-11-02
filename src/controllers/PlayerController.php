@@ -18,13 +18,16 @@ class PlayerController{
 
     public function displayAccount($request,$response,$args){
     if( Authentication::verificationConnexion() ){
-			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
+            $pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
+            $joueur = m\Joueur::where('pseudoJoueur','=',$_SESSION['pseudoJoueur'])->first();
+            $nbBonneReponse=$joueur['nbBonnesReponses'];
+            $nbTotalQuestion=$joueur['nbTotalQuestion'];
 		}
 		else{
 			$pseudo = "";
 		}
 		return $this->view->render($response,'PlayerView.html.twig',[
-			'pseudo'=>$pseudo,
+			'pseudo'=>$pseudo, 'bonneRep'=>$nbBonneReponse, 'totalQues'=>$nbTotalQuestion,
 		]);
 		}
 
