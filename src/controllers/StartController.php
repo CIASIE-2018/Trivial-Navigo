@@ -32,7 +32,7 @@ class StartController {
 
 	public function displaySaloon($request,$response,$args){
 		if( Authentication::verificationConnexion() ){
-			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
+			$pseudo= $_SESSION['pseudoJoueur'] ;
 		}
 		else{
 			$pseudo = "";
@@ -51,11 +51,15 @@ class StartController {
 		$listeJoueur=array();
 		foreach($joueur as $nomJoueur){
 			$joueurSalon= $nomJoueur->pseudoJoueur;
+			if(count($listeJoueur)<=4)
 			array_push($listeJoueur,$joueurSalon);
-			
 		}
+		//on regarde si un jeu existe deja dans ce salon
+		$game= m\Game::find($nameSaloon);
+		header("Refresh:2");
 		
 		return $this->view->render($response,'SaloonView.html.twig',[
+			'gameExist'=>$salon= (isset($game)),
 			'pseudo'=>$pseudo,
 			'nameSaloon'=>$nameSaloon,
 			'joueurSalon'=>$joueurSalon,

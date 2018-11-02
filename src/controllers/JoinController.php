@@ -18,7 +18,7 @@ class JoinController {
 
 
 	public function displayJoin($request,$response,$args) {
-		$salonDispo =  m\Salon::all('nomSalon')->toArray();
+		$salonDispo =  m\Salon::all()->where('visible','=','0')->toArray();
 		if( Authentication::verificationConnexion() ){
 			$pseudo= "Bienvenue " .$_SESSION['pseudoJoueur'] ;
 		}
@@ -33,8 +33,8 @@ class JoinController {
 	}
 	
 
-	public function testJoinSaloon(){
-		$nomSalon = $_POST['nomSalon'];
+	public function testJoinSaloon($request,$response,$args){
+		$nomSalon = $args['name'];
 		//Id du joueur permettra de modifier l'idSalon de ce joueur en base
 		$idJoueur = $_SESSION['idJoueur'];
 		
@@ -49,8 +49,8 @@ class JoinController {
 	
 		$joueur =m\Joueur::find($idJoueur);
 		if($joueur){
-		$joueur->idSalon = $idSalon;
-		$joueur->save();
+			$joueur->idSalon = $idSalon;
+			$joueur->save();
 		}
 		
 		global $app ;

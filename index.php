@@ -77,18 +77,19 @@ $app->post('/Demarer' , function($request, $response, $args){
 }) ->setname("testCreateQuestions");
 
 $app->get('/Salon/{name}',"StartController:displaySaloon")->setName('Saloon');
+
 $app->post('/Salon/{name}' , function($request, $response, $args){
-	$router = $this->router;
-	return $response->withRedirect($router->pathFor('newGame',["id" => $args['name']]));
-}) ->setname("testCreateQuestions");
-
-$app->get('/Rejoindre', 'JoinController:displayJoin')->setName('Rejoindre');
-
-$app->post('/Rejoindre' , function($request, $response, $args){
 	$controller = $this['JoinController'];
  	$join= $controller->testJoinSaloon($request,$response,$args) ;
  })
  ->setname("testJoinSaloon");
+
+$app->get('/Rejoindre', 'JoinController:displayJoin')->setName('Rejoindre');
+
+$app->post('/Rejoindre' , function($request, $response, $args){
+	$router = $this->router;
+	return $response->withRedirect($router->pathFor('Saloon',["name" => $_POST['nomSalon']]));
+});
 
  $app->get('/CreateQuestions','PlayerController:displayQuestionSpace')->setName('CreateQuestions');
 
@@ -111,7 +112,7 @@ $app->get('/Game/{id}/{dep}/{dir}',function($request, $response, $args){
 	return $response->withRedirect($router->pathFor('Game',["id" => $args['id']]));
 })->setName('Move');
 
-$app->get('/newGame/{id}',function($request, $response, $args){
+$app->post('/newGame/{id}',function($request, $response, $args){
 	$controller=$this['GameController'];
 	$controller->newGame($request, $response, $args);
 	$router = $this->router;
