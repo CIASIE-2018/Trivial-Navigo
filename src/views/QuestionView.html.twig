@@ -14,7 +14,7 @@
     <form class="formMenu" action="" method="post">
       <div class="choice">
         <select name="theme">
-          <option>Thème de la question:</option>
+          <option>Choisissez le Thème de la question :</option>
           <option name="theme">Geographie</option>
           <option name="theme">Divertissements</option>
           <option name="theme">Histoire</option>
@@ -23,11 +23,17 @@
           <option name="theme">Personnalites</option>
         </select>
       </div>
+      <br>
       <p>
-      <p> Votre Question : </p> <input type="text" name="question" />
-      <p> La réponse : </p> <input type="text" name="reponse" />
-      <input type="submit" value="Valider" />
+        <label for="questionCreee" id="labelQuestionCreee">Votre question :</label>
+        <input type="text" name="questionCreee" id="questionCreee" placeholder="Ex : Qui a été le premier homme a marché sur la lune ?"/>
       </p>
+      <p>
+        <label for="reponseCreee" id="labelReponseCreee">Votre réponse :</label>
+        <input type="text" name="reponseCreee" id="reponseCreee" placeholder="Ex : Neil Armstrong"/>
+      </p>
+      <input type="submit" value="Valider" />
+      <br><br>
     </form>
   </div>
 

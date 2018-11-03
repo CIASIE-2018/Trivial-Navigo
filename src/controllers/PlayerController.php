@@ -29,7 +29,7 @@ class PlayerController{
 	 * @param args
 	 */
     public function displayAccount($request, $response, $args) {
-        if (Authentication::verificationConnexion()) {
+        if (Authentication::checkConnection()) {
             $pseudo = "Bienvenue ".$_SESSION['pseudoPlayer'];
             $player = m\Joueur::where('pseudoJoueur', '=', $_SESSION['pseudoPlayer'])->first();
             $nbGoodAnswers = $player['nbBonnesReponses'];
@@ -66,8 +66,8 @@ class PlayerController{
     // Method that checks the creating of a card
     public function checkCreateQuestion(){
         $theme = $_POST['theme'];
-		$question = $_POST['question'];
-        $answer = $_POST['reponse'];
+		$question = $_POST['questionCreee'];
+        $answer = $_POST['reponseCreee'];
         $themeId = m\Theme::where('nomTheme', '=', $theme);
         $themeIdent = $themeId->first();
         $id = $themeIdent->idTheme;

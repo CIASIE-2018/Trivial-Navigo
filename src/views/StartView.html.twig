@@ -13,15 +13,17 @@
 		<form class="formMenu" action="" method="post">
 			<div class="choice">
 				<select name="mode">
-				<option>Mode de Jeu:</option>
+				<option>Choisissez le Mode de Jeu :</option>
 				<option name="mode">Privé</option>
-				<option name="mode">Publique</option>
+				<option name="mode">Public</option>
 				</select>
 			</div>
 			<p>
-				<p> Nom du Salon: </p> <input type="text" name="salon" />
-				<input type="submit" value="Jouer" />
+				<label for="salon" id="labelSalon">Nom du salon :</label>
+				<input type="text" name="salon" id="salon" placeholder="Ex : salon"/>
 			</p>
+			<input type="submit" value="Jouer" />
+			<br><br>
 	  	</form>
     </div>
 	

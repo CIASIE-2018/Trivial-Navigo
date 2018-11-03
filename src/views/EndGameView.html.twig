@@ -3,18 +3,18 @@
 {% include 'GlobalHeaderView.html.twig' %}
 <body>
 
-<header>
-	</header>
+  <header>
+  </header>
 
-      <h4> Fin de partie </h4>
-        <div class="screen">
-        {% for player in players %}
-          <p>{{player['name']}} : {{player['nbPoints']}} points</p>
-        {% endfor %}
-        <div class="boutton">
-		   <a href="/" >Retourner A L'Accueil</a>
-	  </div>
-   </div>
-        </div>
-    </body>
-    </html>
+  <h4> Fin de partie </h4>
+  <div class="screen">
+    {% for player in players %}
+      <p>{{player['name']}} : {{player['nbPoints']}} points</p>
+    {% endfor %}
+    <div class="boutton">
+      <a href="{{ base_url() }}" >Retourner A L'Accueil</a>
+    </div>
+  </div>
+
+</body>
+</html>
