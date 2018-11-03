@@ -3,28 +3,27 @@
 {% include 'GlobalHeaderView.html.twig' %}
 <body>
 
-<header>
+	<header>
 		<h1>Trivial Navigo</h1>
 		<h5>{{pseudo}}</h5>
 	</header>
-     <h4>Démarer Une Partie</h4>
-
+    <h4>Démarer Une Partie</h4>
 	<div class="screen">
-	<h4> Créer Un Salon </h4>
-	<form class="formMenu" action="" method="post">
-      <div class="choice">
-	  <select name="mode">
-	  <option>Mode de Jeu:</option>
-	  <option name="mode">Privé</option>
-	  <option name="mode">Publique</option>
-	</select>
-	</div>
-  <p>
-	 <p> Nom du Salon: </p> <input type="text" name="salon" /> <input type="submit" value="Jouer" />
-  </p>
-	  </form>
-      
-
+		<h4> Créer Un Salon </h4>
+		<form class="formMenu" action="" method="post">
+			<div class="choice">
+				<select name="mode">
+				<option>Mode de Jeu:</option>
+				<option name="mode">Privé</option>
+				<option name="mode">Publique</option>
+				</select>
+			</div>
+			<p>
+				<p> Nom du Salon: </p> <input type="text" name="salon" />
+				<input type="submit" value="Jouer" />
+			</p>
+	  	</form>
     </div>
+	
 </header>
 </body>

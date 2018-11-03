@@ -4,8 +4,8 @@ namespace trivial\controllers;
 
 use trivial\models as m;
 use trivial\controllers\Authentication;
-use trivial\views\ConnexionView;
 use \Slim\Views\Twig as twig;
+use trivial\views\ConnexionView;
 use trivial\views\CreateAccountView;
 
 /**
@@ -30,14 +30,14 @@ class ConnectionController {
 	 * @param args
 	 */
 	public function displayConnection($request, $response, $args) {
-		if(Authentication::checkConnection()) {
-			$pseudo = "Bienvenue ".$_SESSION['pseudoJoueur'];
+		if (Authentication::checkConnection()) {
+			$pseudo = "Bienvenue ".$_SESSION['pseudoPlayer'];
 		}
 		else {
 			$pseudo = "";
 		}
-		return $this->view->render($response,'ConnexionView.html.twig',[
-			'pseudo'=>$pseudo,
+		return $this->view->render($response, 'ConnexionView.html.twig', [
+			'pseudo' => $pseudo,
 		]);
 	}
 
@@ -48,7 +48,7 @@ class ConnectionController {
 	 * @param args
 	 */
 	public function createAccount($request, $response, $args) {
-		return $this->view->render($response,'CreateAccountView.html.twig',[]);
+		return $this->view->render($response, 'CreateAccountView.html.twig', []);
 	}
 
 	/**
@@ -65,47 +65,43 @@ class ConnectionController {
 		$r->save();
 	}
 
-	// 
-	public static function testCreationAccount() {
+	// Method that checks the creating of an account
+	public static function checkAccountCreation() {
 		$pseudo = $_POST['pseudo'];
 		$mdp = $_POST['mdp'];
 		$email = $_POST['email'];
 		// Function that allows password hashing
 		$mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT, ['cost'=>12]);
-		self::createPlayer($pseudo,$mdp,$email);
+		self::createPlayer($pseudo, $mdp, $email);
 	}
 
-	//
-	public static function testConnexion(){
-		$email=$_POST['email'] ;
-		$mdp=$_POST['mdp'];
-		$nb = m\Joueur::where('adresseMail', '=',$email);
-		if($nb->count() != 1){
-			echo "email invalide" ;
+	// Method that checks the connection
+	public static function checkTheConnection(){
+		$email = $_POST['email'];
+		$mdp = $_POST['mdp'];
+		$nb = m\Joueur::where('adresseMail', '=', $email);
+		if ($nb->count() != 1) {
+			echo "Email invalide" ;
 		}
 		else {	
-			if (password_verify($mdp,$nb->first()->password)) {
+			if (password_verify($mdp, $nb->first()->password)) {
 				$nb = $nb->first();
-				Authentication::instantiateSession($nb->idJoueur , $nb->pseudoJoueur) ;
-				global $app ;
-
-				$url =  $app->getContainer()->get('router')->pathFor('Home');
-		
-				header("Location: $url");
-				exit();
+				Authentication::instantiateSession($nb->idJoueur, $nb->pseudoJoueur);
 			}
-			else{
-				echo "mot de passe invalide";
+			else {
+				echo "Mot de passe invalide";
 			}
 		} 
 	}
 
-	public static function testdestroySession(){
+	/**
+	 * Method that checks the desctruction of a session
+	 * @param request
+	 * @param response
+	 * @param args
+	 */
+	public static function checkDestroySession($request, $response, $args) {
 		Authentication::destroySession();
-		global $app ;
-		$url =  $app->getContainer()->get('router')->pathFor('Home');
-		header("Location: $url");
-		exit();
 	}
 
 }

@@ -57,7 +57,7 @@
     background-color: #BA55D3;
 }
 
-.depart {
+.fin {
     background-color: #5A5E6B;
 }
 
@@ -125,4 +125,9 @@ table {
 #labelreponse {
     font-weight: bold;
     color: white;
+}
+
+.finalButton{
+    padding: 5px;
+    border : solid 2px black;
 }

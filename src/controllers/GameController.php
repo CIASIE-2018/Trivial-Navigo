@@ -21,16 +21,18 @@ class GameController{
       $idGame=$args["id"];
       $game = Game::find($idGame);
       $board=json_decode($game->board,true);
+      if($_SESSION["pseudoJoueur"] != $board["player"][$board["turn"]]["name"])
+        header("Refresh:2");
       return $this->view->render($response,'GameView.html.twig',[
         'board' => $board,
-        'playerAct' => $_SESSION["pseudoJoueur"]
+        'playerAct' => $_SESSION["pseudoJoueur"],
+        'currentURI' => $_SERVER['REQUEST_URI']
     ]);
     }
 
     public function newGame($request, $response, $args){
         $idSalon=Salon::all()->where("nomSalon","=",$args['id'])->first()->idSalon;
         $game = new Game();
-        $board=new Board("Lily","Leo","Quentin","Camille");
         $player=array();
         foreach(Joueur::all()->where("idSalon","=",$idSalon)->toArray() as $name){
             $player[]=$name["pseudoJoueur"];
@@ -73,7 +75,17 @@ class GameController{
         $board["player"][$board["turn"]]=$player;
         $game->board=json_encode($board);
         $game->save();
-        return $board["grid"][$player["position"][0]][$player["position"][1]]["theme"];
+        $theme=$board["grid"][$player["position"][0]][$player["position"][1]]["theme"];
+        if($player["camemberts"]['camembert'.ucfirst($theme)]==1){
+        $board["turn"]+=1;
+        if($board["turn"]==count($board["player"]))
+        $board["turn"]=0;
+        $game->board = json_encode($board);
+        $game->save();
+        return "alreadyHave";
+        }
+        else
+        return $theme;
     }
 
     public function renderQuestion($request, $response, $args) {
@@ -120,18 +132,56 @@ class GameController{
         $game = Game::find($idGame);
         $board = json_decode($game->board,true);
         $themeQuestion = ucfirst($args["theme"]);
-
+        
+        $joueur=Joueur::where('pseudoJoueur','=',$board["player"][$board["turn"]])->first();
+        $joueur['nbTotalQuestions']+=1;
+        var_dump($joueur);
         $idCarte = strtolower($_POST["idCarte"]);
         $repSaisie = $_POST["reponse"];
         $carte = Carte::find($idCarte);
         $arrCarte = json_decode($carte, true);
         $repCarte = strtolower($arrCarte["reponse"]);
         $simi = self::similaire($repCarte, $repSaisie);
-        if ($simi >= 80.00) {
-            $board["player"][$board["turn"]]["camemberts"]['camembert'.ucfirst($themeQuestion)] = 1;
-            $game->board=json_encode($board);
-            $game->save();
+
+        $final=true;
+        foreach($board["player"][$board["turn"]]["camemberts"] as $camembert){
+            if($camembert == 0){
+                $final=false;
+            }
         }
+        if ($simi >= 80.00) {
+
+            if($final){
+                $x=$board["player"][$board["turn"]]["position"][0];
+                $y=$board["player"][$board["turn"]]["position"][1]; 
+                unset($board["grid"][$x][$y]["player"][$board["turn"]]);
+                if($x == 7 ){
+                    if($y < 7)
+                        $y+=1;
+                    else
+                        $y-=1;
+                }
+                else{
+                    if($x < 7)
+                        $x+=1;
+                    else
+                        $x-=1;
+                }
+                $board["player"][$board["turn"]]["position"][0]=$x;
+                $board["player"][$board["turn"]]["position"][1]=$y; 
+                $board["grid"][$x][$y]["player"][$board["turn"]]=$board["player"][$board["turn"]];
+            }
+            else{
+                $board["player"][$board["turn"]]["camemberts"]['camembert'.ucfirst($themeQuestion)] = 1;
+                $joueur['nbBonnesReponses']+=1;
+            }
+        }
+        $board["turn"]+=1;
+        if($board["turn"]==count($board["player"]))
+        $board["turn"]=0;
+        $game->board=json_encode($board);
+        $game->save();
+        $joueur->save();
     }
 
     public static function similaire($str1, $str2) { 

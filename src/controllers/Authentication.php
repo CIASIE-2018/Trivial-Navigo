@@ -20,11 +20,11 @@ class Authentication {
     
     // Method that checks a connection
     public static function checkConnection(){
-      if(isset($_SESSION['idPlayer']) ){
-        return true ;
+      if (isset($_SESSION['idPlayer'])){
+        return true;
       }
       else{
-        return false ;
+        return false;
       }
     }
 

@@ -3,43 +3,42 @@
 {% include 'GlobalHeaderView.html.twig' %}
 <body>
 
-<header>
+	<header>
 		<h1>Trivial Navigo</h1>
 		<h5>{{pseudo}}</h5>
 	</header>
     {% if pseudo == null %}
 		<div class="screen">
-		<div class="boutton">
-		<a href="Start" >Démarer Une Partie</a>
-   </div>
-   <div class="boutton">
-		   <a href="Rejoin" >Rejoindre Une Partie</a>
-	  </div>
-	  <div class="boutton">
-		   <a href="CreateAccount" >Creer Compte</a>
-	  </div>
-	  <div class="boutton">
-	  <a href="Connection" >Connection</a>
-      </div>
-  </div>
+			<div class="boutton">
+				<a href="Start" >Démarrer Une Partie</a>
+			</div>
+			<div class="boutton">
+				<a href="Rejoin" >Rejoindre Une Partie</a>
+			</div>
+	  		<div class="boutton">
+		   		<a href="CreateAccount" >Créer Un Compte</a>
+	  		</div>
+			<div class="boutton">
+				<a href="Connection" >Connexion</a>
+			</div>
+  		</div>
     {% endif %}
     {% if pseudo != null %}
         <div class="screen">
-		<div class="boutton">
-		<a href="Start" >Démarer Une Partie</a>
-   </div>
-   <div class="boutton">
-		   <a href="Rejoin" >Rejoindre Une Partie</a>
-	  </div>
-	  <div class="boutton">
-	  <a href="Disconnection" >Disconnection</a>
-	  </div>
-	  <div class="boutton">
-	  <a href="MyAccount" >My Account</a>
-	  </div>
-	  </div>
-      </div>
-      
-    </div>
-        {% endif %}
+			<div class="boutton">
+				<a href="Start" >Démarrer Une Partie</a>
+   			</div>
+   			<div class="boutton">
+		   		<a href="Rejoin" >Rejoindre Une Partie</a>
+	  		</div>
+			<div class="boutton">
+				<a href="Disconnection" >Déconnexion</a>
+			</div>
+			<div class="boutton">
+				<a href="MyAccount" >My Account</a>
+			</div>
+	  	</div>
+    {% endif %}
 
+</body>
+</html>

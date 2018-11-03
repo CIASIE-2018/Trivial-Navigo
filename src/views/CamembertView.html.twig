@@ -1,34 +1,34 @@
-    <div class="camContainer">
-      {% if player["camemberts"]['camembertGeo'] == 1 %}
-        <div class= "cam camGeo"> </div>
-      {% else %}
-        <div class= "cam"></div>
-      {% endif %}
-      {% if player["camemberts"]['camembertDiver'] == 1 %}
-        <div class= "cam camDiver"> </div>
-      {% else %}
-        <div class= "cam"></div>
-      {% endif %}
-      {% if player["camemberts"]['camembertHist'] == 1 %}
-        <div class= "cam camHist"> </div>
-      {% else %}
-        <div class= "cam"></div>
-      {% endif %}
-      {% if player["camemberts"]['camembertSport'] == 1 %}
-        <div class= "cam camSport"> </div>
-      {% else %}
-        <div class= "cam"></div>
-      {% endif %}
-      {% if player["camemberts"]['camembertInfo'] == 1 %}
-        <div class= "cam camInfo"> </div>
-      {% else %}
-        <div class= "cam"></div>
-      {% endif %}
-      {% if player["camemberts"]['camembertPerso'] == 1 %}
-        <div class= "cam camPerso"> </div>
-      {% else %}
-        <div class= "cam"></div>
-      {% endif %}
-    </div>
+<div class="camContainer">
+{% if player["camemberts"]['camembertGeo'] == 1 %}
+  <div class= "cam camGeo"> </div>
+{% else %}
+  <div class= "cam"></div>
+{% endif %}
+{% if player["camemberts"]['camembertDiver'] == 1 %}
+  <div class= "cam camDiver"> </div>
+{% else %}
+  <div class= "cam"></div>
+{% endif %}
+{% if player["camemberts"]['camembertHist'] == 1 %}
+  <div class= "cam camHist"> </div>
+{% else %}
+  <div class= "cam"></div>
+{% endif %}
+{% if player["camemberts"]['camembertSport'] == 1 %}
+  <div class= "cam camSport"> </div>
+{% else %}
+  <div class= "cam"></div>
+{% endif %}
+{% if player["camemberts"]['camembertInfo'] == 1 %}
+  <div class= "cam camInfo"> </div>
+{% else %}
+  <div class= "cam"></div>
+{% endif %}
+{% if player["camemberts"]['camembertPerso'] == 1 %}
+  <div class= "cam camPerso"> </div>
+{% else %}
+  <div class= "cam"></div>
+{% endif %}
+</div>
 
-    {{player['name']}}
+{{player['name']}}

@@ -30,22 +30,18 @@ CREATE TABLE SALON(
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `JOUEUR`;
-CREATE TABLE JOUEUR (
-    idJoueur INT(8) NOT NULL AUTO_INCREMENT,
-    role INT(1),
-    pseudoJoueur TEXT(100),
-    adresseMail TEXT(500),
-    password TEXT(100),
-    camembertGeo INT(1),
-    camembertDiver INT(1),
-    camembertHist INT(1),
-    camembertSport INT(1),
-    camembertInfo INT(1),
-    camembertPerso INT(1),
-    idSalon INT(8),
-    PRIMARY KEY(idJoueur),
-	FOREIGN KEY(idSalon) REFERENCES SALON(idSalon)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS JOUEUR (
+  idJoueur int(8) NOT NULL AUTO_INCREMENT,
+  role int(1) DEFAULT NULL,
+  pseudoJoueur text,
+  adresseMail text,
+  password text,
+  nbTotalQuestions int(10) DEFAULT '0',
+  nbBonnesReponses int(10) DEFAULT '0',
+  idSalon int(8) DEFAULT NULL,
+  PRIMARY KEY (idJoueur),
+  KEY idSalon (idSalon)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `GAME`;
 CREATE TABLE GAME (
@@ -60,13 +56,6 @@ INSERT INTO THEME VALUES('3', 'Histoire', 'Jaune');
 INSERT INTO THEME VALUES('4', 'Sports & Loisirs', 'Orange');
 INSERT INTO THEME VALUES('5', 'Informatique', 'Vert');
 INSERT INTO THEME VALUES('6', 'Personnalites', 'Violet');
-
-INSERT INTO SALON VALUES('1', 'test', TRUE);
-
-INSERT INTO JOUEUR VALUES('1', '1', 'Lily', 'test@test.fr', '1', '0', '0', '0', '0', '0', '0', '1');
-INSERT INTO JOUEUR VALUES('2', '1', 'Leo', 'leo@leo.leo', 'leo', '0', '0', '0', '0', '0', '0', '1');
-INSERT INTO JOUEUR VALUES('3', '1', 'Quentin', 'svz@svz.fr', 'svz', '0', '0', '0', '0', '0', '0', '1');
-INSERT INTO JOUEUR VALUES('4', '1', 'Camille', 'camille@camille.fr', 'camille', '0', '0', '0', '0', '0', '0', '1');
 
 INSERT INTO CARTE
 VALUES(1, 'Quel est le numéro de la nationale chantée par Charles Trenet, et qui reliait Paris à Menton ?', '7', '1');
@@ -89,7 +78,7 @@ VALUES(9, 'Dans quelle ville des États-Unis se déroule la série Urgences ?', 
 INSERT INTO CARTE
 VALUES(10, 'De quel pays est issue la devise suivante : In God We Trust ?', 'États-Unis', '1');
 INSERT INTO CARTE
-VALUES(11, 'De quel pays est issue la devise suivante : Dieu et mon droit ?', 'Royaume-Uni', '1');
+VALUES(11, 'De quel pays est issue la devise suivante : Dieu est mon droit ?', 'Royaume-Uni', '1');
 INSERT INTO CARTE
 VALUES(12, 'De quel pays est issue la devise suivante : Je maintiendrai ?', 'Pays-Bas', '1');
 INSERT INTO CARTE
@@ -275,7 +264,7 @@ VALUES(101, 'À quelle date célébrons-nous la fin de la Première Guerre mondi
 INSERT INTO CARTE
 VALUES(102, 'Quel gangster américain était surnommé Scarface ?', 'Al Capone', '3');
 INSERT INTO CARTE
-VALUES(103, 'Comment appelle-t-on un membredu crime organisé au Japon ?', 'Yakuza', '3');
+VALUES(103, 'Comment appelle-t-on un membre du crime organisé au Japon ?', 'Yakuza', '3');
 INSERT INTO CARTE
 VALUES(104, 'De quel pays, la mafia est-elle appelée triade ?', 'En Chine', '3');
 INSERT INTO CARTE

@@ -2,6 +2,7 @@
 <html>
 {% include 'GlobalHeaderView.html.twig' %}
 <body>
+
     <form id="formQuestion" method="post" class={{theme}} action="{{ base_url() }}/SubmitQ/Game/{{idGame}}/{{theme}}">
         <p>
             <label id="question">{{ question.question }}</label>
@@ -15,5 +16,6 @@
             <button type="submit">Envoyer le message</button>
         </div>
     </form>
+
 </body>
 <html>
