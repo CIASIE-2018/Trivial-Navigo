@@ -52,7 +52,7 @@ class JoinController {
 		$nameSaloon = $args['name'];
 		$idPlayer = $_SESSION['idPlayer'];
 		$saloon = m\Salon::where('nomSalon', '=', $nameSaloon);
-		$saloonF = $salon->first();
+		$saloonF = $saloon->first();
 		$idSaloon = $saloonF->idSalon;
 		self::joinSaloon($nameSaloon, $idSaloon, $idPlayer);
 	}

@@ -73,6 +73,7 @@ class ConnectionController {
 		// Function that allows password hashing
 		$mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT, ['cost'=>12]);
 		self::createPlayer($pseudo, $mdp, $email);
+		self::checkTheConnection();
 	}
 
 	// Method that checks the connection

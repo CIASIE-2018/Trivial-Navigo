@@ -45,6 +45,7 @@ $app->get('/Game/{id}', 'GameController:renderBoard')->setName('Game');
 $app->get('/Game/{id}/FinPartie','GameController:displayEndGame')->setName('FinPartie');
 
 $app->get('/Game/{id}/{theme}','GameController:renderQuestion')->setName('Question');
+
 $app->post('/SubmitQ/Game/{id}/{theme}', function($request, $response, $args) {
 	$controller = $this['GameController'];
 	$checkSubmissionForm = $controller->checkSubmissionForm($request, $response, $args);
@@ -59,7 +60,7 @@ $app->post('/Connection', function($request, $response, $args){
 	$checkTheConnection = $controller->checkTheConnection($request, $response, $args);
 	$router = $this->router;
 	return $response->withRedirect($router->pathFor('Home', []));
-})->setName("testConnection");
+})->setName("checkConnection");
 
 $app->get('/Disconnection', function($request, $response, $args){
 	$controller = $this['ConnectionController'];
@@ -81,7 +82,7 @@ $app->get('/Start', 'StartController:displayStart')->setName('Start');
 
 $app->post('/Start' , function($request, $response, $args){
 	$controller =  $this['StartController'];
-	$checkCreationSaloon = $controller->checkCreateSaloon($request,$response,$args);
+	$checkCreationSaloon = $controller->checkCreateSaloon($request, $response, $args);
     $router = $this->router;
     return $response->withRedirect($router->pathFor('Saloon', ["name" => $_POST['salon']]));
 })->setname("checkCreateSaloon");
@@ -115,7 +116,7 @@ $app->get('/MyAccount', 'PlayerController:displayAccount')->setName('MyAccount')
 
 $app->get('/Game/{id}/{dep}/{dir}', function($request, $response, $args){
 	$controller = $this['GameController'];
-	$playerMove = $controller->playerMove($request, $response, $args);
+	$theme = $controller->playerMove($request, $response, $args);
 	$router = $this->router;
 	if ($theme != "alreadyHave") {
 		return $response->withRedirect($router->pathFor('Question', ["id" => $args['id'], "theme" => $theme]));

@@ -37,7 +37,7 @@
     <div class="bandeaux">
     <div class="play">
     {% if board.grid[7][7].player|length == 0 %}
-        <p>c'est au tour de {{board.player[board.turn]["name"]}} de jouer<p>
+        <p>C'est au tour de {{board.player[board.turn]["name"]}} de jouer<p>
         {% if playerAct == board.player[board.turn]["name"] %}
             {% set fin = true %}
             {% for camembert in board.player[board.turn]["camemberts"] %}
@@ -49,17 +49,19 @@
                 <a class="finalButton" href="{{currentURI}}/{{board.grid[board.player[board.turn]["position"][0]][board.player[board.turn]["position"][1]].theme}}">Jouer phase finale<a>
             {% else %}
                 {% if fin %}
-                    <p>Rejoignez le bas d'une cologne rejoignant le millieu pour passer à l'étape final<p>
+                    <p>Dirigez-vous vers le bas d'une colonne rejoignant le millieu pour passer à l'étape finale !<p>
                 {% endif %}
                 {% include 'DiceView.html.twig' %}
             {% endif %}
         {% endif %}
     {% else %}
         {% for player in board.grid[7][7].player %}
-             <p>LE JOUEUR {{player["name"]}} A GAGNÉ LA PARTIE<p>
-             <div class="boutton">
-		   <a href="{{idGame}}/FinPartie" >Score partie</a>
-	  </div>
+            <div class="gagnant">
+                <p><img src="{{ base_url() }}/web/img/confettis.png">LE JOUEUR {{player["name"]}} A GAGNÉ LA PARTIE<p>
+            </div>
+            <div class="boutton">
+		        <a href="{{idGame}}/FinPartie" >Score partie</a>
+	        </div>
         {% endfor %}
     {% endif %}
     </div>
