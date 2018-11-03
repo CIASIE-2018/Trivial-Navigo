@@ -77,3 +77,7 @@
     border-top: 66.6px solid #BA55D3;
     border-radius: 50%;
 }
+
+.playerName {
+    font: bold 15px Arial;
+}

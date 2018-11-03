@@ -37,7 +37,7 @@ class GameController {
         $game = Game::find($idGame);
         $board=json_decode($game->board, true);
         if ($_SESSION["pseudoPlayer"] != $board["player"][$board["turn"]]["name"]) {
-            header("Refresh:2");
+            //header("Refresh:2");
         }
         return $this->view->render($response, 'GameView.html.twig', [
             'board' => $board,
@@ -76,42 +76,42 @@ class GameController {
         //setup our board
         $idGame=$args["id"];
         $game = Game::find($idGame);
-        $board=json_decode($game->board,true);
+        $board = json_decode($game->board,true);
         //we take the player who can actually play
-        $player=$board["player"][$board["turn"]];
+        $player = $board["player"][$board["turn"]];
         //player is no longer in the same case
         unset($board["grid"][$player["position"][0]][$player["position"][1]]["player"][$board["turn"]]);
         //the player move and change position 
-        for($i=0;$i<$args["dep"];$i++){
-            if(($player["position"][1]==1 && $player["position"][0]!=1 && $args["dir"]=="d") || ($player["position"][1]==13 && $player["position"][0]!=1 && $args["dir"]=="g")){
+        for($i=0; $i<$args["dep"]; $i++){
+            if(($player["position"][1] == 1 && $player["position"][0] != 1 && $args["dir"] == "d") || ($player["position"][1] == 13 && $player["position"][0] != 1 && $args["dir"] == "g")){
                 $player["position"][0]--;
             }
             else
-            if(($player["position"][0]==1 && $player["position"][1]!=13 && $args["dir"]=="d") || ($player["position"][0]==13 && $args["dir"]=="g")){
+            if(($player["position"][0] == 1 && $player["position"][1] != 13 && $args["dir"] == "d") || ($player["position"][0] == 13 && $args["dir"] == "g")){
                 $player["position"][1]++;
             }
             else
-            if(($player["position"][1]==1 && $args["dir"]=="g" || $player["position"][1]==13 && $player["position"][0]!=13 && $args["dir"]=="d")){
+            if(($player["position"][1] == 1 && $args["dir"] == "g" || $player["position"][1] == 13 && $player["position"][0] != 13 && $args["dir"] == "d")){
                 $player["position"][0]++;
             }
             else
-            if(($player["position"][0]==1 && $args["dir"]=="g" || $player["position"][0]==13 && $args["dir"]=="d")){
+            if(($player["position"][0] == 1 && $args["dir"] == "g" || $player["position"][0] == 13 && $args["dir"] == "d")){
                 $player["position"][1]--;
             }
         }
         //save our modification
-        $board["grid"][$player["position"][0]][$player["position"][1]]["player"][$board["turn"]]=$player;
-        $board["player"][$board["turn"]]=$player;
-        $game->board=json_encode($board);
-        $game->save();
-        $theme=$board["grid"][$player["position"][0]][$player["position"][1]]["theme"];
-        if($player["camemberts"]['camembert'.ucfirst($theme)]==1){
-        $board["turn"]+=1;
-        if($board["turn"]==count($board["player"]))
-        $board["turn"]=0;
+        $board["grid"][$player["position"][0]][$player["position"][1]]["player"][$board["turn"]] = $player;
+        $board["player"][$board["turn"]] = $player;
         $game->board = json_encode($board);
         $game->save();
-        return "alreadyHave";
+        $theme = $board["grid"][$player["position"][0]][$player["position"][1]]["theme"];
+        if ($player["camemberts"]['camembert'.ucfirst($theme)]==1) {
+            $board["turn"] += 1;
+            if($board["turn"] == count($board["player"]))
+                $board["turn"] = 0;
+            $game->board = json_encode($board);
+            $game->save();
+            return "alreadyHave";
         }
         else
         return $theme;
@@ -156,6 +156,9 @@ class GameController {
         $game->board = json_encode($board);
         $game->save();
         return $this->view->render($response, 'FormQuestionView.html.twig', [
+            'board' => $board,
+            'playerAct' => $_SESSION["pseudoPlayer"],
+            'currentURI' => $_SERVER['REQUEST_URI'],
             'question' => $question,
             'theme' => $themeQuestion,
             'idGame' => $idGame

@@ -57,11 +57,15 @@
     {% else %}
         {% for player in board.grid[7][7].player %}
             <div class="gagnant">
-                <p><img src="{{ base_url() }}/web/img/confettis.png">LE JOUEUR {{player["name"]}} A GAGNÉ LA PARTIE<p>
-            </div>
-            <div class="boutton">
-		        <a href="{{idGame}}/FinPartie" >Score partie</a>
-	        </div>
+                <div class="affScore">
+                    <div class="playerName">
+                        <img src="{{ base_url() }}/web/img/confettis.png">{{player["name"]}} a gagné la partie !<img src="{{ base_url() }}/web/img/confettis.png">
+                    </div>
+                    <div class="buttonScore">
+                        <a href="{{idGame}}/FinPartie">Score partie</a>
+                    </div>
+                </div>
+           </div>
         {% endfor %}
     {% endif %}
     </div>
