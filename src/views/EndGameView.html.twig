@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+{% include 'GlobalHeaderView.html.twig' %}
+<body>
+
+<header>
+	</header>
+
+      <h4> Fin de partie </h4>
+        <div class="screen">
+        {% for player in players %}
+          <p>{{player['name']}} : {{player['nbPoints']}} points</p>
+        {% endfor %}
+        <div class="boutton">
+		   <a href="/" >Retourner A L'Accueil</a>
+	  </div>
+   </div>
+        </div>
+    </body>
+    </html>

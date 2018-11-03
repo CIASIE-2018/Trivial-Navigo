@@ -35,14 +35,15 @@ class GameController {
     public function renderBoard($request, $response, $args) {
         $idGame = $args["id"];
         $game = Game::find($idGame);
-        $board = json_decode($game->board, true);
+        $board=json_decode($game->board, true);
         if ($_SESSION["pseudoJoueur"] != $board["player"][$board["turn"]]["name"]) {
             header("Refresh:2");
         }
         return $this->view->render($response, 'GameView.html.twig', [
             'board' => $board,
             'playerAct' => $_SESSION["pseudoJoueur"],
-            'currentURI' => $_SERVER['REQUEST_URI']
+            'currentURI' => $_SERVER['REQUEST_URI'],
+            'idGame' => $idGame,
         ]);
     }
 
@@ -260,4 +261,23 @@ class GameController {
         return $porcentage;
     }
 
+    /**
+     * Method that displays the end of a game
+     * @param request
+     * @param response
+     * @param args
+     */
+    public function displayEndGame($request, $response, $args) {
+        $idGame = $args["id"];
+        $game = Game::find($idGame);
+        $board = json_decode($game->board,true);
+        $players = array();
+        foreach ($board["player"] as $p){
+            $nbPoints = $p['camemberts']['camembertGeo']+$p['camemberts']['camembertHist']+$p['camemberts']['camembertInfo']+$p['camemberts']['camembertSport']+$p['camemberts']['camembertPerso']+$p['camemberts']['camembertDiver'];
+            $players[] = ['name' => $p['name'], 'nbPoints' => $nbPoints];
+        }
+        return $this->view->render($response, 'EndGameView.html.twig', [
+            'players'=> $players
+        ]);
+      }
 }

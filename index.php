@@ -42,7 +42,9 @@ $app->get('/', 'HomeController:displayHome')->setName('Home');
 
 $app->get('/Game/{id}', 'GameController:renderBoard')->setName('Game');
 
-$app->get('/Game/{id}/{theme}', 'GameController:renderQuestion')->setName('Question');
+$app->get('/Game/{id}/FinPartie','GameController:displayEndGame')->setName('FinPartie');
+
+$app->get('/Game/{id}/{theme}','GameController:renderQuestion')->setName('Question');
 $app->post('/SubmitQ/Game/{id}/{theme}', function($request, $response, $args) {
 	$controller = $this['GameController'];
 	$checkSubmissionForm = $controller->checkSubmissionForm($request, $response, $args);
