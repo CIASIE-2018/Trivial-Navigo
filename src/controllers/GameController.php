@@ -209,4 +209,19 @@ class GameController{
         return $porcentage;
     }
 
+
+    public function displayEndGame($request, $response, $args) {
+        $idGame = $args["id"];
+        $game = Game::find($idGame);
+        $board = json_decode($game->board,true);
+        $players = array();
+        foreach($board["player"] as $p){
+            $nbPoints=$p['camemberts']['camembertGeo']+$p['camemberts']['camembertHist']+$p['camemberts']['camembertInfo']+$p['camemberts']['camembertSport']+$p['camemberts']['camembertPerso']+$p['camemberts']['camembertDiver'];
+            $players[]=['name' => $p['name'], 'nbPoints' => $nbPoints];
+            var_dump($players);
+        }
+        return $this->view->render($response,'EndGameView.html.twig',[
+            'players'=> $players
+        ]);
+      }
 }
