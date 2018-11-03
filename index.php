@@ -45,6 +45,8 @@ $app->get('/', 'HomeController:displayHome')->setName('Accueil');
 
 $app->get('/Game/{id}','GameController:renderBoard')->setName('Game');
 
+$app->get('/Game/{id}/FinPartie','GameController:displayEndGame')->setName('FinPartie');
+
 $app->get('/Game/{id}/{theme}','GameController:renderQuestion')->setName('Question');
 $app->post('/SubmitQ/Game/{id}/{theme}', function($request, $response, $args) {
 	$controller=$this['GameController'];
@@ -52,6 +54,7 @@ $app->post('/SubmitQ/Game/{id}/{theme}', function($request, $response, $args) {
 	$router = $this->router;
 	return $response->withRedirect($router->pathFor('Game',["id" => $args['id']]));
 })->setName('SubmitQ');
+
 
 
 $app->get('/Connexion','ConnexionController:displayConnexion')->setName("Connexion");
