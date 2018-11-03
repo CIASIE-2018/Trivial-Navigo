@@ -56,6 +56,9 @@
     {% else %}
         {% for player in board.grid[7][7].player %}
              <p>LE JOUEUR {{player["name"]}} A GAGNÉ LA PARTIE<p>
+             <div class="boutton">
+		   <a href="{{idGame}}/FinPartie" >Score partie</a>
+	  </div>
         {% endfor %}
     {% endif %}
     </div>

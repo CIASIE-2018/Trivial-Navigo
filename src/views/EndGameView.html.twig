@@ -8,7 +8,6 @@
 
       <h4> Fin de partie </h4>
         <div class="screen">
-        <p>Félicitations truc ! Tu as remporté la partie !</p>
         {% for player in players %}
           <p>{{player['name']}} : {{player['nbPoints']}} points</p>
         {% endfor %}
