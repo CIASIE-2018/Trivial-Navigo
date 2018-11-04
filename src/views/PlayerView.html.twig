@@ -3,19 +3,20 @@
 {% include 'GlobalHeaderView.html.twig' %}
 <body>
 
-<header>
+    <header>
 		<h1>Trivial Navigo</h1>
 		<h5>{{pseudo}}</h5>
 	</header>
 
-      <h4> Mon Compte </h4>
-        <div class="screen">
+    <h4> Mon Compte </h4>
+    <div class="screen">
         {% if totalQues > 0 %}
         <p>Tu as {{bonneRep}} bonnes réponses sur {{totalQues}} questions</p>
         {% endif %}
         <div class="boutton">
-		<a href="CreateQuestions">Créer Questions</a>
-   </div>
+		    <a href="CreateQuestions">Créer Questions</a>
         </div>
-    </body>
-    </html>
+    </div>
+    
+</body>
+</html>

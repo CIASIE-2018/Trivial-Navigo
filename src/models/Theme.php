@@ -2,6 +2,9 @@
 
 namespace trivial\models;
 
+/**
+ * Class Theme
+ */
 class Theme extends \Illuminate\Database\Eloquent\Model {
 
     protected $table = 'THEME';

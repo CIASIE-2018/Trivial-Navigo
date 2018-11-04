@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS JOUEUR (
   pseudoJoueur text,
   adresseMail text,
   password text,
-  nbTotalQuestion int(10) DEFAULT '0',
+  nbTotalQuestions int(10) DEFAULT '0',
   nbBonnesReponses int(10) DEFAULT '0',
   idSalon int(8) DEFAULT NULL,
   PRIMARY KEY (idJoueur),
@@ -78,7 +78,7 @@ VALUES(9, 'Dans quelle ville des États-Unis se déroule la série Urgences ?', 
 INSERT INTO CARTE
 VALUES(10, 'De quel pays est issue la devise suivante : In God We Trust ?', 'États-Unis', '1');
 INSERT INTO CARTE
-VALUES(11, 'De quel pays est issue la devise suivante : Dieu et mon droit ?', 'Royaume-Uni', '1');
+VALUES(11, 'De quel pays est issue la devise suivante : Dieu est mon droit ?', 'Royaume-Uni', '1');
 INSERT INTO CARTE
 VALUES(12, 'De quel pays est issue la devise suivante : Je maintiendrai ?', 'Pays-Bas', '1');
 INSERT INTO CARTE
@@ -264,7 +264,7 @@ VALUES(101, 'À quelle date célébrons-nous la fin de la Première Guerre mondi
 INSERT INTO CARTE
 VALUES(102, 'Quel gangster américain était surnommé Scarface ?', 'Al Capone', '3');
 INSERT INTO CARTE
-VALUES(103, 'Comment appelle-t-on un membredu crime organisé au Japon ?', 'Yakuza', '3');
+VALUES(103, 'Comment appelle-t-on un membre du crime organisé au Japon ?', 'Yakuza', '3');
 INSERT INTO CARTE
 VALUES(104, 'De quel pays, la mafia est-elle appelée triade ?', 'En Chine', '3');
 INSERT INTO CARTE

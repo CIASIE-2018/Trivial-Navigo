@@ -2,97 +2,131 @@
 
 namespace trivial\controllers;
 
-use trivial\views\GameView;
-use trivial\views\CamembertView;
+use trivial\Board;
 use trivial\models\Game;
 use trivial\models\Carte;
 use trivial\models\Salon;
 use trivial\models\Joueur;
-use trivial\Board;
 use \Slim\Views\Twig as twig;
+use trivial\views\GameView;
+use trivial\views\CamembertView;
 
-class GameController{
+/**
+ * Class GameController
+ */
+class GameController {
+
     protected $view;
 
+    /**
+	 * Constructor of the class GameController
+	 * @param view
+	 */
     public function __construct(twig $view) {
         $this->view = $view;
     }
+
+    /**
+     * Method which rends the board of a game
+     * @param request
+     * @param response
+     * @param args
+     */
     public function renderBoard($request, $response, $args) {
-      $idGame=$args["id"];
-      $game = Game::find($idGame);
-      $board=json_decode($game->board,true);
-      if($_SESSION["pseudoJoueur"] != $board["player"][$board["turn"]]["name"])
-        header("Refresh:2");
-      return $this->view->render($response,'GameView.html.twig',[
-        'board' => $board,
-        'playerAct' => $_SESSION["pseudoJoueur"],
-        'currentURI' => $_SERVER['REQUEST_URI'],
-        'idGame' => $idGame
-    ]);
+        $idGame = $args["id"];
+        $game = Game::find($idGame);
+        $board=json_decode($game->board, true);
+        if ($_SESSION["pseudoPlayer"] != $board["player"][$board["turn"]]["name"]) {
+            header("Refresh:2");
+        }
+        return $this->view->render($response, 'GameView.html.twig', [
+            'board' => $board,
+            'playerAct' => $_SESSION["pseudoPlayer"],
+            'currentURI' => $_SERVER['REQUEST_URI'],
+            'idGame' => $idGame,
+        ]);
     }
 
+    /**
+     * Method which creates a new game
+     * @param request
+     * @param response
+     * @param args
+     */
     public function newGame($request, $response, $args){
-        $idSalon=Salon::all()->where("nomSalon","=",$args['id'])->first()->idSalon;
+        $idSalon = Salon::all()->where("nomSalon", "=", $args['id'])->first()->idSalon;
         $game = new Game();
-        $player=array();
-        foreach(Joueur::all()->where("idSalon","=",$idSalon)->toArray() as $name){
-            $player[]=$name["pseudoJoueur"];
+        $player = array();
+        foreach (Joueur::all()->where("idSalon", "=", $idSalon)->toArray() as $name){
+            $player[] = $name["pseudoJoueur"];
         }
-        $board=new Board($player);
+        $board = new Board($player);
         $game->board = json_encode($board);
         $game->idGame = $args['id'];
-       $game->save();
+        $game->save();
     }
 
+    /**
+     * Method which makes the move of a player
+     * @param request
+     * @param response
+     * @param args
+     */
     public function playerMove($request, $response, $args){
         //setup our board
         $idGame=$args["id"];
         $game = Game::find($idGame);
-        $board=json_decode($game->board,true);
+        $board = json_decode($game->board,true);
         //we take the player who can actually play
-        $player=$board["player"][$board["turn"]];
+        $player = $board["player"][$board["turn"]];
         //player is no longer in the same case
         unset($board["grid"][$player["position"][0]][$player["position"][1]]["player"][$board["turn"]]);
         //the player move and change position 
-        for($i=0;$i<$args["dep"];$i++){
-            if(($player["position"][1]==1 && $player["position"][0]!=1 && $args["dir"]=="d") || ($player["position"][1]==13 && $player["position"][0]!=1 && $args["dir"]=="g")){
+        for($i=0; $i<$args["dep"]; $i++){
+            if(($player["position"][1] == 1 && $player["position"][0] != 1 && $args["dir"] == "d") || ($player["position"][1] == 13 && $player["position"][0] != 1 && $args["dir"] == "g")){
                 $player["position"][0]--;
             }
             else
-            if(($player["position"][0]==1 && $player["position"][1]!=13 && $args["dir"]=="d") || ($player["position"][0]==13 && $args["dir"]=="g")){
+            if(($player["position"][0] == 1 && $player["position"][1] != 13 && $args["dir"] == "d") || ($player["position"][0] == 13 && $args["dir"] == "g")){
                 $player["position"][1]++;
             }
             else
-            if(($player["position"][1]==1 && $args["dir"]=="g" || $player["position"][1]==13 && $player["position"][0]!=13 && $args["dir"]=="d")){
+            if(($player["position"][1] == 1 && $args["dir"] == "g" || $player["position"][1] == 13 && $player["position"][0] != 13 && $args["dir"] == "d")){
                 $player["position"][0]++;
             }
             else
-            if(($player["position"][0]==1 && $args["dir"]=="g" || $player["position"][0]==13 && $args["dir"]=="d")){
+            if(($player["position"][0] == 1 && $args["dir"] == "g" || $player["position"][0] == 13 && $args["dir"] == "d")){
                 $player["position"][1]--;
             }
         }
         //save our modification
-        $board["grid"][$player["position"][0]][$player["position"][1]]["player"][$board["turn"]]=$player;
-        $board["player"][$board["turn"]]=$player;
-        $game->board=json_encode($board);
-        $game->save();
-        $theme=$board["grid"][$player["position"][0]][$player["position"][1]]["theme"];
-        if($player["camemberts"]['camembert'.ucfirst($theme)]==1){
-        $board["turn"]+=1;
-        if($board["turn"]==count($board["player"]))
-        $board["turn"]=0;
+        $board["grid"][$player["position"][0]][$player["position"][1]]["player"][$board["turn"]] = $player;
+        $board["player"][$board["turn"]] = $player;
         $game->board = json_encode($board);
         $game->save();
-        return "alreadyHave";
+        $theme = $board["grid"][$player["position"][0]][$player["position"][1]]["theme"];
+        if ($player["camemberts"]['camembert'.ucfirst($theme)]==1) {
+            $board["turn"] += 1;
+            if($board["turn"] == count($board["player"]))
+                $board["turn"] = 0;
+            $game->board = json_encode($board);
+            $game->save();
+            return "alreadyHave";
         }
         else
         return $theme;
     }
 
+    /**
+     * Method that display the form containing the question
+     * @param request
+     * @param response
+     * @param args
+     */
     public function renderQuestion($request, $response, $args) {
         $idGame = $args["id"];
         $game = Game::find($idGame);
-        $board = json_decode($game->board,true);
+        $board = json_decode($game->board, true);
         $cards = $board['cards'];
         $themeQuestion = $args["theme"];
         $arr = array_filter($cards, function ($card) use ($themeQuestion) {
@@ -121,106 +155,129 @@ class GameController{
         unset($board['cards'][array_keys($arr)[0]]);
         $game->board = json_encode($board);
         $game->save();
-        return $this->view->render($response,'FormQuestionView.html.twig',[
+        return $this->view->render($response, 'FormQuestionView.html.twig', [
+            'board' => $board,
+            'playerAct' => $_SESSION["pseudoPlayer"],
+            'currentURI' => $_SERVER['REQUEST_URI'],
             'question' => $question,
             'theme' => $themeQuestion,
             'idGame' => $idGame
         ]);
     }
 
+    /**
+     * Method that checks the answer submit by the form
+     * @param request
+     * @param response
+     * @param args
+     */
     public function checkSubmissionForm($request, $response, $args) {
         $idGame = $args["id"];
         $game = Game::find($idGame);
-        $board = json_decode($game->board,true);
+        $board = json_decode($game->board, true);
         $themeQuestion = ucfirst($args["theme"]);
         
-        $joueur=Joueur::where('pseudoJoueur','=',$board["player"][$board["turn"]])->first();
-        $joueur['nbTotalQuestion']+=1;
-        var_dump($joueur);
+        $player = Joueur::where('pseudoJoueur', '=', $board["player"][$board["turn"]])->first();
+        $player['nbTotalQuestions'] += 1;
         $idCarte = strtolower($_POST["idCarte"]);
         $repSaisie = $_POST["reponse"];
         $carte = Carte::find($idCarte);
         $arrCarte = json_decode($carte, true);
         $repCarte = strtolower($arrCarte["reponse"]);
-        $simi = self::similaire($repCarte, $repSaisie);
+        $similarity = self::checkSimilarity($repCarte, $repSaisie);
 
-        $final=true;
-        foreach($board["player"][$board["turn"]]["camemberts"] as $camembert){
-            if($camembert == 0){
-                $final=false;
+        $final = true;
+        foreach ($board["player"][$board["turn"]]["camemberts"] as $camembert){
+            if ($camembert == 0){
+                $final = false;
             }
         }
-        if ($simi >= 80.00) {
 
-            if($final){
-                $x=$board["player"][$board["turn"]]["position"][0];
-                $y=$board["player"][$board["turn"]]["position"][1]; 
+        if ($similarity >= 80.00) {
+            if ($final) {
+                $x = $board["player"][$board["turn"]]["position"][0];
+                $y = $board["player"][$board["turn"]]["position"][1]; 
                 unset($board["grid"][$x][$y]["player"][$board["turn"]]);
-                if($x == 7 ){
-                    if($y < 7)
-                        $y+=1;
-                    else
-                        $y-=1;
+                if ($x == 7) {
+                    if($y < 7) {
+                        $y += 1;
+                    }
+                    else {
+                        $y -= 1;
+                    }
                 }
-                else{
-                    if($x < 7)
-                        $x+=1;
-                    else
-                        $x-=1;
+                else {
+                    if ($x < 7) {
+                        $x += 1;
+                    }
+                    else {
+                        $x -= 1;
+                    }
                 }
-                $board["player"][$board["turn"]]["position"][0]=$x;
-                $board["player"][$board["turn"]]["position"][1]=$y; 
-                $board["grid"][$x][$y]["player"][$board["turn"]]=$board["player"][$board["turn"]];
+                $board["player"][$board["turn"]]["position"][0] = $x;
+                $board["player"][$board["turn"]]["position"][1] = $y; 
+                $board["grid"][$x][$y]["player"][$board["turn"]] = $board["player"][$board["turn"]];
             }
-            else{
+            else {
                 $board["player"][$board["turn"]]["camemberts"]['camembert'.ucfirst($themeQuestion)] = 1;
-                $joueur['nbBonnesReponses']+=1;
+                $player['nbBonnesReponses']+=1;
             }
         }
-        $board["turn"]+=1;
-        if($board["turn"]==count($board["player"]))
-        $board["turn"]=0;
-        $game->board=json_encode($board);
+        $board["turn"] += 1;
+        if ($board["turn"] == count($board["player"])) {
+            $board["turn"] = 0;
+        }
+        $game->board = json_encode($board);
         $game->save();
-        $joueur->save();
+        $player->save();
     }
 
-    public static function similaire($str1, $str2) { 
-        $strlen1=strlen($str1);
-        $strlen2=strlen($str2);
-        $max=max($strlen1, $strlen2);
-        $splitSize=250;
-        if($max>$splitSize) {
-            $lev=0;
-            for($cont=0;$cont<$max;$cont+=$splitSize) {
-                if($strlen1<=$cont || $strlen2<=$cont) {
-                    $lev=$lev/($max/min($strlen1,$strlen2));
+    /**
+     * Method that checks the similarity between two string
+     * @param str1
+     * @param str2
+     */
+    public static function checkSimilarity($str1, $str2) { 
+        $strlen1 = strlen($str1);
+        $strlen2 = strlen($str2);
+        $max = max($strlen1, $strlen2);
+        $splitSize = 250;
+        if($max > $splitSize) {
+            $lev = 0;
+            for ($cont=0; $cont<$max; $cont+=$splitSize) {
+                if ($strlen1<=$cont || $strlen2<=$cont) {
+                    $lev = $lev/($max/min($strlen1, $strlen2));
                     break;
                 }
-                $lev+=levenshtein(substr($str1,$cont,$splitSize), substr($str2,$cont,$splitSize));
+                $lev += levenshtein(substr($str1, $cont, $splitSize), substr($str2, $cont, $splitSize));
             }
         }
         else {
-            $lev=levenshtein($str1, $str2);
+            $lev = levenshtein($str1, $str2);
         }
-        $porcentage= -100*$lev/$max+100;
-        if($porcentage>75) {
-            similar_text($str1,$str2,$porcentage);
+        $porcentage = -100*$lev/$max+100;
+        if($porcentage > 75) {
+            similar_text($str1, $str2, $porcentage);
         }
         return $porcentage;
     }
 
-
+    /**
+     * Method that displays the end of a game
+     * @param request
+     * @param response
+     * @param args
+     */
     public function displayEndGame($request, $response, $args) {
         $idGame = $args["id"];
         $game = Game::find($idGame);
         $board = json_decode($game->board,true);
         $players = array();
-        foreach($board["player"] as $p){
-            $nbPoints=$p['camemberts']['camembertGeo']+$p['camemberts']['camembertHist']+$p['camemberts']['camembertInfo']+$p['camemberts']['camembertSport']+$p['camemberts']['camembertPerso']+$p['camemberts']['camembertDiver'];
-            $players[]=['name' => $p['name'], 'nbPoints' => $nbPoints];
+        foreach ($board["player"] as $p){
+            $nbPoints = $p['camemberts']['camembertGeo']+$p['camemberts']['camembertHist']+$p['camemberts']['camembertInfo']+$p['camemberts']['camembertSport']+$p['camemberts']['camembertPerso']+$p['camemberts']['camembertDiver'];
+            $players[] = ['name' => $p['name'], 'nbPoints' => $nbPoints];
         }
-        return $this->view->render($response,'EndGameView.html.twig',[
+        return $this->view->render($response, 'EndGameView.html.twig', [
             'players'=> $players
         ]);
       }

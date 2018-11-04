@@ -2,6 +2,9 @@
 
 namespace trivial\models;
 
+/**
+ * Class Carte
+ */
 class Carte extends \Illuminate\Database\Eloquent\Model {
 
     protected $table = 'CARTE';

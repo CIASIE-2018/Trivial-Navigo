@@ -2,21 +2,28 @@
 <html>
 {% include 'GlobalHeaderView.html.twig' %}
 <body>
-<header>
+
+	<header>
 		<h1>Trivial Navigo</h1>
-		
 	</header>
-         <h4> Créer Un Compte </h4>
-<div class="screen">
-
-	 
-	 <form class="formMenu" action="" method="post">
-		 <p>
-			<p> pseudo : </p> <input type="text" name="pseudo" /> <p> mdp : </p> <input type="password" name="mdp" /> <p> email : </p> <input type="text" name="email" /> <input type="submit" value="Valider" />
-		 </p>
-	 </form>
-
-
+    <h4> Créer Un Compte </h4>
+	<div class="screen">
+		<form class="formMenu" action="" method="post">
+			<p>
+            	<label for="pseudo" id="labelpseudo">Votre pseudo :</label>
+            	<input type="text" name="pseudo" id="pseudo" placeholder="Ex : abcd"/>
+        	</p>
+			<p>
+            	<label for="mdp" id="labelmdp">Votre mot de passe :</label>
+            	<input type="password" name="mdp" id="mdp"/>
+        	</p>
+			<p>
+            	<label for="email" id="labelemail">Votre email :</label>
+            	<input type="text" name="email" id="email" placeholder="Ex: test@free.fr"/>
+        	</p>
+			<button type="submit" class="bouttonBlack">Valider</button>
+			<br><br>
+	 	</form>
     </div> 
 
 

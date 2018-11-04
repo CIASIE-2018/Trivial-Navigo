@@ -2,17 +2,17 @@
 
 namespace trivial\bd;
 
-class Connexion
-{
+/**
+ * Class Connection
+ */
+class Connection {
 
     private static $db;
-
     private static $tab;
 
-    public static function makeConnection()
-    {
+    // Method that makes a connection
+    public static function makeConnection() {
         try {
-            
             $dsn = 'mysql:host='.self::$tab['host'] . ';dbname='.self::$tab['dbname'];
             self::$db = new \PDO($dsn, self::$tab['username'], self::$tab['password'], array(
                 \PDO::ATTR_PERSISTENT => true,
@@ -28,8 +28,11 @@ class Connexion
         return self::$db;
     }
 
-    public static function setConfig($file)
-    {
+    /**
+     * Method that sets a config
+     * @param file
+     */
+    public static function setConfig($file) {
         self::$tab = parse_ini_file($file);
     }
 }
