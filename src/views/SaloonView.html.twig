@@ -9,6 +9,9 @@
 	</header>
     <h4>Salon : {{nameSaloon}}</h4>
 	<div class="screen">
+        {% if visible == 1 %}
+            <p>lien à partager : http://trivialnavigo/Salon/{{nameSaloon}}</p>
+        {% endif %}
         <p>Joueurs dans le salon</p>
         <div class="player">
             {% set count = 0  %}
