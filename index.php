@@ -6,8 +6,7 @@ use Illuminate\Database\Capsule\Manager as DB;
 use trivial\bd\Connection;
 use trivial\controllers\HomeController;
 use trivial\controllers\ConnectionController;
-use trivial\controllers\StartController;
-use trivial\controllers\JoinController;
+use trivial\controllers\SaloonController;
 use trivial\controllers\PlayerController;
 use trivial\controllers\DiceController;
 
@@ -78,25 +77,25 @@ $app->post('/CreateAccount', function($request, $response, $args){
 	return $response->withRedirect($router->pathFor('Home', []));
 })->setName("checkAccountCreation");
 
-$app->get('/Start', 'StartController:displayStart')->setName('Start');
+$app->get('/Start', 'SaloonController:displayStartSaloon')->setName('Start');
 
 $app->post('/Start' , function($request, $response, $args){
-	$controller =  $this['StartController'];
-	$checkCreationSaloon = $controller->checkCreateSaloon($request, $response, $args);
+	$controller =  $this['SaloonController'];
+	$controller->checkCreateSaloon($request, $response, $args);
     $router = $this->router;
     return $response->withRedirect($router->pathFor('Saloon', ["name" => $_POST['salon']]));
 })->setname("checkCreateSaloon");
 
-$app->get('/Salon/{name}', "StartController:displaySaloon")->setName('Saloon');
+$app->get('/Salon/{name}', "SaloonController:displaySaloon")->setName('Saloon');
 
 $app->post('/Salon/{name}', function($request, $response, $args){
-	$controller = $this['JoinController'];
-	$checkJoinSaloon = $controller->checkJoinSaloon($request, $response, $args);
+	$controller = $this['SaloonController'];
+	$controller->checkJoinSaloon($request, $response, $args);
 	$router = $this->router;
     return $response->withRedirect($router->pathFor('Saloon', ["name" => $args["name"]]));
 })->setname("checkJoinSaloon");
 
-$app->get('/Rejoin', 'JoinController:displayJoin')->setName('Rejoin');
+$app->get('/Rejoin', 'SaloonController:displayJoinSaloon')->setName('Rejoin');
 
 $app->post('/Rejoin', function($request, $response, $args){
 	$router = $this->router;

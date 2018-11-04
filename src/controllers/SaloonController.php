@@ -8,30 +8,79 @@ use trivial\controllers\Authentication;
 use \Slim\Views\Twig as twig;
 use trivial\views\StartView;
 use trivial\views\SaloonView;
-
+use trivial\views\JoinView;
 /**
- * Class StartController
+ * Class SaloonController
  */
-class StartController {
+class SaloonController {
 
 	protected $view;
 
 	/**
-	 * Constructor of the class StartController
+	 * Constructor of the class SaloonController
 	 * @param view
 	 */
     public function __construct(twig $view) {
         $this->view = $view;
     }
 
-	public function displayStart($request, $response, $args) {
+    	/**
+	 * Method that displays the page to join a saloon
+	 * @param request
+	 * @param response
+	 * @param args
+	 */
+	public function displayJoinSaloon($request, $response, $args) {
+		$saloonAvailable = m\Salon::all()->where('visible', '=', '0')->toArray();
+		if (Authentication::checkConnection()) {
+			$pseudo = "Bienvenue ".$_SESSION['pseudoPlayer'];
+		}
+		else {
+			$pseudo = "";
+		}
+		return $this->view->render($response, 'JoinSaloonView.html.twig', [
+			'pseudo' => $pseudo,
+			'salonDispo' => $saloonAvailable,
+		]);
+	}
+	
+	/**
+	 * Method that checks the rejoignement of a player in a saloon
+	 * @param request
+	 * @param response
+	 * @param args
+	 */
+	public function checkJoinSaloon($request, $response, $args){
+		$nameSaloon = $args['name'];
+		$idPlayer = $_SESSION['idPlayer'];
+		$saloon = m\Salon::where('nomSalon', '=', $nameSaloon);
+		$saloonF = $saloon->first();
+		$idSaloon = $saloonF->idSalon;
+		self::joinSaloon($nameSaloon, $idSaloon, $idPlayer);
+	}
+
+	/**
+	 * Method which allows to join a saloon
+	 * @param nameSaloon
+	 * @param idSaloon
+	 * @param idPlayer
+	 */
+	public static function joinSaloon($nameSaloon, $idSaloon, $idPlayer){
+		$player = m\Joueur::find($idPlayer);
+		if ($player) {
+			$player->idSalon = $idSaloon;
+			$player->save();
+		}
+	}
+
+	public function displayStartSaloon($request, $response, $args) {
 		if (Authentication::checkConnection()) {
 			$pseudo = "Bienvenue ".$_SESSION['pseudoPlayer'] ;
 		}
 		else {
 			$pseudo = "";
 		}
-		return $this->view->render($response, 'StartView.html.twig', [
+		return $this->view->render($response, 'StartSaloonView.html.twig', [
 			'pseudo' => $pseudo,
 		]);
 	}
@@ -103,7 +152,7 @@ class StartController {
 		//Ainsi un joueur qui crée un salon n'est ni plus ni moins qu'un
 		//joueur qui rejoint un salon, sauf que dans ce cas, le salon 
 		//vient d'être crée.
-		JoinController::joinSaloon($nameSaloon, $idSaloon, $idPlayer);
+		self::joinSaloon($nameSaloon, $idSaloon, $idPlayer);
 	}
 
 }

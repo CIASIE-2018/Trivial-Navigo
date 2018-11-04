@@ -220,9 +220,9 @@ class GameController {
             }
             else {
                 $board["player"][$board["turn"]]["camemberts"]['camembert'.ucfirst($themeQuestion)] = 1;
-                $player['nbBonnesReponses']+=1;
             }
         }
+        $player['nbBonnesReponses']+=1;
         $board["turn"] += 1;
         if ($board["turn"] == count($board["player"])) {
             $board["turn"] = 0;
