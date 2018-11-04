@@ -9,13 +9,22 @@ dice.onclick = function() {
         while (dice.firstChild) {
             dice.removeChild(dice.firstChild);
         }
-        let link = document.createElement('a');
-        link.setAttribute("id", "gauche");
-        link.setAttribute("href", document.location.href + '/' + number + '/g');
+        let link = document.createElement('form');
+        link.setAttribute("class", "direction");
+        link.setAttribute("method", "post");
+        link.setAttribute("action", document.location.href + '/dep');
+        link.innerHTML='<input type="hidden" name="dep" value="'+number+'" />'+
+                        '<input type="hidden" name="dir" value="g" />'+
+                        '<input type="submit" id="gauche" value="" />';
         contdice.prepend(link);
-        link = document.createElement('a');
-        link.setAttribute("id", "droite");
-        link.setAttribute("href", document.location.href + '/' + number + '/d');
+
+        link = document.createElement('form');
+        link.setAttribute("class", "direction");
+        link.setAttribute("method", "post");
+        link.setAttribute("action", document.location.href + '/dep');
+        link.innerHTML='<input type="hidden" name="dep" value="'+number+'" />'+
+                        '<input type="hidden" name="dir" value="d" />'+
+                        '<input type="submit" id="droite" value="" />';
         contdice.append(link);
         for (var i = 1; i <= number; i++) {
             let div = document.createElement("div");

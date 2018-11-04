@@ -114,7 +114,7 @@ $app->post('/CreateQuestions', function($request, $response, $args){
 
 $app->get('/MyAccount', 'PlayerController:displayAccount')->setName('MyAccount');
 
-$app->get('/Game/{id}/{dep}/{dir}', function($request, $response, $args){
+$app->post('/Game/{id}/dep', function($request, $response, $args){
 	$controller = $this['GameController'];
 	$theme = $controller->playerMove($request, $response, $args);
 	$router = $this->router;

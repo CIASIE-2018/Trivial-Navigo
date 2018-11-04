@@ -82,20 +82,20 @@ class GameController {
         //player is no longer in the same case
         unset($board["grid"][$player["position"][0]][$player["position"][1]]["player"][$board["turn"]]);
         //the player move and change position 
-        for($i=0; $i<$args["dep"]; $i++){
-            if(($player["position"][1] == 1 && $player["position"][0] != 1 && $args["dir"] == "d") || ($player["position"][1] == 13 && $player["position"][0] != 1 && $args["dir"] == "g")){
+        for($i=0; $i<$_POST["dep"]; $i++){
+            if(($player["position"][1] == 1 && $player["position"][0] != 1 && $_POST["dir"] == "d") || ($player["position"][1] == 13 && $player["position"][0] != 1 && $_POST["dir"] == "g")){
                 $player["position"][0]--;
             }
             else
-            if(($player["position"][0] == 1 && $player["position"][1] != 13 && $args["dir"] == "d") || ($player["position"][0] == 13 && $args["dir"] == "g")){
+            if(($player["position"][0] == 1 && $player["position"][1] != 13 && $_POST["dir"] == "d") || ($player["position"][0] == 13 && $_POST["dir"] == "g")){
                 $player["position"][1]++;
             }
             else
-            if(($player["position"][1] == 1 && $args["dir"] == "g" || $player["position"][1] == 13 && $player["position"][0] != 13 && $args["dir"] == "d")){
+            if(($player["position"][1] == 1 && $_POST["dir"] == "g" || $player["position"][1] == 13 && $player["position"][0] != 13 && $_POST["dir"] == "d")){
                 $player["position"][0]++;
             }
             else
-            if(($player["position"][0] == 1 && $args["dir"] == "g" || $player["position"][0] == 13 && $args["dir"] == "d")){
+            if(($player["position"][0] == 1 && $_POST["dir"] == "g" || $player["position"][0] == 13 && $_POST["dir"] == "d")){
                 $player["position"][1]--;
             }
         }

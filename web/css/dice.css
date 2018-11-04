@@ -11,22 +11,25 @@
   align-items: center;
 }
 
-#gauche {
-  margin-right:20px; 
+#gauche,#droite {
+  margin-right: 20px;
+  margin-left: 20px;
   width: 0;
   height: 0;
+  background-color: gray;
   border-top: 25px solid transparent;
-  border-right: 50px solid #77B5FE;
   border-bottom: 25px solid transparent;
+  cursor: pointer;
+}
+
+#gauche {
+  border-left: none;
+  border-right: 50px solid #77B5FE;
 }
 
 #droite {
-  margin-left:20px; 
-  width: 0;
-  height: 0;
-  border-top: 25px solid transparent;
+  border-right: none;
   border-left: 50px solid #77B5FE;
-  border-bottom: 25px solid transparent;
 }
 #dice{
     background-color: white;
