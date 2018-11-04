@@ -19,7 +19,10 @@
     flex-direction: column;
 }
 
-.bandeau {
+.bandeau1,
+.bandeau2,
+.bandeau3,
+.bandeau4 {
     width: 500px;
     margin: 2px;
     background-color: #EFEFEF;
@@ -27,6 +30,22 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.bandeau1 {
+    background-color: #419e0e;
+}
+
+.bandeau2 {
+    background-color: #0e739e;
+}
+
+.bandeau3 {
+    background-color: #9e0e40;
+}
+
+.bandeau4 {
+    background-color: #9e3e0e;
 }
 
 .geo,

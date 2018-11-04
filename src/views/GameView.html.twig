@@ -8,9 +8,26 @@
     <div class="bandeaux">
     {% include 'PlayView.html.twig' %}
         {% for player in board.player %}
-            <div class ="bandeau">
-                {% include 'CamembertView.html.twig' with {'player':player} %}
-            </div>
+            {% if player["name"] == board.player[0]["name"] %}
+                <div class ="bandeau1">
+                    {% include 'CamembertView.html.twig' with {'player':player} %}
+                </div>
+            {% endif %}
+            {% if player["name"] == board.player[1]["name"] %}
+                <div class ="bandeau2">
+                    {% include 'CamembertView.html.twig' with {'player':player} %}
+                </div>
+            {% endif %}
+            {% if player["name"] == board.player[2]["name"] %}
+                <div class ="bandeau3">
+                    {% include 'CamembertView.html.twig' with {'player':player} %}
+                </div>
+            {% endif %}
+            {% if player["name"] == board.player[3]["name"] %}
+                <div class ="bandeau4">
+                    {% include 'CamembertView.html.twig' with {'player':player} %}
+                </div>
+            {% endif %}
         {% endfor %}
     </div>
 </div>
