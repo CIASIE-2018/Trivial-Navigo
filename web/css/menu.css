@@ -1,6 +1,6 @@
 body {
     background: url(back.jpg);
-    background-color: aqua;
+    background-color: #fff2db;
 }
 
 h4 {
@@ -26,6 +26,7 @@ a {
     border: 2px solid rgb(95, 89, 89);
     padding-bottom: 15px;
     padding-top: 15px;
+    background-color: #c3b4ff;
 }
 
 select {
