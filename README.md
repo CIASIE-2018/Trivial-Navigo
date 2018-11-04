@@ -41,10 +41,13 @@ Jeu à développer --> Trivial Poursuit
   
 # Installation via Docker :
 
-Prérequis: 
+Prérequis : 
 
 * Docker
 * Docker Compose
+* Clone du dépôt soit :
+    - via SSH : git clone git@github.com:CIASIE-2018/Trivial-Navigo.git
+    - via HTTPS : git clone https://github.com/CIASIE-2018/Trivial-Navigo.git
 
 Pour installer et lancer en production :
 ```
@@ -53,7 +56,7 @@ Pour installer et lancer en production :
 ```
 Un makefile est aussi mit à disposition afin d'aider : lancer "make help" pour connaitre les commandes utilisables.
 
-Ouvrez alors votre navigateur sur http://localhost:8080 pour jouer sur votre trivial navigo.
+Ouvrez alors deux navigateurs différents (par exemple : Google Chrome et Mozilla Firefox) sur http://localhost:8080 pour jouer sur votre trivial navigo.
 
 Attention : Le chargement de la bdd peut prendre un certain temps et faire apparaitre une erreur pdo si l'on charge la page web avant la fin de ce chargement, il suffit juste d'attendre un peu avant de recharger la page.
 
