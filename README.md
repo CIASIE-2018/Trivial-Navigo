@@ -39,7 +39,7 @@ Jeu à développer --> Trivial Poursuit
   - Créer de questions
   - Voir à combien de questions il a répondu juste
   
-### Instalation via Docker
+# Installation via Docker :
 
 Prérequis: 
 
