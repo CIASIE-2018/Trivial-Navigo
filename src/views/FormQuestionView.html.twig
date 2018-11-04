@@ -32,10 +32,10 @@
 </div>
     <form id="formQuestion" method="post" class={{theme}} action="{{ base_url() }}/SubmitQ/Game/{{idGame}}/{{theme}}">
         <p>
-            <label id="question">{{ question.question }}</label>
+            <label id="labelQuestionForm">{{ question.question }}</label>
         </p>
         <p>
-            <label for="reponse" id="labelreponse">Votre réponse :</label>
+            <label for="reponse" id="labelReponseForm">Votre réponse :</label>
             <input type="text" name="reponse" id="reponse" placeholder="Ex : test"/>
         </p>
         <input type="hidden" id="idCarte" name="idCarte" value={{ question.idCarte }}></input>
