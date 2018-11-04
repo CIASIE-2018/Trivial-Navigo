@@ -102,6 +102,7 @@ class SaloonController {
 		$saloon = m\Salon::where('nomSalon', '=', $nameSaloon);
 		$salonF = $saloon->first();
 		$idSaloon = $salonF->idSalon;
+		$visible = $salonF->visible;
 		$player = m\Joueur::where('idSalon', '=', $idSaloon)->get();
 		$listPlayers = array();
 		foreach($player as $namePlayer) {
@@ -117,6 +118,7 @@ class SaloonController {
 			'pseudo' => $pseudo,
 			'nameSaloon' => $nameSaloon,
 			'listeJoueur' => $listPlayers,
+			'visible' => $visible,
 		]);
 	}
 
