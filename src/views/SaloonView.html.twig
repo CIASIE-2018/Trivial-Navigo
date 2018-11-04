@@ -24,18 +24,18 @@
         {% if pseudo != "" %}
             {% if present %}
                 {% if gameExist %}
-                    <button type="button" value="Rejoindre Partie" title="Rejoindre Partie" onclick="location.href='{{base_url()}}/Game/{{nameSaloon}}'">Rejoindre Partie</button>
+                    <button class="bouttonBlack" type="button" value="Rejoindre Partie" title="Rejoindre Partie" onclick="location.href='{{base_url()}}/Game/{{nameSaloon}}'">Rejoindre Partie</button>
                 {% else %}
                     {% if count >= 2 and count <= 4 %}
                         <form class="formMenu" action="{{base_url()}}/newGame/{{nameSaloon}}" method="post">
-                            <input type="submit" value="Lancer Partie" />
+                            <button type="submit" class="bouttonBlack">Lancer Partie</button>
                         </form>
                     {% endif %}
                 {% endif %}
             {% else %}
                 {% if count < 4 and (gameExist == false) %}
                         <form class="formMenu" action="" method="post">
-                            <input type="submit" value="Rejoindre le salon" />
+                            <button type="submit" class="bouttonBlack">Rejoindre le salon</button>
                         </form>
                 {% else %}
                     <p> Le salon est déjà rempli ! </p>

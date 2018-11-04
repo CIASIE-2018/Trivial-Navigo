@@ -1,3 +1,7 @@
+.gameColor {
+    background-color: white;
+}
+
 .game {
     display: flex;
     flex-direction: row;
