@@ -25,7 +25,7 @@ class Board {
 	 */
     public function __construct($player){
         for ($i=0; $i<count($player); $i++){
-            $this->player[$i] = ["name" => $player[$i], "position" => [1,7], "camemberts" => ["camembertGeo" => 0, "camembertDiver" => 0, "camembertHist" => 0, "camembertSport" => 0, "camembertInfo" => 0, "camembertPerso"  =>  0]];
+            $this->player[$i] = ["name" => $player[$i], "position" => [1,7], "camemberts" => ["camembertGeo" => 0, "camembertDiver" => 0, "camembertHist" => 0, "camembertSport" => 0, "camembertInfo" => 0, "camembertPerso"  =>  0],"nbPoints"=>0];
         }
 
         $this->turn = rand(0,count($player)-1);

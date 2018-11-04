@@ -194,6 +194,8 @@ class GameController {
         }
 
         if ($similarity >= 80.00) {
+        $player['nbBonnesReponses']+=1;
+        $board["player"][$board["turn"]]['nbPoints']+=1;
             if ($final) {
                 $x = $board["player"][$board["turn"]]["position"][0];
                 $y = $board["player"][$board["turn"]]["position"][1]; 
@@ -222,11 +224,11 @@ class GameController {
                 $board["player"][$board["turn"]]["camemberts"]['camembert'.ucfirst($themeQuestion)] = 1;
             }
         }
-        $player['nbBonnesReponses']+=1;
         $board["turn"] += 1;
         if ($board["turn"] == count($board["player"])) {
             $board["turn"] = 0;
         }
+        
         $game->board = json_encode($board);
         $game->save();
         $player->save();
@@ -274,8 +276,7 @@ class GameController {
         $board = json_decode($game->board,true);
         $players = array();
         foreach ($board["player"] as $p){
-            $nbPoints = $p['camemberts']['camembertGeo']+$p['camemberts']['camembertHist']+$p['camemberts']['camembertInfo']+$p['camemberts']['camembertSport']+$p['camemberts']['camembertPerso']+$p['camemberts']['camembertDiver'];
-            $players[] = ['name' => $p['name'], 'nbPoints' => $nbPoints];
+           $players[] = ['name' => $p['name'], 'nbPoints' => $p['nbPoints']];
         }
         return $this->view->render($response, 'EndGameView.html.twig', [
             'players'=> $players
