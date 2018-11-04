@@ -109,12 +109,17 @@ table {
     grid-template-rows: 50% 50%;
 }
 
-#question {
+#labelQuestionForm {
     margin-left: 10px;
     margin-right: 10px;
     font-size: 14pt;
     font-weight: bold;
-    color: white;
+    color: black;
+}
+
+#labelReponseForm {
+    font-weight: bold;
+    color: black;
 }
 
 #formQuestion {
@@ -125,9 +130,6 @@ table {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-}
-
-#formQuestion {
     border: 2px solid black;
 }
 
@@ -145,11 +147,6 @@ table {
 
 .player4 {
     background-color: #9e3e0e;
-}
-
-#labelreponse {
-    font-weight: bold;
-    color: white;
 }
 
 .finalButton {
