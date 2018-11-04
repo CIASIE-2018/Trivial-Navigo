@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <html>
 {% include 'GlobalHeaderView.html.twig' %}
-<body>
 
+<body>
+<div class="game">
+{% include 'BoardView.html.twig' %}
+    <div class="bandeaux">
+        {% for player in board.player %}
+            <div class ="bandeau">
+                {% include 'CamembertView.html.twig' with {'player':player} %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
     <form id="formQuestion" method="post" class={{theme}} action="{{ base_url() }}/SubmitQ/Game/{{idGame}}/{{theme}}">
         <p>
             <label id="question">{{ question.question }}</label>
