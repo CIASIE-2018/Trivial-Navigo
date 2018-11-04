@@ -1,10 +1,10 @@
 # Trivial-Navigo
 
 Membres de la Team Navigo :
-- Camille Schwarz ( S-Camille )
 - Maeva Butaye    ( Lilychaan )
-- Quentin Rimet   ( QuentinRimet )
+- Camille Schwarz ( S-Camille )
 - Léo Galassi     ( ElGitariste )
+- Quentin Rimet   ( QuentinRimet )
 
 Jeu à développer --> Trivial Poursuit
 
@@ -56,3 +56,5 @@ Un makefile est aussi mit à disposition afin d'aider : lancer "make help" pour 
 Ouvrez alors votre navigateur sur http://localhost:8080 pour jouer sur votre trivial navigo.
 
 Attention : Le chargement de la bdd peut prendre un certain temps et faire apparaitre une erreur pdo si l'on charge la page web avant la fin de ce chargement, il suffit juste d'attendre un peu avant de recharger la page.
+
+Il y a aussi un phpmyadmin qui est accessible sur http://localhost:8081. Pour s'y connecter, il faut mettre root en utilisateur et aucun mot de passe.
